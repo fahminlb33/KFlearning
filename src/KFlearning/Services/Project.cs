@@ -9,14 +9,18 @@
 // See this code in repository URL above!
 
 using KFlearning.Core;
+using Newtonsoft.Json;
 
 namespace KFlearning.Services
 {
     public class Project
     {
         public string Name { get; set; }
-        public ITemplateProvider Template { get; set; }
+
         public string Path { get; set; }
+
+        [JsonIgnore]
+        public ITemplateProvider Template { get; set; }
 
         public override string ToString()
         {
