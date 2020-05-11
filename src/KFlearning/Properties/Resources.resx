@@ -130,26 +130,11 @@
   <data name="InvalidProjectMessage" xml:space="preserve">
     <value>Folder ini bukan proyek KFlearning.</value>
   </data>
-  <data name="UnderMaintenanceMessage" xml:space="preserve">
-    <value>Sedang dalam perbaikan...</value>
-  </data>
   <data name="ProjectExistsMessage" xml:space="preserve">
     <value>Proyek pada lokasi tersebut sudah ada. Pilih lokasi lain.</value>
   </data>
-  <data name="InvalidAccessCode" xml:space="preserve">
-    <value>Kode akses salah!</value>
-  </data>
-  <data name="NotElevatedMessage" xml:space="preserve">
-    <value>KFlearning harus dijalankan sebagai Administrator untuk mengubah pengaturan sistem.</value>
-  </data>
   <data name="VscodeNotInstalled" xml:space="preserve">
     <value>Visual Studio Code tidak ditemukan. Harap install Visual Studio Code terlebih dahulu!</value>
-  </data>
-  <data name="RafModeMessage" xml:space="preserve">
-    <value>KFlearning dalam mode Run-and-Forget. Tidak dapat melakukan aksi tersebut.</value>
-  </data>
-  <data name="NetworkErrorMessage" xml:space="preserve">
-    <value>Kesalahan jaringan. Tidak dapat terhubung ke server.</value>
   </data>
   <data name="WallpaperCopyError" xml:space="preserve">
     <value>Tidak dapat menyalin wallpaper. </value>

@@ -70,15 +70,6 @@ namespace KFlearning.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kode akses salah!.
-        /// </summary>
-        internal static string InvalidAccessCode {
-            get {
-                return ResourceManager.GetString("InvalidAccessCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Folder ini bukan proyek KFlearning..
         /// </summary>
         internal static string InvalidProjectMessage {
@@ -107,24 +98,6 @@ namespace KFlearning.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kesalahan jaringan. Tidak dapat terhubung ke server..
-        /// </summary>
-        internal static string NetworkErrorMessage {
-            get {
-                return ResourceManager.GetString("NetworkErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to KFlearning harus dijalankan sebagai Administrator untuk mengubah pengaturan sistem..
-        /// </summary>
-        internal static string NotElevatedMessage {
-            get {
-                return ResourceManager.GetString("NotElevatedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Proyek pada lokasi tersebut sudah ada. Pilih lokasi lain..
         /// </summary>
         internal static string ProjectExistsMessage {
@@ -139,24 +112,6 @@ namespace KFlearning.Properties {
         internal static string ProjectNameEmptyMessage {
             get {
                 return ResourceManager.GetString("ProjectNameEmptyMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to KFlearning dalam mode Run-and-Forget. Tidak dapat melakukan aksi tersebut..
-        /// </summary>
-        internal static string RafModeMessage {
-            get {
-                return ResourceManager.GetString("RafModeMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sedang dalam perbaikan....
-        /// </summary>
-        internal static string UnderMaintenanceMessage {
-            get {
-                return ResourceManager.GetString("UnderMaintenanceMessage", resourceCulture);
             }
         }
         
