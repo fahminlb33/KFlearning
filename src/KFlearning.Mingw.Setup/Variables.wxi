@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Include>
+  <?define SourceDir = "D:\glut\mingw32" ?>
+  <?define AssetsDir = "..\..\assets" ?>
+  <?define IconFile = "..\..\assets\kflearning-logo.ico" ?>
+</Include>

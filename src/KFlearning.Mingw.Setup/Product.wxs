@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define IconFile = "..\..\assets\kflearning-logo.ico" ?>
-  <?define AssetsDir = "..\..\assets" ?>
+  <?include Variables.wxi ?>
 
   <Product Id="*" Name="KF-MinGW" Language="1033" Version="1.0" Manufacturer="Kodesiana.com"
            UpgradeCode="79aa0936-b707-469c-a0f1-72366c853e5e">
@@ -17,7 +16,7 @@
 
     <!-- Features to install -->
     <Feature Id="ProductFeature" Title="KF-MinGW" Level="1">
-      <MergeRef Id="Mingw_w64" />
+      <ComponentGroupRef Id="MingwToolchain" />
     </Feature>
 
     <!-- Properties -->
@@ -28,9 +27,7 @@
     <!-- Directories -->
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="KF-MinGW">
-          <Merge Id="Mingw_w64" SourceFile="$(var.AssetsDir)\Mingw_w64.Msm.x86.msm" DiskId="1" Language="1033" />
-        </Directory>
+        <Directory Id="INSTALLFOLDER" Name="KF-MinGW" />
       </Directory>
     </Directory>
 
