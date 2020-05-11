@@ -1,0 +1,38 @@
+name: Canary Build
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    name: Build-Incremental
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Cake Build
+      run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target Build-Incremental --configuration Debug
+
+    - name: Upload KFlearning Setup artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: KFlearning Installer
+        path: build/KFlearning.Setup.msi
+
+    - name: Upload KFmaintenance Setup artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: KFmaintenance Installer
+        path: build/KFmaintenance.Setup.msi
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "canary"
+        prerelease: true
+        title: "Canary Build"
+        files: build/*.msi

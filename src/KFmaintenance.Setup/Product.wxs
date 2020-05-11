@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi ?>
+
+  <Product Id="*" Name="KFmaintenance" Language="1033" Version="1.0" Manufacturer="Kodesiana"
+           UpgradeCode="c9495b6e-ef17-417d-b7a2-a789c92f346b">
+    <!-- Package -->
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />
+    <Icon Id="icon.ico" SourceFile="$(var.IconFile)" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Install Conditions -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."
+                  AllowDowngrades="no" AllowSameVersionUpgrades="no" />
+
+    <!-- Features to install -->
+    <Feature Id="ProductFeature" Title="KFmaintenance" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="AppShortcuts" />
+    </Feature>
+
+    <!-- Properties -->
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.AssetsDir)\license.rtf" />
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Buka KFmaintenance" />
+    <Property Id="WixShellExecTarget" Value="[#KFmaintenance.exe]" />
+
+    <!-- UI -->
+    <UI>
+      <UIRef Id="WixUI_InstallDir" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
+        WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed
+      </Publish>
+    </UI>
+
+    <!-- Install Sequence -->
+    <InstallExecuteSequence>
+      <Custom Action="CreateScheduledTask" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="CreateFirewallExclusion1" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="CreateFirewallExclusion2" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="CreateHttpReservation" After="InstallFiles">NOT Installed</Custom>
+
+      <Custom Action="RemoveScheduledTask" After="InstallFiles">Installed</Custom>
+      <Custom Action="RemoveFirewallExclusion" After="InstallFiles">Installed</Custom>
+      <Custom Action="RemoveHttpReservation" After="InstallFiles">Installed</Custom>
+    </InstallExecuteSequence>
+  </Product>
+
+  <Fragment>
+    <!-- Custom Actions -->
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+
+    <!-- Add Firewall Rules/URL ACL -->
+    <SetProperty Id="CreateScheduledTask" Sequence="execute" Before="CreateScheduledTask"
+                 Value="&quot;[SystemFolder]SCHTASKS.EXE&quot; /CREATE /TN &quot;KFmaintenance&quot; /TR &quot;&quot;[INSTALLFOLDER]\KFmaintenance.exe --tray&quot;&quot; /RU &quot;System&quot; /RL HIGHEST /SC ONLOGON" />
+    <CustomAction Id="CreateScheduledTask" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <SetProperty Id="CreateFirewallExclusion1" Sequence="execute" Before="CreateFirewallExclusion1"
+                 Value="&quot;[SystemFolder]netsh.exe&quot; advfirewall firewall add rule name=KFmaintenance protocol=UDP dir=in localport=2021 action=allow" />
+    <CustomAction Id="CreateFirewallExclusion1" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <SetProperty Id="CreateFirewallExclusion2" Sequence="execute" Before="CreateFirewallExclusion2"
+                 Value="&quot;[SystemFolder]netsh.exe&quot; advfirewall firewall add rule name=KFmaintenance protocol=TCP dir=in localport=2022 action=allow" />
+    <CustomAction Id="CreateFirewallExclusion2" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <SetProperty Id="CreateHttpReservation" Sequence="execute" Before="CreateHttpReservation"
+                 Value="&quot;[SystemFolder]netsh.exe&quot; http add urlacl url=http://*:2022/serve/ user=&quot;[%USERDOMAIN]\[%USERNAME]&quot;" />
+    <CustomAction Id="CreateHttpReservation" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <!-- Remove Firewall Rules/URL ACL -->
+    <SetProperty Id="RemoveScheduledTask" Sequence="execute" Before="RemoveScheduledTask"
+                 Value="&quot;[SystemFolder]SCHTASKS.EXE&quot; /CREATE /TN &quot;KFmaintenance&quot; /TR &quot;&quot;[INSTALLFOLDER]\KFmaintenance.exe --tray&quot;&quot; /RU &quot;System&quot; /RL HIGHEST /SC ONLOGON" />
+    <CustomAction Id="RemoveScheduledTask" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <SetProperty Id="RemoveFirewallExclusion" Sequence="execute" Before="RemoveFirewallExclusion"
+                 Value="&quot;[SystemFolder]netsh.exe&quot; advfirewall firewall delete rule name=KFmaintenance" />
+    <CustomAction Id="RemoveFirewallExclusion" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+
+    <SetProperty Id="RemoveHttpReservation" Sequence="execute" Before="RemoveHttpReservation"
+                 Value="&quot;[SystemFolder]netsh.exe&quot; http delete urlacl url=http://*:2022/serve/" />
+    <CustomAction Id="RemoveHttpReservation" BinaryKey="WixCA" DllEntry="WixQuietExec"
+                  Execute="deferred" Return="ignore" Impersonate="no"/>
+  </Fragment>
+</Wix>

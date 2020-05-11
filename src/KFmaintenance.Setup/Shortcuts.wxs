@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Fragment>
+    <ComponentGroup Id="AppShortcuts">
+      <Component Id="StarMenuShortcut" Guid="*" Directory="ApplicationProgramsFolder">
+        <!-- KFlearning -->
+        <Shortcut Id="StartMenuShortcut"
+                  Name="KFmaintenance"
+                  Description="Buka KFmaintenance"
+                  Target="[#KFmaintenance.exe]"
+                  WorkingDirectory="INSTALLFOLDER" />
+
+        <!-- Uninstall -->
+        <Shortcut Id="UninstallProduct"
+                  Name="Uninstall KFmaintenance"
+                  Description="Uninstall KFmaintenance"
+                  Target="[SystemFolder]msiexec.exe"
+                  Arguments="/x [ProductCode]" />
+
+        <!-- Webpage -->
+        <util:InternetShortcut Id="KodesianaShortcut" Name="Kodesiana.com" Target="https://kodesiana.com/"
+                               IconFile="[#kodesiana_icon.ico]" />
+
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\KFmaintenance" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

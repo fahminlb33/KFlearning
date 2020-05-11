@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{D3C20BB6-416B-468F-BF08-0E7AE913D75B}"
+	ProjectSection(SolutionItems) = preProject
+		build.cake = build.cake
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KFlearning", "src\KFlearning\KFlearning.csproj", "{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KFlearning.Core", "src\KFlearning.Core\KFlearning.Core.csproj", "{443A1CE9-0C67-41ED-B392-5E41F7325A82}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KFlearning.Setup", "src\KFlearning.Setup\KFlearning.Setup.wixproj", "{51B934A5-0042-49C0-9560-0E6A4C38D41E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setup", "setup", "{D5B93334-6C83-4564-AA09-823A5C0810F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{8B5F7282-F831-4238-B4FF-4E894CDBBFE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{CFD611E5-7C21-4948-BC50-9E047037E089}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KFmaintenance.Setup", "src\KFmaintenance.Setup\KFmaintenance.Setup.wixproj", "{1C4C9B16-1F81-4800-8F3F-488EEC06ED2A}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KFlearning.Mingw.Setup", "src\KFlearning.Mingw.Setup\KFlearning.Mingw.Setup.wixproj", "{4F922325-3863-493B-BF00-8DDF3DB4A9D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KFmaintenance", "src\KFmaintenance\KFmaintenance.csproj", "{66D76F86-C922-424C-8477-BB8E1CF6C0C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{AD8A042C-E162-4A52-8149-264D0D3627F0}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\canary.yml = .github\workflows\canary.yml
+		.github\workflows\stable.yml = .github\workflows\stable.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B}.Debug|x86.ActiveCfg = Debug|x86
+		{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B}.Debug|x86.Build.0 = Debug|x86
+		{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B}.Release|x86.ActiveCfg = Release|x86
+		{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B}.Release|x86.Build.0 = Release|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x86.ActiveCfg = Debug|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x86.Build.0 = Debug|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x86.ActiveCfg = Release|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x86.Build.0 = Release|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|x86.ActiveCfg = Debug|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|x86.ActiveCfg = Release|x86
+		{1C4C9B16-1F81-4800-8F3F-488EEC06ED2A}.Debug|x86.ActiveCfg = Debug|x86
+		{1C4C9B16-1F81-4800-8F3F-488EEC06ED2A}.Release|x86.ActiveCfg = Release|x86
+		{4F922325-3863-493B-BF00-8DDF3DB4A9D4}.Debug|x86.ActiveCfg = Debug|x86
+		{4F922325-3863-493B-BF00-8DDF3DB4A9D4}.Release|x86.ActiveCfg = Release|x86
+		{66D76F86-C922-424C-8477-BB8E1CF6C0C5}.Debug|x86.ActiveCfg = Debug|x86
+		{66D76F86-C922-424C-8477-BB8E1CF6C0C5}.Debug|x86.Build.0 = Debug|x86
+		{66D76F86-C922-424C-8477-BB8E1CF6C0C5}.Release|x86.ActiveCfg = Release|x86
+		{66D76F86-C922-424C-8477-BB8E1CF6C0C5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0CFFDEDA-8108-4F8A-9C5D-2BDDC98EEF1B} = {8B5F7282-F831-4238-B4FF-4E894CDBBFE7}
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82} = {CFD611E5-7C21-4948-BC50-9E047037E089}
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E} = {D5B93334-6C83-4564-AA09-823A5C0810F9}
+		{1C4C9B16-1F81-4800-8F3F-488EEC06ED2A} = {D5B93334-6C83-4564-AA09-823A5C0810F9}
+		{4F922325-3863-493B-BF00-8DDF3DB4A9D4} = {D5B93334-6C83-4564-AA09-823A5C0810F9}
+		{66D76F86-C922-424C-8477-BB8E1CF6C0C5} = {8B5F7282-F831-4238-B4FF-4E894CDBBFE7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01014452-34E3-46C7-99D8-DE8763ABD8E3}
+	EndGlobalSection
+EndGlobal

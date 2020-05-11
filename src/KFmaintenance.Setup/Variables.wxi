@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Include>
+  <?define SourceDir = "..\..\build\kfmaintenance" ?>
+  <?define AssetsDir = "..\..\assets" ?>
+  <?define IconFile = "..\..\assets\kfmaintenance-logo.ico" ?>
+</Include>
