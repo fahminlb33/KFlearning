@@ -167,7 +167,7 @@
         "type": "shell",
         "command": "g++",
         "args": [
-          "-g", "${file}", "-l:libopengl32.a", "-l:libglew32.a", "-l:libfreeglut.a", "-l:libglu32.a", "-o", "program.exe"
+          "-g", "${file}", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "program.exe"
         ],
         "group": {
             "kind": "build",

@@ -33,9 +33,17 @@ namespace KFlearning
 
             // find vscode
             var path = Container.Resolve<IPathManager>();
-            if (path.GetPath(PathKind.VisualStudioCodeExecutable) == null)
+            if (!path.IsVscodeInstalled())
             {
                 MessageBox.Show(Resources.VscodeNotInstalled, Resources.AppName, MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // find mingw
+            if (!path.IsKfMingwInstalled())
+            {
+                MessageBox.Show(Resources.KfmingwNotInstalled, Resources.AppName, MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
                 return;
             }

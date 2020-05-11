@@ -98,6 +98,15 @@ namespace KFlearning.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KF-MinGW belum diinstall. Harap unduh dan install terlebih dahulu..
+        /// </summary>
+        internal static string KfmingwNotInstalled {
+            get {
+                return ResourceManager.GetString("KfmingwNotInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kesalahan jaringan. Tidak dapat terhubung ke server..
         /// </summary>
         internal static string NetworkErrorMessage {

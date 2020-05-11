@@ -122,7 +122,7 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-l:libopengl32.a&quot;, &quot;-l:libglew32.a&quot;, &quot;-l:libfreeglut.a&quot;, &quot;-l:libglu32.a&quot;, &quot;-o&quot;, &quot;program.exe&quot;
+        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;program.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,

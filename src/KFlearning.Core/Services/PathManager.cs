@@ -22,6 +22,8 @@ namespace KFlearning.Core.Services
     {
         string GetPath(PathKind kind, bool forwardSlash = false);
         string StripInvalidPathName(string path);
+        bool IsVscodeInstalled();
+        bool IsKfMingwInstalled();
     }
 
     public class PathManager : IPathManager
@@ -73,13 +75,29 @@ namespace KFlearning.Core.Services
             return InvalidFileNameChars.Aggregate(path, (current, x) => current.Replace(x, '_'));
         }
 
+        public bool IsVscodeInstalled()
+        {
+            return FindVscode() != null;
+        }
+
+        public bool IsKfMingwInstalled()
+        {
+            return FindKfMingw() != null;
+        }
+
         private string FindKfMingw()
         {
-            if (_cachedKfMingwPath != null) return _cachedKfMingwPath;
+            if (_cachedKfMingwPath != null)
+                return _cachedKfMingwPath;
 
             // find installation
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "KF-MinGW");
-            if (!Directory.Exists(path)) return null;
+            if (!Directory.Exists(path)) 
+                return null;
+
+            // check PATH
+            if (GetFullPathToEnv("g++.exe") == null)
+                return null;
 
             _cachedKfMingwPath = path;
             return path;
@@ -111,6 +129,15 @@ namespace KFlearning.Core.Services
 
             // not found
             return null;
+        }
+
+        private static string GetFullPathToEnv(string fileName)
+        {
+            if (File.Exists(fileName))
+                return Path.GetFullPath(fileName);
+
+            var values = Environment.GetEnvironmentVariable("PATH");
+            return values?.Split(Path.PathSeparator).Select(path => Path.Combine(path, fileName)).FirstOrDefault(File.Exists);
         }
     }
 }
