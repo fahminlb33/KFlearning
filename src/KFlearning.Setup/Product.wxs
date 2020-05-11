@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Variables.wxi ?>
 
-  <Product Id="*" Name="KFlearning" Language="1033" Version="1.3" Manufacturer="Kodesiana"
+  <Product Id="*" Name="KFlearning" Language="1033" Version="1.3.0" Manufacturer="Kodesiana"
            UpgradeCode="{3C1DF2CB-96CC-4249-9E74-683A8C22A388}">
     <!-- Package -->
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />

@@ -47,7 +47,7 @@ namespace KFlearning.Core
         public static string GetVersionString()
         {
             var version = Assembly.GetCallingAssembly().GetName().Version;
-            return $"v{version.Major}.{version.Minor} build \"{CodeName}\"";
+            return $"v{version.Major}.{version.Minor}.{version.Build} build \"{CodeName}\"";
         }
 
         public static string TrimLongText(this string path, int maxLength = 40)
