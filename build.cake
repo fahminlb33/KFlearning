@@ -59,7 +59,7 @@ Task("Build-MSI-Apps")
 	MSBuild("./src/KFlearning.Setup/KFlearning.Setup.wixproj", buildSettings);
 	MoveFile($"./src/KFlearning.Setup/bin/{configuration}/KFlearning.Setup.msi", "./build/KFlearning.Setup.msi");
 
-	Information("Builidng KFlearning installer...");
+	Information("Builidng KFmaintenance installer...");
 	MSBuild("./src/KFmaintenance.Setup/KFmaintenance.Setup.wixproj", buildSettings);
 	MoveFile($"./src/KFmaintenance.Setup/bin/{configuration}/KFmaintenance.Setup.msi", "./build/KFmaintenance.Setup.msi");
 });

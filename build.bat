@@ -1,1 +1,1 @@
-powershell ./build.ps1
+powershell ./build.ps1 -target Build-Incremental -configuration Release
