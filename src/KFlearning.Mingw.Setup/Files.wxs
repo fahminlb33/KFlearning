@@ -8,7 +8,7 @@
                     <File Id="build_info.txt" KeyPath="yes" Source="$(var.SourceDir)\build-info.txt" />
                 </Component>
                 <Directory Id="bin" Name="bin">
-                    <Component Id="Env1" Guid="{6CC59FD8-B9B9-4057-9DE5-2C2A6AE31955}">
+                    <Component Id="BinEnv" Guid="{de8724de-814c-456a-be3b-42f96bd947ed}">
                         <CreateFolder />
                         <Environment Id="MingwBinEnv1" Action="set" Part="last" Name="path" Value="[INSTALLFOLDER]bin" />
                     </Component>
@@ -6103,6 +6103,11 @@
                     </Directory>
                 </Directory>
                 <Directory Id="include_1" Name="include">
+                    <Component Id="IncludeEnv" Guid="{cf92e0fa-1830-4c4e-8401-de4b8e486f01}">
+                        <CreateFolder />
+                        <Environment Id="MingwIncludeEnv1" Action="set" Part="last" Name="C_INCLUDE_PATH" Value="[INSTALLFOLDER]include" />
+                        <Environment Id="MingwIncludeEnv2" Action="set" Part="last" Name="CPLUS_INCLUDE_PATH" Value="[INSTALLFOLDER]include" />
+                    </Component>
                     <Component Id="ansidecl.h" Guid="*">
                         <File Id="ansidecl.h" KeyPath="yes" Source="$(var.SourceDir)\include\ansidecl.h" />
                     </Component>
@@ -38935,7 +38940,8 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="MingwToolchain">
-            <ComponentRef Id="Env1" />
+            <ComponentRef Id="BinEnv" />
+            <ComponentRef Id="IncludeEnv" />
             <ComponentRef Id="build_info.txt" />
             <ComponentRef Id="addr2line.exe" />
             <ComponentRef Id="ar.exe" />

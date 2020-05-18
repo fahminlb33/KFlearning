@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Variables.wxi ?>
 
-  <Product Id="*" Name="KF-MinGW" Language="1033" Version="1.0.0" Manufacturer="Kodesiana.com"
+  <Product Id="*" Name="KF-MinGW" Language="1033" Version="1.0.1" Manufacturer="Kodesiana"
            UpgradeCode="79aa0936-b707-469c-a0f1-72366c853e5e">
     <!-- Package -->
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
