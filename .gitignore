@@ -491,3 +491,7 @@ MigrationBackup/
 
 # Assets
 *.msm
+*.zip
+*.gz
+*.7z
+assets/*/*
