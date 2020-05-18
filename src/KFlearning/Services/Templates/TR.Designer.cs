@@ -97,7 +97,7 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;program.exe&quot;
+        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,
@@ -122,7 +122,7 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;program.exe&quot;
+        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,
@@ -139,19 +139,23 @@ namespace KFlearning.Services.Templates {
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///    // Use IntelliSense to learn about possible attributes.
-        ///    // Hover to view descriptions of existing attributes.
-        ///    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
         ///    &quot;version&quot;: &quot;0.2.0&quot;,
         ///    &quot;configurations&quot;: [{
         ///        &quot;name&quot;: &quot;Launch without Debugging&quot;,
         ///        &quot;type&quot;: &quot;cppvsdbg&quot;,
         ///        &quot;request&quot;: &quot;launch&quot;,
-        ///        &quot;program&quot;: &quot;${workspaceFolder}/program.exe&quot;,
+        ///        &quot;program&quot;: &quot;${workspaceFolder}/${fileBasenameNoExtension}.exe&quot;,
         ///        &quot;args&quot;: [],
         ///        &quot;stopAtEntry&quot;: false,
         ///        &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
-        ///       [rest of string was truncated]&quot;;.
+        ///        &quot;environment&quot;: [],
+        ///        &quot;externalConsole&quot;: true,
+        ///        &quot;preLaunchTask&quot;: &quot;Build&quot;
+        ///    },
+        ///    {
+        ///        &quot;name&quot;: &quot;Launch using GDB&quot;,
+        ///        &quot;type&quot;: &quot;cppdbg&quot;,
+        ///        &quot;request [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CPP_launch {
             get {

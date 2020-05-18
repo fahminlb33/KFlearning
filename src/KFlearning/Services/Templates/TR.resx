@@ -127,7 +127,7 @@
         "type": "shell",
         "command": "g++",
         "args": [
-          "-g", "${file}", "-o", "program.exe"
+          "-g", "${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
         ],
         "group": {
             "kind": "build",
@@ -167,7 +167,7 @@
         "type": "shell",
         "command": "g++",
         "args": [
-          "-g", "${file}", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "program.exe"
+          "-g", "${file}", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
         ],
         "group": {
             "kind": "build",
@@ -178,15 +178,12 @@
   </data>
   <data name="CPP_launch" xml:space="preserve">
     <value>{
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [{
         "name": "Launch without Debugging",
         "type": "cppvsdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/program.exe",
+        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
@@ -195,10 +192,10 @@
         "preLaunchTask": "Build"
     },
     {
-        "name": "(gdb) Launch",
+        "name": "Launch using GDB",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/program.exe",
+        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
