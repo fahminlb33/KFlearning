@@ -494,4 +494,7 @@ MigrationBackup/
 *.zip
 *.gz
 *.7z
-assets/*/*
+assets/*
+!assets/*.png
+!assets/*.ico
+!assets/*.rtf
