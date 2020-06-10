@@ -70,24 +70,6 @@ namespace KFmaintenance.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JPG Image (*.jpg)|*.jpg.
-        /// </summary>
-        internal static string FileImageFilter {
-            get {
-                return ResourceManager.GetString("FileImageFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Torrent File (*.torrent)|*.torrent.
-        /// </summary>
-        internal static string FileTorrentFilter {
-            get {
-                return ResourceManager.GetString("FileTorrentFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap KFmaintenance_logo48 {
@@ -98,20 +80,20 @@ namespace KFmaintenance.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kirim File.
+        ///   Looks up a localized string similar to Kata kunci salah..
         /// </summary>
-        internal static string ServerStartText {
+        internal static string PasswordInvalidMessage {
             get {
-                return ResourceManager.GetString("ServerStartText", resourceCulture);
+                return ResourceManager.GetString("PasswordInvalidMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hentikan Server.
+        ///   Looks up a localized string similar to Lakukan remote shutdown untuk cluster ini?.
         /// </summary>
-        internal static string ServerStopText {
+        internal static string RemoteShutdownConfirmMessage {
             get {
-                return ResourceManager.GetString("ServerStopText", resourceCulture);
+                return ResourceManager.GetString("RemoteShutdownConfirmMessage", resourceCulture);
             }
         }
         

@@ -134,16 +134,10 @@
   <data name="SettingsSavedMessage" xml:space="preserve">
     <value>Pengaturan berhasil disimpan.</value>
   </data>
-  <data name="FileTorrentFilter" xml:space="preserve">
-    <value>Torrent File (*.torrent)|*.torrent</value>
+  <data name="PasswordInvalidMessage" xml:space="preserve">
+    <value>Kata kunci salah.</value>
   </data>
-  <data name="FileImageFilter" xml:space="preserve">
-    <value>JPG Image (*.jpg)|*.jpg</value>
-  </data>
-  <data name="ServerStopText" xml:space="preserve">
-    <value>Hentikan Server</value>
-  </data>
-  <data name="ServerStartText" xml:space="preserve">
-    <value>Kirim File</value>
+  <data name="RemoteShutdownConfirmMessage" xml:space="preserve">
+    <value>Lakukan remote shutdown untuk cluster ini?</value>
   </data>
 </root>

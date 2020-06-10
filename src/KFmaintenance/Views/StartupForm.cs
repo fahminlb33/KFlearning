@@ -9,17 +9,9 @@
 // See this code in repository URL above!
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using KFlearning.Core;
-using KFlearning.Core.API;
 using KFlearning.Core.Services;
 using KFmaintenance.Properties;
 using KFmaintenance.Services;
@@ -29,30 +21,30 @@ namespace KFmaintenance.Views
     public partial class StartupForm : Form
     {
         private readonly ISystemInfoService _infoService = Program.Container.Resolve<ISystemInfoService>();
-        private readonly IRemoteService _remoteService = Program.Container.Resolve<IRemoteService>();
+        private readonly IRemoteShutdownServer _remoteService = Program.Container.Resolve<IRemoteShutdownServer>();
         private readonly ISystemTweaker _systemTweaker = Program.Container.Resolve<ISystemTweaker>();
         private readonly IPathManager _pathManager = Program.Container.Resolve<IPathManager>();
-        private bool _exit, _promptAuth;
+        private readonly IFormService _formService = Program.Container.Resolve<IFormService>();
+        private DateTime _lastShutdownRequest;
+        private bool _exit;
 
         public StartupForm()
         {
             InitializeComponent();
+
+            _lastShutdownRequest = DateTime.Now;
         }
 
         #region Form Events
 
         protected override void OnLoad(EventArgs e)
         {
-            _promptAuth = true;
-
-            // run server
-            _remoteService.Run();
-
             // app version
             lblVersion.Text = Helpers.GetVersionString();
 
-            // remote shutdown
-            chkRemoteShutdown.Checked = Settings.Default.RemoteShutdown;
+            // listen remote shutdowns
+            _remoteService.ShutdownRequested += RemoteService_ShutdownRequested;
+            _remoteService.Listen();
 
             // fill diagnostics
             _infoService.Query();
@@ -81,6 +73,9 @@ namespace KFmaintenance.Views
                 rdWCustom.Checked = true;
                 lblFileName.Text = _systemTweaker.WallpaperPath;
             }
+
+            // app settings
+            txtCluster.Text = Settings.Default.Cluster;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -92,28 +87,21 @@ namespace KFmaintenance.Views
             }
 
             e.Cancel = true;
-            _promptAuth = true;
-
             Hide();
         }
 
-        protected override void OnActivated(EventArgs e)
+        #endregion
+
+        #region Event Handlers
+
+        private void RemoteService_ShutdownRequested(object sender, ShutdownRequestedEventArgs e)
         {
-            if (!_promptAuth) return;
-            using (var frm = Program.Container.Resolve<AuthForm>())
-            {
-                if (frm.ShowDialog() != DialogResult.OK)
-                {
-                    _promptAuth = true;
-                    Hide();
-                }
-                else
-                {
-                    _promptAuth = false;
-                    if (_exit) Close();
-                }
-            }
-        } 
+            if ((DateTime.Now - _lastShutdownRequest).TotalSeconds < 30) return;
+
+            _exit = true;
+            WindowsHelpers.Shutdown();
+            Application.Exit();
+        }
 
         #endregion
 
@@ -126,17 +114,49 @@ namespace KFmaintenance.Views
 
         private void cmdBrowseWallpaper_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ofd.Filter = Resources.FileImageFilter;
             if (ofd.ShowDialog() != DialogResult.OK) return;
             lblFileName.Text = ofd.FileName;
         }
 
-        private void cmdSave_Click(object sender, EventArgs e)
+        private void cmdSaveSettings_Click(object sender, EventArgs e)
         {
+            using (var frm = Program.Container.Resolve<AuthForm>())
+            {
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
+            var settings = Settings.Default;
+            settings.Cluster = txtCluster.Text;
+            if (txtPassword.TextLength > 0)
+            {
+                settings.Password = Helpers.HashPassword(txtPassword.Text);
+            }
+
+            settings.Save();
+            MessageBox.Show(Resources.SettingsFailedMessage, Resources.AppName, MessageBoxButtons.OK, 
+                MessageBoxIcon.Information);
+        }
+
+        private void cmdSaveRegistry_Click(object sender, EventArgs e)
+        {
+            using (var frm = Program.Container.Resolve<AuthForm>())
+            {
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
             try
             {
                 Settings.Default.Password = txtPassword.Text;
-                Settings.Default.RemoteShutdown = chkRemoteShutdown.Checked;
                 Settings.Default.Save();
 
                 _systemTweaker.LockUsbCopying = chkWriteProtect.Checked;
@@ -157,7 +177,7 @@ namespace KFmaintenance.Views
 
                     if (storeWallpaperPath == newWallpaperPath) return;
                     if (File.Exists(storeWallpaperPath)) File.Delete(storeWallpaperPath);
-                
+
                     File.Copy(newWallpaperPath, storeWallpaperPath);
                     _systemTweaker.WallpaperPath = storeWallpaperPath;
                 }
@@ -172,32 +192,54 @@ namespace KFmaintenance.Views
             }
         }
 
-        private void cmdSend_Click(object sender, EventArgs e)
+        private void cmdFileServer_Click(object sender, EventArgs e)
         {
-            if (cmdSend.Tag.ToString() == "SEND")
+            using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                ofd.Filter = Resources.FileTorrentFilter;
-                if (ofd.ShowDialog() != DialogResult.OK) return;
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
 
-                _remoteService.StartSendFile(ofd.FileName);
-                cmdSend.Text = Resources.ServerStartText;
-                cmdSend.Tag = "STOP";
-            }
-            else
-            {
-                cmdSend.Text = Resources.ServerStopText;
-                _remoteService.StopSendFile();
-            }
+            _formService.ShowFileServer();
         }
 
-        private void cmdBroadcastShutdown_Click(object sender, EventArgs e)
+        private void cmdRemoteShutdown_Click(object sender, EventArgs e)
         {
-            _remoteService.SendShutdown();
+            using (var frm = Program.Container.Resolve<AuthForm>())
+            {
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
+            var result = MessageBox.Show(Resources.RemoteShutdownConfirmMessage, Resources.AppName,
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result != DialogResult.OK) return;
+
+            _lastShutdownRequest = DateTime.Now;
+            _remoteService.SendShutdown(Settings.Default.Cluster);
         }
 
-        private void chkRemoteShutdown_CheckedChanged(object sender, EventArgs e)
+        private void cmdCLIS_Click(object sender, EventArgs e)
         {
-            Settings.Default.RemoteShutdown = chkRemoteShutdown.Checked;
+            using (var frm = Program.Container.Resolve<AuthForm>())
+            {
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
+            _formService.ShowClis();
         }
 
         #endregion
@@ -206,8 +248,18 @@ namespace KFmaintenance.Views
 
         private void mnuExit_Click(object sender, EventArgs e)
         {
-            _exit = true;
-            Show();
+            using (var frm = Program.Container.Resolve<AuthForm>())
+            {
+                if (frm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    _exit = true;
+                    Application.Exit();
+                }
+            }
         }
 
         private void mnuOpen_Click(object sender, EventArgs e)
@@ -218,8 +270,9 @@ namespace KFmaintenance.Views
         private void tray_DoubleClick(object sender, EventArgs e)
         {
             Show();
-        } 
+        }
 
         #endregion
+
     }
 }
