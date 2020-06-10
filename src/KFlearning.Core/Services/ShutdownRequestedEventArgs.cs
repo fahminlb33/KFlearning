@@ -13,8 +13,9 @@ using System.Net;
 
 namespace KFlearning.Core.Services
 {
-    public class RemoteEventArgs : EventArgs
+    public class ShutdownRequestedEventArgs : EventArgs
     {
         public IPAddress Address { get; set; }
+        public string Clusster { get; set; }
     }
 }
