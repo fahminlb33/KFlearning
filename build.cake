@@ -36,6 +36,7 @@ Task("Build-Apps")
 	MSBuild("./KFlearning.sln", buildSettings);
 
 	Information("Copying build output...");
+	CopyFile($"./src/KFserver/bin/Win32/{configuration}/KFserver.exe", "./build/kflearning/KFserver.exe");
 	CopyDirectory($"./src/KFlearning/bin/x86/{configuration}", "./build/kflearning");
 	CopyDirectory($"./src/KFmaintenance/bin/x86/{configuration}", "./build/kfmaintenance");
 });
