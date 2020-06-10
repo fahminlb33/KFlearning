@@ -8,6 +8,7 @@
 // This file is part of KFlearning, see LICENSE.
 // See this code in repository URL above!
 
+using KFmaintenance.Properties;
 using System.Windows.Forms;
 
 namespace KFmaintenance.Views
@@ -21,7 +22,7 @@ namespace KFmaintenance.Views
 
         private void cmdSave_Click(object sender, System.EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            DialogResult = Settings.Default.Password == txtCode.Text ? DialogResult.OK : DialogResult.Cancel;
             Close();
         }
     }
