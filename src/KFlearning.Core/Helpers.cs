@@ -10,8 +10,11 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -32,6 +35,25 @@ namespace KFlearning.Core
                 new IsoDateTimeConverter {DateTimeStyles = DateTimeStyles.AssumeUniversal}
             },
         };
+
+        public static string HashPassword(string text)
+        {
+            using (var sha256 = new SHA256CryptoServiceProvider())
+            {
+                return Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(text)));
+            }
+        }
+
+        public static bool CompareHash(string plain, string cipher)
+        {
+            using (var sha256 = new SHA256CryptoServiceProvider())
+            {
+                var cipherSeq = Convert.FromBase64String(cipher);
+                var plainSeq = sha256.ComputeHash(Encoding.UTF8.GetBytes(plain));
+
+                return cipherSeq.SequenceEqual(plainSeq);
+            }
+        }
 
         public static void EnableTls()
         {
