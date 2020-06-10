@@ -7,7 +7,16 @@ using System.Net.Sockets;
 
 namespace KFlearning.Core.Services
 {
-    public class KFserverService
+    public interface IKFserverService : IDisposable
+    {
+        bool IsRunning { get; }
+
+        ServerInfo GetInfo();
+        void Start(string servePath);
+        void Stop();
+    }
+
+    public class KFserverService : IKFserverService
     {
         private const int ServerPort = 21002;
         private const string KFserverProcessName = "kfserver";
@@ -51,9 +60,9 @@ namespace KFlearning.Core.Services
 
         public ServerInfo GetInfo()
         {
-            if (!NetworkInterface.GetIsNetworkAvailable()) 
+            if (!NetworkInterface.GetIsNetworkAvailable())
                 throw new KFlearningException("Komputer ini tidak terhubung ke jaringan.");
-            
+
             var hosts = Dns.GetHostEntry(Dns.GetHostName());
             var address = hosts.AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);
             if (address == null)
@@ -68,7 +77,7 @@ namespace KFlearning.Core.Services
         }
 
         #region IDisposable Support
-        
+
         private bool _disposedValue;
 
         protected virtual void Dispose(bool disposing)
@@ -97,7 +106,7 @@ namespace KFlearning.Core.Services
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
-        } 
+        }
 
         #endregion
 

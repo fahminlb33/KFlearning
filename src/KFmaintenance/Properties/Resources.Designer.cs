@@ -70,6 +70,24 @@ namespace KFmaintenance.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ....
+        /// </summary>
+        internal static string Dots {
+            get {
+                return ResourceManager.GetString("Dots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder harus dipilih..
+        /// </summary>
+        internal static string FolderNotSelectedMessage {
+            get {
+                return ResourceManager.GetString("FolderNotSelectedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap KFmaintenance_logo48 {
