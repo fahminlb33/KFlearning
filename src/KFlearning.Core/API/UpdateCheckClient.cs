@@ -11,7 +11,6 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using KFlearning.Core.API.Model;
 using Newtonsoft.Json;
 
 namespace KFlearning.Core.API
