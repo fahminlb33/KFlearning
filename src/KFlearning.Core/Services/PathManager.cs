@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 #endregion
 
@@ -30,6 +31,7 @@ namespace KFlearning.Core.Services
     {
         private static readonly string SystemRoot = Path.GetPathRoot(Environment.SystemDirectory);
         private static readonly string DocumentRoot = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static readonly string AppRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         private static readonly char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
         private string _cachedVscodePath;
         private string _cachedKfMingwPath;
@@ -62,6 +64,9 @@ namespace KFlearning.Core.Services
                     break;
                 case PathKind.MingwGDBExecutable:
                     path = Path.Combine(FindKfMingw(), @"bin\gdb.exe");
+                    break;
+                case PathKind.KFserverExecutable:
+                    path = Path.Combine(AppRoot, @"kfserver.exe");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind), kind, null);

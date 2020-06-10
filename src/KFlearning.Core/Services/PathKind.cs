@@ -20,5 +20,6 @@ namespace KFlearning.Core.Services
         MingwInclude2Directory,
         MingwGXXExecutable,
         MingwGDBExecutable,
+        KFserverExecutable
     }
 }

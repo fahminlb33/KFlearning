@@ -71,9 +71,11 @@
     <Compile Include="API\UpdateCheckClient.cs" />
     <Compile Include="CLIS\StudentRecord.cs" />
     <Compile Include="Services\IUsesPersistance.cs" />
+    <Compile Include="Services\KFserverService.cs" />
     <Compile Include="Services\ProcessManager.cs" />
     <Compile Include="Services\ProcessWatcher.cs" />
     <Compile Include="Services\RemoteShutdownServer.cs" />
+    <Compile Include="Services\ServerInfo.cs" />
     <Compile Include="Services\ShutdownRequestedEventArgs.cs" />
     <Compile Include="Services\SystemInfoService.cs" />
     <Compile Include="Services\SystemTweaker.cs" />
