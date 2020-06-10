@@ -40,16 +40,42 @@
   <PropertyGroup>
     <ApplicationIcon>kfmaintenance-logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Windsor.5.0.1\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -64,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\AppModulesInstaller.cs" />
-    <Compile Include="Services\RemoteService.cs" />
+    <Compile Include="Services\FormService.cs" />
     <Compile Include="Services\WindowsHelpers.cs" />
     <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>
@@ -77,6 +103,18 @@
     </Compile>
     <Compile Include="Views\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ClisForm.Designer.cs">
+      <DependentUpon>ClisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FileServerForm.Designer.cs">
+      <DependentUpon>FileServerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\StartupForm.cs">
       <SubType>Form</SubType>
@@ -101,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ClisForm.resx">
+      <DependentUpon>ClisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FileServerForm.resx">
+      <DependentUpon>FileServerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StartupForm.resx">
       <DependentUpon>StartupForm.cs</DependentUpon>
