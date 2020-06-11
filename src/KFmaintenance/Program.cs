@@ -38,13 +38,13 @@ namespace KFmaintenance
                     // install modules
                     Container.Install(new AppModulesInstaller());
 
-                    // enable TLS
+                    // enable TLS;
                     Helpers.EnableTls();
 
                     // bootstrap
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new StartupForm());
+                    Application.Run(new CustomApplicationContext(new StartupForm()));
                 }
                 else
                 {
