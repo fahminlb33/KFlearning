@@ -146,4 +146,10 @@
   <data name="Dots" xml:space="preserve">
     <value>...</value>
   </data>
+  <data name="ClisDriverNotFoundMessage" xml:space="preserve">
+    <value>Chrome driver belum dipilih/tidak ditemukan.</value>
+  </data>
+  <data name="ClisNoDataMessage" xml:space="preserve">
+    <value>Tidak ada data untuk diproses.</value>
+  </data>
 </root>

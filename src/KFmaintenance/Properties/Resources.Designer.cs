@@ -70,6 +70,24 @@ namespace KFmaintenance.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chrome driver belum dipilih/tidak ditemukan..
+        /// </summary>
+        internal static string ClisDriverNotFoundMessage {
+            get {
+                return ResourceManager.GetString("ClisDriverNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tidak ada data untuk diproses..
+        /// </summary>
+        internal static string ClisNoDataMessage {
+            get {
+                return ResourceManager.GetString("ClisNoDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
         internal static string Dots {

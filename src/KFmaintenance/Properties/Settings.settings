@@ -3,10 +3,25 @@
   <Profiles />
   <Settings>
     <Setting Name="Cluster" Type="System.String" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">lab-mm</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">maroon</Value>
+      <Value Profile="(Default)">qmfa6OIQJ4Eg9oTJwiIjFM5i0REQ7hBFWZDXZqeRYwY=</Value>
+    </Setting>
+    <Setting Name="WebdriverPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ClisUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ClisPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ClisSaveCred" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ClisUseHeadless" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

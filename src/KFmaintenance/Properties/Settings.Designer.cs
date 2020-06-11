@@ -25,7 +25,7 @@ namespace KFmaintenance.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("lab-mm")]
         public string Cluster {
             get {
                 return ((string)(this["Cluster"]));
@@ -37,13 +37,73 @@ namespace KFmaintenance.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("maroon")]
+        [global::System.Configuration.DefaultSettingValueAttribute("qmfa6OIQJ4Eg9oTJwiIjFM5i0REQ7hBFWZDXZqeRYwY=")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
             }
             set {
                 this["Password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WebdriverPath {
+            get {
+                return ((string)(this["WebdriverPath"]));
+            }
+            set {
+                this["WebdriverPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ClisUsername {
+            get {
+                return ((string)(this["ClisUsername"]));
+            }
+            set {
+                this["ClisUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ClisPassword {
+            get {
+                return ((string)(this["ClisPassword"]));
+            }
+            set {
+                this["ClisPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ClisSaveCred {
+            get {
+                return ((bool)(this["ClisSaveCred"]));
+            }
+            set {
+                this["ClisSaveCred"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ClisUseHeadless {
+            get {
+                return ((bool)(this["ClisUseHeadless"]));
+            }
+            set {
+                this["ClisUseHeadless"] = value;
             }
         }
     }
