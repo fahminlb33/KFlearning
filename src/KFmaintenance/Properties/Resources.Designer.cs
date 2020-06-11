@@ -116,6 +116,15 @@ namespace KFmaintenance.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Jalankan aplikasi sebagai Administrator terlebih dahulu..
+        /// </summary>
+        internal static string NotElevatedMessage {
+            get {
+                return ResourceManager.GetString("NotElevatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kata kunci salah..
         /// </summary>
         internal static string PasswordInvalidMessage {

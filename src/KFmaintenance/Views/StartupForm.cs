@@ -23,6 +23,7 @@ namespace KFmaintenance.Views
         private readonly ISystemInfoService _infoService = Program.Container.Resolve<ISystemInfoService>();
         private readonly IRemoteShutdownServer _remoteService = Program.Container.Resolve<IRemoteShutdownServer>();
         private readonly ISystemTweaker _systemTweaker = Program.Container.Resolve<ISystemTweaker>();
+        private readonly IProcessManager _processManager = Program.Container.Resolve<IProcessManager>();
         private readonly IPathManager _pathManager = Program.Container.Resolve<IPathManager>();
         private readonly IFormService _formService = Program.Container.Resolve<IFormService>();
         private DateTime _lastShutdownRequest;
@@ -146,6 +147,13 @@ namespace KFmaintenance.Views
 
         private void cmdSaveRegistry_Click(object sender, EventArgs e)
         {
+            if (!_processManager.IsProcessElevated())
+            {
+                MessageBox.Show(Resources.NotElevatedMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                return;
+            }
+
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
                 var result = frm.ShowDialog();
