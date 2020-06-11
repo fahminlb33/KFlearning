@@ -1,17 +1,9 @@
-﻿// SOLUTION : KFlearning
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-//
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using KFmaintenance.Views;
+﻿using KFlearning.Views;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KFmaintenance.Services
+namespace KFlearning.Services
 {
     public class CustomApplicationContext : ApplicationContext
     {

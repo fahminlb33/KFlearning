@@ -44,7 +44,7 @@ namespace KFmaintenance
                     // bootstrap
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new CustomApplicationContext(new StartupForm()));
+                    Application.Run(Container.Resolve<CustomApplicationContext>());
                 }
                 else
                 {

@@ -26,8 +26,6 @@ namespace KFlearning.Views
     {
         private readonly IProjectService _project = Program.Container.Resolve<IProjectService>();
         private readonly IHistoryService _history = Program.Container.Resolve<IHistoryService>();
-        private readonly ITelemetryService _telemetry = Program.Container.Resolve<ITelemetryService>();
-        private readonly IUpdateCheckClient _updateCheck = Program.Container.Resolve<IUpdateCheckClient>();
 
         public StartupForm()
         {
@@ -38,31 +36,10 @@ namespace KFlearning.Views
         {
             lblVersion.Text = Helpers.GetVersionString();
             ReloadHistory();
-            Task.Run(() => _telemetry.Load());
-            Task.Run(() => CheckUpdate());
+
         }
 
         #region Private Methods
-
-        private async void CheckUpdate()
-        {
-            try
-            {
-                var result = await _updateCheck.GetLatestVersion();
-                if (!VersionHelpers.IsNewerVersion(result)) return;
-
-                var selection = MessageBox.Show(string.Format(Resources.UpdateAvailableMessage, result.TagName, result.ReleaseName),
-                    Resources.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (selection == DialogResult.Yes)
-                {
-                    Process.Start(result.DownloadUrl);
-                }
-            }
-            catch (Exception)
-            {
-                // ignore
-            }
-        }
 
         private void ReloadHistory()
         {

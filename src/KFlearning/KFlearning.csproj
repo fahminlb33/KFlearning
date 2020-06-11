@@ -72,7 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\VersionHelpers.cs" />
+    <Compile Include="Services\CustomApplicationContext.cs" />
     <Compile Include="Services\TelemetryService.cs" />
     <Compile Include="Services\Templates\TR.Designer.cs">
       <DependentUpon>TR.resx</DependentUpon>

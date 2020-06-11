@@ -92,6 +92,7 @@
     <Compile Include="Services\AppModulesInstaller.cs" />
     <Compile Include="Services\CustomApplicationContext.cs" />
     <Compile Include="Services\FormService.cs" />
+    <Compile Include="Services\TelemetryService.cs" />
     <Compile Include="Services\WindowsHelpers.cs" />
     <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>

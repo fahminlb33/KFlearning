@@ -57,7 +57,7 @@ namespace KFlearning
             // bootstrapper
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Container.Resolve<StartupForm>());
+            Application.Run(Container.Resolve<CustomApplicationContext>());
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
