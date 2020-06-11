@@ -20,6 +20,10 @@
       <Component Id="KFmaintenance.exe.config" Guid="*">
         <File Id="KFmaintenance.exe.config" KeyPath="yes" Source="$(var.SourceDir)\KFmaintenance.exe.config" />
       </Component>
+      <Component Id="KFserver.exe" Guid="*">
+        <File Id="KFserver.exe" KeyPath="yes" Source="$(var.SourceDir)\KFserver.exe" />
+      </Component>
+      
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
       </Component>
