@@ -13,6 +13,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Castle.Windsor;
 using KFlearning.Core;
+using KFlearning.Core.Services;
 using KFmaintenance.Properties;
 using KFmaintenance.Services;
 using KFmaintenance.Views;
@@ -41,6 +42,9 @@ namespace KFmaintenance
                     // enable TLS;
                     Helpers.EnableTls();
 
+                    // app exit handler
+                    Application.ApplicationExit += Application_ApplicationExit;
+
                     // bootstrap
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -52,6 +56,23 @@ namespace KFmaintenance
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+        }
+
+        private static void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (var usesPersistance in Container.ResolveAll<IUsesPersistance>())
+                {
+                    usesPersistance.Save();
+                }
+            }
+            catch
+            {
+                // ignore
+            }
+
+            Container.Dispose();
         }
     }
 }
