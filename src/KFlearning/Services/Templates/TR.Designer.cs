@@ -122,14 +122,13 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
+        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-mwindows&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,
         ///            &quot;isDefault&quot;: true
         ///        }
-        ///    }]
-        ///}.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CPP_GUI_tasks {
             get {
