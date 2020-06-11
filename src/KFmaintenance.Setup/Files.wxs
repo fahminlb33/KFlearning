@@ -11,9 +11,22 @@
       <Component Id="Castle.Windsor.dll" Guid="*">
         <File Id="Castle.Windsor.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Windsor.dll" />
       </Component>
+      <Component Id="ExcelDataReader.dll" Guid="*">
+        <File Id="ExcelDataReader.dll" KeyPath="yes" Source="$(var.SourceDir)\ExcelDataReader.dll" />
+      </Component>
       <Component Id="KFlearning.Core.dll" Guid="*">
         <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
       </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="*">
+        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="WebDriver.dll" Guid="*">
+        <File Id="WebDriver.dll" KeyPath="yes" Source="$(var.SourceDir)\WebDriver.dll" />
+      </Component>
+      <Component Id="WebDriver.Support.dll" Guid="*">
+        <File Id="WebDriver.Support.dll" KeyPath="yes" Source="$(var.SourceDir)\WebDriver.Support.dll" />
+      </Component>
+
       <Component Id="KFmaintenance.exe" Guid="*">
         <File Id="KFmaintenance.exe" KeyPath="yes" Source="$(var.SourceDir)\KFmaintenance.exe" />
       </Component>
@@ -24,9 +37,6 @@
         <File Id="KFserver.exe" KeyPath="yes" Source="$(var.SourceDir)\KFserver.exe" />
       </Component>
       
-      <Component Id="Newtonsoft.Json.dll" Guid="*">
-        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
-      </Component>
       <Component Id="kodesiana_icon.ico" Guid="*">
         <File Id="kodesiana_icon.ico" KeyPath="yes" Source="$(var.AssetsDir)\kodesiana_icon.ico" />
       </Component>
