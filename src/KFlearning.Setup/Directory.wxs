@@ -11,6 +11,7 @@
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="KFlearning" />
       </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
   </Fragment>
 </Wix>
