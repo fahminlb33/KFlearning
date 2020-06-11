@@ -35,6 +35,10 @@ hak akses mahasiswa pada komputer di laboratorium komputer. Aplikasi ini dapat b
 - Penguncian wallpaper, Task Manager, dan fitur administratif Windows lainnya.
 - Remote shutdown pada jaringan.
 - Berbagi file menggunakan Torrent pada jaringan (integrasi dengan qBittorrent).
+- CLIS Filler (untuk input data ke CLIS UNPAK).
+
+Untuk menggunakan CLIS Filler, Anda harus mengunduh [Chrome Driver](https://chromedriver.chromium.org/downloads).
+Sesuaikan versi Chrome drier dengan versi Chrome yang Anda gunakan.
 
 ## Kebutuhan Sistem
 
