@@ -64,7 +64,7 @@ namespace KFmaintenance.Views
                 var info = _server.GetInfo();
 
                 lblIP.Text = info.IP;
-                lblPort.Text = info.ToString();
+                lblPort.Text = info.Port.ToString();
                 cmdOpenAddress.Text = info.Link;
             }
             else
