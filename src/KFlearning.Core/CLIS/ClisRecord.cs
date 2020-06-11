@@ -1,6 +1,6 @@
 ﻿namespace KFlearning.Core.CLIS
 {
-    public class StudentRecord
+    public class ClisRecord
     {
         public string Npm { get; set; }
         public string Name { get; set; }
