@@ -108,9 +108,9 @@ namespace KFmaintenance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap KFmaintenance_logo48 {
+        internal static System.Drawing.Bitmap KFmaintenance {
             get {
-                object obj = ResourceManager.GetObject("KFmaintenance_logo48", resourceCulture);
+                object obj = ResourceManager.GetObject("KFmaintenance", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

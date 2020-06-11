@@ -81,9 +81,9 @@ namespace KFlearning.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap KFlearning_logo48 {
+        internal static System.Drawing.Bitmap KFlearning {
             get {
-                object obj = ResourceManager.GetObject("KFlearning_logo48", resourceCulture);
+                object obj = ResourceManager.GetObject("KFlearning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

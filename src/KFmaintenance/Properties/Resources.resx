@@ -120,10 +120,6 @@
   <data name="AppName" xml:space="preserve">
     <value>KFmaintenance</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="KFmaintenance_logo48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\KFmaintenance_logo48.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SingleInstanceMessage" xml:space="preserve">
     <value>Aplikasi KFmaintenance sudah berjalan. Cek pada taskbar.</value>
   </data>
@@ -151,5 +147,9 @@
   </data>
   <data name="ClisNoDataMessage" xml:space="preserve">
     <value>Tidak ada data untuk diproses.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="KFmaintenance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KFmaintenance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

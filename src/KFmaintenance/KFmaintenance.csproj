@@ -174,10 +174,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\KFmaintenance_logo48.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="kfmaintenance-logo.ico" />
+    <None Include="Resources\KFmaintenance.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\KFlearning.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -157,9 +158,6 @@
     <PackageReference Include="Castle.Windsor">
       <Version>5.0.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\KFlearning_logo48.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KFlearning.Core\KFlearning.Core.csproj">

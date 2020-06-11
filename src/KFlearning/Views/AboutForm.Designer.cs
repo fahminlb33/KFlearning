@@ -43,7 +43,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::KFlearning.Properties.Resources.KFlearning_logo48;
+            this.pictureBox1.Image = global::KFlearning.Properties.Resources.KFlearning;
             this.pictureBox1.Location = new System.Drawing.Point(17, 19);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
