@@ -26,6 +26,7 @@ namespace KFmaintenance.Services
                     .LifestyleTransient(),
 
                 // services
+                Component.For<CustomApplicationContext>().LifestyleSingleton(),
                 Classes.FromThisAssembly()
                     .InSameNamespaceAs<AppModulesInstaller>()
                     .WithServiceDefaultInterfaces()
