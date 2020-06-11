@@ -230,7 +230,7 @@
             // lblOSArch
             // 
             this.lblOSArch.AutoSize = true;
-            this.lblOSArch.Location = new System.Drawing.Point(198, 100);
+            this.lblOSArch.Location = new System.Drawing.Point(183, 100);
             this.lblOSArch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOSArch.Name = "lblOSArch";
             this.lblOSArch.Size = new System.Drawing.Size(22, 23);
@@ -240,7 +240,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(51, 100);
+            this.label12.Location = new System.Drawing.Point(36, 100);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(103, 23);
@@ -250,7 +250,7 @@
             // lblOSVersion
             // 
             this.lblOSVersion.AutoSize = true;
-            this.lblOSVersion.Location = new System.Drawing.Point(198, 77);
+            this.lblOSVersion.Location = new System.Drawing.Point(183, 77);
             this.lblOSVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOSVersion.Name = "lblOSVersion";
             this.lblOSVersion.Size = new System.Drawing.Size(22, 23);
@@ -262,17 +262,17 @@
             this.lblCpu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCpu.Location = new System.Drawing.Point(198, 164);
+            this.lblCpu.Location = new System.Drawing.Point(183, 164);
             this.lblCpu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCpu.Name = "lblCpu";
-            this.lblCpu.Size = new System.Drawing.Size(278, 52);
+            this.lblCpu.Size = new System.Drawing.Size(354, 52);
             this.lblCpu.TabIndex = 7;
             this.lblCpu.Text = "...";
             // 
             // lblRam
             // 
             this.lblRam.AutoSize = true;
-            this.lblRam.Location = new System.Drawing.Point(198, 140);
+            this.lblRam.Location = new System.Drawing.Point(183, 140);
             this.lblRam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRam.Name = "lblRam";
             this.lblRam.Size = new System.Drawing.Size(22, 23);
@@ -282,7 +282,7 @@
             // lblOS
             // 
             this.lblOS.AutoSize = true;
-            this.lblOS.Location = new System.Drawing.Point(198, 53);
+            this.lblOS.Location = new System.Drawing.Point(183, 53);
             this.lblOS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOS.Name = "lblOS";
             this.lblOS.Size = new System.Drawing.Size(22, 23);
@@ -292,7 +292,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(51, 164);
+            this.label6.Location = new System.Drawing.Point(36, 164);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 23);
@@ -302,7 +302,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(51, 77);
+            this.label5.Location = new System.Drawing.Point(36, 77);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 23);
@@ -312,7 +312,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 140);
+            this.label4.Location = new System.Drawing.Point(36, 140);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 23);
@@ -322,7 +322,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 53);
+            this.label2.Location = new System.Drawing.Point(36, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 23);

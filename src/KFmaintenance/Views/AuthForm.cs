@@ -25,7 +25,7 @@ namespace KFmaintenance.Views
         {
             DialogResult = Helpers.CompareHash(txtCode.Text, Settings.Default.Password) 
                 ? DialogResult.OK 
-                : DialogResult.Cancel;
+                : DialogResult.Abort;
             Close();
         }
     }

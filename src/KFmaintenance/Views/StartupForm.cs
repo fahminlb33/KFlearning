@@ -122,12 +122,14 @@ namespace KFmaintenance.Views
         {
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                if (frm.ShowDialog() != DialogResult.OK)
+                var result = frm.ShowDialog();
+                if (result == DialogResult.Abort)
                 {
                     MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    return;
                 }
+
+                if (result != DialogResult.OK) return;
             }
 
             var settings = Settings.Default;
@@ -146,12 +148,14 @@ namespace KFmaintenance.Views
         {
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                if (frm.ShowDialog() != DialogResult.OK)
+                var result = frm.ShowDialog();
+                if (result == DialogResult.Abort)
                 {
                     MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    return;
                 }
+
+                if (result != DialogResult.OK) return;
             }
 
             try
@@ -196,12 +200,14 @@ namespace KFmaintenance.Views
         {
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                if (frm.ShowDialog() != DialogResult.OK)
+                var result = frm.ShowDialog();
+                if (result == DialogResult.Abort)
                 {
                     MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    return;
                 }
+
+                if (result != DialogResult.OK) return;
             }
 
             _formService.ShowFileServer();
@@ -211,17 +217,19 @@ namespace KFmaintenance.Views
         {
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                if (frm.ShowDialog() != DialogResult.OK)
+                var result = frm.ShowDialog();
+                if (result == DialogResult.Abort)
                 {
                     MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    return;
                 }
+
+                if (result != DialogResult.OK) return;
             }
 
-            var result = MessageBox.Show(Resources.RemoteShutdownConfirmMessage, Resources.AppName,
+            var result2 = MessageBox.Show(Resources.RemoteShutdownConfirmMessage, Resources.AppName,
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result != DialogResult.OK) return;
+            if (result2 != DialogResult.OK) return;
 
             _lastShutdownRequest = DateTime.Now;
             _remoteService.SendShutdown(Settings.Default.Cluster);
@@ -231,12 +239,14 @@ namespace KFmaintenance.Views
         {
             using (var frm = Program.Container.Resolve<AuthForm>())
             {
-                if (frm.ShowDialog() != DialogResult.OK)
+                var result = frm.ShowDialog();
+                if (result == DialogResult.Abort)
                 {
                     MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
-                    return;
                 }
+
+                if (result != DialogResult.OK) return;
             }
 
             _formService.ShowClis();
