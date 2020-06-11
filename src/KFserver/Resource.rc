@@ -78,7 +78,7 @@ BEGIN
         BLOCK "380904b0"
         BEGIN
             VALUE "CompanyName", "Kodesiana"
-            VALUE "FileDescription", "Aplikasi e-learning MAROON LABKOM"
+            VALUE "FileDescription", "KFserver"
             VALUE "FileVersion", "1.0.1.0"
             VALUE "InternalName", "KFserver.exe"
             VALUE "LegalCopyright", "Copyright © Kodesiana.com 2020"
