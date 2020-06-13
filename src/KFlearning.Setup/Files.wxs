@@ -14,14 +14,21 @@
       <Component Id="KFlearning.Core.dll" Guid="*">
         <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
       </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="*">
+        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="WebDriver.dll" Guid="*">
+        <File Id="WebDriver.dll" KeyPath="yes" Source="$(var.SourceDir)\WebDriver.dll" />
+      </Component>
+      <Component Id="WebDriver.Support.dll" Guid="*">
+        <File Id="WebDriver.Support.dll" KeyPath="yes" Source="$(var.SourceDir)\WebDriver.Support.dll" />
+      </Component>
+            
       <Component Id="KFlearning.exe" Guid="*">
         <File Id="KFlearning.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.exe" />
       </Component>
       <Component Id="KFlearning.exe.config" Guid="*">
         <File Id="KFlearning.exe.config" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.exe.config" />
-      </Component>
-      <Component Id="Newtonsoft.Json.dll" Guid="*">
-        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
       </Component>
 
       <Component Id="kodesiana_icon.ico" Guid="*">
