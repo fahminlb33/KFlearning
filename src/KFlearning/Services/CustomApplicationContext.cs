@@ -18,10 +18,7 @@ namespace KFlearning.Services
             Task.Run(() => _telemetry.Load());
 
             _mainForm.HandleDestroyed += OnFormDestroy;
-            _mainForm.Opacity = 0;
             _mainForm.Show();
-            _mainForm.Hide();
-            _mainForm.Opacity = 1;
         }
 
         private void OnFormDestroy(object sender, EventArgs e)
