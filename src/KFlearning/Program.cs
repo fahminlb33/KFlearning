@@ -34,7 +34,7 @@ namespace KFlearning
         {
             using (var mutex = new Mutex(true, MutexName))
             {
-                if (mutex.WaitOne(MutexTimeout))
+                if (!mutex.WaitOne(MutexTimeout))
                 {
                     MessageBox.Show(Resources.SingleInstanceMessage, Resources.AppName,
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
