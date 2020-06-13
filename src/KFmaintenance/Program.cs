@@ -36,25 +36,24 @@ namespace KFmaintenance
             {
                 if (mutex.WaitOne(MutexTimeout))
                 {
-                    // install modules
-                    Container.Install(new AppModulesInstaller());
-
-                    // enable TLS;
-                    Helpers.EnableTls();
-
-                    // app exit handler
-                    Application.ApplicationExit += Application_ApplicationExit;
-
-                    // bootstrap
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(Container.Resolve<CustomApplicationContext>());
-                }
-                else
-                {
                     MessageBox.Show(Resources.SingleInstanceMessage, Resources.AppName,
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
+
+                // install services
+                Container.Install(new AppModulesInstaller());
+
+                // enable TLS;
+                Helpers.EnableTls();
+
+                // app exit handler
+                Application.ApplicationExit += Application_ApplicationExit;
+
+                // bootstrap
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(Container.Resolve<CustomApplicationContext>());
             }
         }
 
