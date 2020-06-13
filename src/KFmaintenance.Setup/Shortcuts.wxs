@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Fragment>
     <ComponentGroup Id="AppShortcuts">
-      <Component Id="StarMenuShortcut" Guid="*" Directory="ApplicationProgramsFolder">
+      <Component Id="StarMenuShortcut" Guid="{61AFD67B-2705-441F-85BE-B31E7E8BAC3E}" Directory="ApplicationProgramsFolder">
         <!-- KFlearning -->
         <Shortcut Id="StartMenuShortcut"
                   Name="KFmaintenance"
@@ -25,7 +25,7 @@
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\KFmaintenance" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
-      <Component Id="DesktopShortcut" Guid="*" Directory="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="{09171B92-DD8B-4938-AF92-A6B9ECF39D96}" Directory="DesktopFolder">
         <Shortcut Id="ApplicationDesktopShortcut" Name="KFmaintenance" Target="[#KFmaintenance.exe]" WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="DesktopFolder" On="uninstall"/>
         <RegistryValue Root="HKCU" Key="Software\KFmaintenance" Name="installed" Type="integer" Value="1" KeyPath="yes" />

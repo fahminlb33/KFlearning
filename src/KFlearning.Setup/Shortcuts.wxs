@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <Fragment>
     <ComponentGroup Id="AppShortcuts">
-      <Component Id="StarMenuShortcut" Guid="*" Directory="ApplicationProgramsFolder">
+      <Component Id="StarMenuShortcut" Guid="{DC435BB3-B1AE-4B75-85EE-03DC54AD7CA4}" Directory="ApplicationProgramsFolder">
         <!-- KFlearning -->
         <Shortcut Id="StartMenuShortcut"
                   Name="KFlearning"
@@ -25,7 +25,7 @@
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\KFlearning" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
-      <Component Id="DesktopShortcut" Guid="*" Directory="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="{A6AF1D7F-B0A1-48D7-A801-16F226CBD45E}" Directory="DesktopFolder">
         <Shortcut Id="ApplicationDesktopShortcut" Name="KFlearning" Target="[#KFlearning.exe]" WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="DesktopFolder" On="uninstall"/>
         <RegistryValue Root="HKCU" Key="Software\KFlearning" Name="installed" Type="integer" Value="1" KeyPath="yes" />
