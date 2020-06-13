@@ -116,6 +116,15 @@ namespace KFlearning.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to KFlearning sedang dibuka, Anda hanya dapat membuka satu proses KFlearning..
+        /// </summary>
+        internal static string SingleInstanceMessage {
+            get {
+                return ResourceManager.GetString("SingleInstanceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terdapat versi baru dari KFlearning!
         ///KFlearning {0} - {1}
         ///
