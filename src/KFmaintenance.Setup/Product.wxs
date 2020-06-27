@@ -18,6 +18,7 @@
     <Feature Id="ProductFeature" Title="KFmaintenance" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="AppShortcuts" />
+      <ComponentGroupRef Id="AppRegistry" />
     </Feature>
 
     <!-- Properties -->
@@ -38,10 +39,7 @@
 
     <!-- Install Sequence -->
     <InstallExecuteSequence>
-      <Custom Action="CreateScheduledTask" After="InstallFiles">NOT Installed</Custom>
       <Custom Action="CreateFirewallExclusion" After="InstallFiles">NOT Installed</Custom>
-
-      <Custom Action="RemoveScheduledTask" After="InstallFiles">Installed</Custom>
       <Custom Action="RemoveFirewallExclusion" After="InstallFiles">Installed</Custom>
     </InstallExecuteSequence>
   </Product>
@@ -49,17 +47,6 @@
   <Fragment>
     <!-- Launch App -->
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
-
-    <!-- Scheduled Task -->
-    <SetProperty Id="CreateScheduledTask" Sequence="execute" Before="CreateScheduledTask"
-             Value="&quot;[SystemFolder]SCHTASKS.EXE&quot; /CREATE /TN &quot;KFmaintenance&quot; /TR &quot;[INSTALLFOLDER]\KFmaintenance.exe&quot; /SC ONSTART" />
-    <CustomAction Id="CreateScheduledTask" BinaryKey="WixCA" DllEntry="WixQuietExec"
-                  Execute="deferred" Return="ignore" Impersonate="no"/>
-
-    <SetProperty Id="RemoveScheduledTask" Sequence="execute" Before="RemoveScheduledTask"
-                 Value="&quot;[SystemFolder]SCHTASKS.EXE&quot; /DELETE /TN &quot;KFmaintenance&quot; /F" />
-    <CustomAction Id="RemoveScheduledTask" BinaryKey="WixCA" DllEntry="WixQuietExec"
-                  Execute="deferred" Return="ignore" Impersonate="no"/>
     
     <!-- Firewall Rules -->
     <SetProperty Id="CreateFirewallExclusion" Sequence="execute" Before="CreateFirewallExclusion"
