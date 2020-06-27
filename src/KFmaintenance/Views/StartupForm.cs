@@ -260,6 +260,14 @@ namespace KFmaintenance.Views
             _formService.ShowClis();
         }
 
+        private void cmdAbout_Click(object sender, EventArgs e)
+        {
+            using (var frm = Program.Container.Resolve<AboutForm>())
+            {
+                frm.ShowDialog();
+            }
+        }
+
         #endregion
 
         #region Context Menu

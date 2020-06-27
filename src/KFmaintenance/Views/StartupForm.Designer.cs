@@ -76,6 +76,7 @@
             this.lblFileName = new System.Windows.Forms.Label();
             this.rdWCustom = new System.Windows.Forms.RadioButton();
             this.cmdBrowseWallpaper = new System.Windows.Forms.LinkLabel();
+            this.cmdAbout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ctxTray.SuspendLayout();
@@ -332,6 +333,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
+            this.tabPage2.Controls.Add(this.cmdAbout);
             this.tabPage2.Controls.Add(this.cmdSaveSettings);
             this.tabPage2.Controls.Add(this.txtCluster);
             this.tabPage2.Controls.Add(this.txtPassword);
@@ -392,7 +394,7 @@
             // cmdCLIS
             // 
             this.cmdCLIS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdCLIS.Location = new System.Drawing.Point(35, 163);
+            this.cmdCLIS.Location = new System.Drawing.Point(35, 149);
             this.cmdCLIS.Name = "cmdCLIS";
             this.cmdCLIS.Size = new System.Drawing.Size(205, 36);
             this.cmdCLIS.TabIndex = 7;
@@ -413,7 +415,7 @@
             // cmdRemoteShutdown
             // 
             this.cmdRemoteShutdown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdRemoteShutdown.Location = new System.Drawing.Point(35, 100);
+            this.cmdRemoteShutdown.Location = new System.Drawing.Point(35, 93);
             this.cmdRemoteShutdown.Margin = new System.Windows.Forms.Padding(4);
             this.cmdRemoteShutdown.Name = "cmdRemoteShutdown";
             this.cmdRemoteShutdown.Size = new System.Drawing.Size(205, 36);
@@ -594,6 +596,17 @@
             this.cmdBrowseWallpaper.Text = "Pilih";
             this.cmdBrowseWallpaper.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.cmdBrowseWallpaper_LinkClicked);
             // 
+            // cmdAbout
+            // 
+            this.cmdAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdAbout.Location = new System.Drawing.Point(35, 205);
+            this.cmdAbout.Name = "cmdAbout";
+            this.cmdAbout.Size = new System.Drawing.Size(205, 36);
+            this.cmdAbout.TabIndex = 46;
+            this.cmdAbout.Text = "Tentang";
+            this.cmdAbout.UseVisualStyleBackColor = true;
+            this.cmdAbout.Click += new System.EventHandler(this.cmdAbout_Click);
+            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -678,6 +691,7 @@
         private System.Windows.Forms.TextBox txtCluster;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button cmdAbout;
     }
 }
 
