@@ -141,7 +141,7 @@ namespace KFmaintenance.Views
             }
 
             settings.Save();
-            MessageBox.Show(Resources.SettingsFailedMessage, Resources.AppName, MessageBoxButtons.OK, 
+            MessageBox.Show(Resources.SettingsSavedMessage, Resources.AppName, MessageBoxButtons.OK, 
                 MessageBoxIcon.Information);
         }
 
