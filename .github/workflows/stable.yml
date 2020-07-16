@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with: 
+        submodules: 'recursive'
 
     - name: Run Cake Build
       run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target Build-Incremental --configuration Release
