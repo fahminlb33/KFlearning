@@ -8,19 +8,13 @@ jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     name: Build-Incremental
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
       with: 
         submodules: 'recursive'
-
-    - name: Replace environment vars
-      uses: jacobtomlinson/gha-find-replace@master
-      with:
-        find: "KFLEARNING_API_KEY"
-        replace: "${{ secrets.KFLEARNING_API_KEY }}"
 
     - name: Run Cake Build
       run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target Build-Incremental --configuration Debug
