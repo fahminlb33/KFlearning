@@ -15,7 +15,6 @@ using System.Net;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using KFlearning.Core.API;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -24,7 +23,7 @@ namespace KFlearning.Core
 {
     public static class Helpers
     {
-        private const string CodeName = "Hagane no Moonsault";
+        private const string CodeName = "Hardbass";
         private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1);
 
         public static readonly JsonSerializerSettings SerializeSettings = new JsonSerializerSettings
