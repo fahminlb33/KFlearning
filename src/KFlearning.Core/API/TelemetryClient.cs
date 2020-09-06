@@ -9,8 +9,6 @@
 // See this code in repository URL above!
 
 using Newtonsoft.Json;
-using System;
-using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,12 +25,11 @@ namespace KFlearning.Core.API
     public class TelemetryClient : ITelemetryClient
     {
         private const string BaseUri = "https://kflearning.kodesiana.com";
-        private readonly CultureInfo _culture = new CultureInfo("en-US");
         private static HttpClient Client = new HttpClient();
 
         static TelemetryClient()
         {
-            Client.DefaultRequestHeaders.Add("Authorization", "fahmi-kodesiana");
+            Client.DefaultRequestHeaders.Add("X-API-Key", ApplicationConstants.ApiKey);
         }
 
         public async Task SendAppStart(string appName, string deviceId)

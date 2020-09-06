@@ -23,7 +23,6 @@ namespace KFlearning.Core
 {
     public static class Helpers
     {
-        private const string CodeName = "Hardbass";
         private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1);
 
         public static readonly JsonSerializerSettings SerializeSettings = new JsonSerializerSettings
@@ -69,7 +68,7 @@ namespace KFlearning.Core
         public static string GetVersionString()
         {
             var version = Assembly.GetCallingAssembly().GetName().Version;
-            return $"v{version.Major}.{version.Minor}.{version.Build} build \"{CodeName}\"";
+            return $"v{version.Major}.{version.Minor}.{version.Build} build \"{ApplicationConstants.Codename}\"";
         }
 
         public static string TrimLongText(this string path, int maxLength = 40)
