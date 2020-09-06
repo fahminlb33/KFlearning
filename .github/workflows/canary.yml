@@ -17,7 +17,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Replace environment vars
-      uses: shitiomatic/str-replace@master
+      uses: jacobtomlinson/gha-find-replace@master
       with:
         find: "KFLEARNING_API_KEY"
         replace: "${{ secrets.KFLEARNING_API_KEY }}"
