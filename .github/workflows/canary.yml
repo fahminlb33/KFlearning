@@ -16,6 +16,12 @@ jobs:
       with: 
         submodules: 'recursive'
 
+    - name: Replace environment vars
+      uses: shitiomatic/str-replace@master
+      with:
+        find: "KFLEARNING_API_KEY"
+        replace: "${{ secrets.KFLEARNING_API_KEY }}"
+
     - name: Run Cake Build
       run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target Build-Incremental --configuration Debug
 
