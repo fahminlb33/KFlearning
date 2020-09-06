@@ -22,7 +22,7 @@ namespace KFlearning.Core.Services
         string OS { get; }
         string OSVersion { get; }
         string Architecture { get; }
-        string RAM { get; }
+        double RAM { get; }
         string CPU { get; }
 
         void Query();
@@ -46,7 +46,7 @@ namespace KFlearning.Core.Services
                 OS = queryObj["Caption"].ToString();
                 OSVersion = queryObj["Version"].ToString();
                 Architecture = queryObj["OSArchitecture"].ToString();
-                RAM = queryObj["TotalVisibleMemorySize"].ToString();
+                RAM = Convert.ToDouble(queryObj["TotalVisibleMemorySize"].ToString());
                 deviceId = queryObj["TotalVisibleMemorySize"].ToString();
 
                 // CPU info
@@ -86,7 +86,7 @@ namespace KFlearning.Core.Services
         public string OS { get; private set; } = "-";
         public string OSVersion { get; private set; } = "-";
         public string Architecture { get; private set; } = "-";
-        public string RAM { get; private set; } = "-";
+        public double RAM { get; private set; } = 0;
         public string CPU { get; private set; } = "-";
     }
 }

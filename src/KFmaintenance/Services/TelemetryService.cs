@@ -26,7 +26,7 @@ namespace KFmaintenance.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppStart(DateTime.Now, Resources.AppName, _infoService.DeviceId),
+                Task.WaitAll(_telemetry.SendAppStart(Resources.AppName, _infoService.DeviceId),
                     _telemetry.SendIdentification(_infoService.DeviceId, _infoService.CPU, _infoService.RAM,
                         _infoService.OS, _infoService.Architecture));
             }
@@ -41,7 +41,7 @@ namespace KFmaintenance.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppExit(DateTime.Now, Resources.AppName, _infoService.DeviceId));
+                Task.WaitAll(_telemetry.SendAppExit(Resources.AppName, _infoService.DeviceId));
             }
             catch (Exception)
             {

@@ -8,18 +8,20 @@
 // This file is part of KFlearning, see LICENSE.
 // See this code in repository URL above!
 
+using Newtonsoft.Json;
 using System;
 using System.Globalization;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace KFlearning.Core.API
 {
     public interface ITelemetryClient
     {
-        Task SendAppStart(DateTime dateTime, string appName, string deviceId);
-        Task SendAppExit(DateTime dateTime, string appName, string deviceId);
-        Task SendIdentification(string deviceId, string cpu, string ram, string os, string bitness);
+        Task SendAppStart(string appName, string deviceId);
+        Task SendAppExit(string appName, string deviceId);
+        Task SendIdentification(string deviceId, string cpu, double ram, string os, string bitness);
     }
 
     public class TelemetryClient : ITelemetryClient
@@ -33,41 +35,46 @@ namespace KFlearning.Core.API
             Client.DefaultRequestHeaders.Add("Authorization", "fahmi-kodesiana");
         }
 
-        public async Task SendAppStart(DateTime dateTime, string appName, string deviceId)
+        public async Task SendAppStart(string appName, string deviceId)
         {
-            await SendTelemetry(dateTime, appName, "started", deviceId);
+            await SendTelemetry(appName, "started", deviceId);
         }
 
-        public async Task SendAppExit(DateTime dateTime, string appName, string deviceId)
+        public async Task SendAppExit(string appName, string deviceId)
         {
-            await SendTelemetry(dateTime, appName, "exit", deviceId);
+            await SendTelemetry(appName, "exit", deviceId);
         }
 
-        public async Task SendIdentification(string deviceId, string cpu, string ram, string os, string bitness)
+        public async Task SendIdentification(string deviceId, string cpu, double ram, string os, string bitness)
         {
-            using (var content = new MultipartFormDataContent())
+            var body = new
             {
-                content.Add(new StringContent(deviceId), "device_id");
-                content.Add(new StringContent(cpu), "cpu");
-                content.Add(new StringContent(ram), "ram");
-                content.Add(new StringContent(os), "os");
-                content.Add(new StringContent(bitness), "bitness");
+                deviceId,
+                cpu,
+                os,
+                ram,
+                bitness
+            };
 
-                var result = await Client.PostAsync(BaseUri + "/api/identification.php", content);
+            using (var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json"))
+            {
+                var result = await Client.PostAsync(BaseUri + "/telemetry/device", content);
                 result.EnsureSuccessStatusCode();
             }
         }
 
-        private async Task SendTelemetry(DateTime dateTime, string appName, string appEvent, string deviceId)
+        private async Task SendTelemetry(string appName, string appEvent, string deviceId)
         {
-            using (var content = new MultipartFormDataContent())
+            var body = new
             {
-                content.Add(new StringContent(dateTime.ToUnixTime().ToString(_culture)), "timestamp");
-                content.Add(new StringContent(deviceId), "device_id");
-                content.Add(new StringContent(appName), "app_name");
-                content.Add(new StringContent(appEvent), "event");
+                deviceId,
+                appName,
+                intent = appEvent
+            };
 
-                var result = await Client.PostAsync(BaseUri + "/api/telemetry.php", content);
+            using (var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json"))
+            {
+                var result = await Client.PostAsync(BaseUri + "/telemetry/intent", content);
                 result.EnsureSuccessStatusCode();
             }
         }

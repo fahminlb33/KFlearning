@@ -52,7 +52,7 @@ namespace KFmaintenance.Views
             lblOS.Text = _infoService.OS;
             lblOSVersion.Text = _infoService.OSVersion;
             lblOSArch.Text = _infoService.Architecture;
-            lblRam.Text = _infoService.RAM;
+            lblRam.Text = _infoService.RAM.ToString();
             lblCpu.Text = _infoService.CPU;
 
             // system registry
