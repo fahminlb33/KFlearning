@@ -127,7 +127,7 @@
         "type": "shell",
         "command": "g++",
         "args": [
-          "-g", "${file}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
+          "-g", "${relativeFile}", "-o", "${fileBasenameNoExtension}.exe"
         ],
         "group": {
             "kind": "build",
@@ -167,7 +167,7 @@
         "type": "shell",
         "command": "g++",
         "args": [
-          "-g", "${file}", "-mwindows", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
+          "-g", "${relativeFile}", "-mwindows", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "${fileBasenameNoExtension}.exe"
         ],
         "group": {
             "kind": "build",
@@ -183,7 +183,7 @@
         "name": "Launch without Debugging",
         "type": "cppvsdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
+        "program": "${fileBasenameNoExtension}.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
@@ -195,7 +195,7 @@
         "name": "Launch using GDB",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
+        "program": "${fileBasenameNoExtension}.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",

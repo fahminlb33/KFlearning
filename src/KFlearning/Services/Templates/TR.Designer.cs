@@ -97,7 +97,7 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
+        ///          &quot;-g&quot;, &quot;${relativeFile}&quot;, &quot;-o&quot;, &quot;${fileBasenameNoExtension}.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,
@@ -122,12 +122,13 @@ namespace KFlearning.Services.Templates {
         ///        &quot;type&quot;: &quot;shell&quot;,
         ///        &quot;command&quot;: &quot;g++&quot;,
         ///        &quot;args&quot;: [
-        ///          &quot;-g&quot;, &quot;${file}&quot;, &quot;-mwindows&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;${fileDirname}\\${fileBasenameNoExtension}.exe&quot;
+        ///          &quot;-g&quot;, &quot;${relativeFile}&quot;, &quot;-mwindows&quot;, &quot;-lopengl32&quot;, &quot;-lglew32&quot;, &quot;-lfreeglut&quot;, &quot;-lglu32&quot;, &quot;-o&quot;, &quot;${fileBasenameNoExtension}.exe&quot;
         ///        ],
         ///        &quot;group&quot;: {
         ///            &quot;kind&quot;: &quot;build&quot;,
         ///            &quot;isDefault&quot;: true
         ///        }
+        ///    }]
         /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CPP_GUI_tasks {
@@ -143,7 +144,7 @@ namespace KFlearning.Services.Templates {
         ///        &quot;name&quot;: &quot;Launch without Debugging&quot;,
         ///        &quot;type&quot;: &quot;cppvsdbg&quot;,
         ///        &quot;request&quot;: &quot;launch&quot;,
-        ///        &quot;program&quot;: &quot;${workspaceFolder}/${fileBasenameNoExtension}.exe&quot;,
+        ///        &quot;program&quot;: &quot;${fileBasenameNoExtension}.exe&quot;,
         ///        &quot;args&quot;: [],
         ///        &quot;stopAtEntry&quot;: false,
         ///        &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
@@ -154,7 +155,8 @@ namespace KFlearning.Services.Templates {
         ///    {
         ///        &quot;name&quot;: &quot;Launch using GDB&quot;,
         ///        &quot;type&quot;: &quot;cppdbg&quot;,
-        ///        &quot;request [rest of string was truncated]&quot;;.
+        ///        &quot;request&quot;: &quot;launch&quot;,
+        ///      [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CPP_launch {
             get {
