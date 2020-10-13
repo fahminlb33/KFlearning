@@ -49,17 +49,24 @@ namespace KFlearning.Views
 
         private void OpenProject(string path)
         {
-            if (!_project.IsExists(path))
+            try
             {
-                MessageBox.Show(Resources.InvalidProjectMessage, Resources.AppName, MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-                return;
-            }
+                if (!_project.IsExists(path))
+                {
+                    MessageBox.Show(Resources.InvalidProjectMessage, Resources.AppName, MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-            var project = _project.Load(path);
-            _history.Add(project);
-            _project.Launch(project);
-            ReloadHistory();
+                var project = _project.Load(path);
+                _history.Add(project);
+                _project.Launch(project);
+                ReloadHistory();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tidak dapat membuka project.\r\n" + ex.Message, Resources.AppName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         #endregion
@@ -70,9 +77,7 @@ namespace KFlearning.Views
             {
                 if (frm.ShowDialog(this) != DialogResult.OK) return;
                 _project.Create(frm.Project);
-                _history.Add(frm.Project);
-                _project.Launch(frm.Project);
-                ReloadHistory();
+                OpenProject(frm.Project.Path);
             }
         }
 
