@@ -1,19 +1,9 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning.Core
-// FILENAME : FlatListBox.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
-namespace KFlearning.Core.Forms
+namespace KFlearning.Control
 {
     public class FlatListBox
     {
