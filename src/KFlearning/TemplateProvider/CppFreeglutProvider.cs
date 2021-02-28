@@ -1,29 +1,19 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : CppConsoleProvider.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
+﻿using KFlearning.Core.Services;
 
-using KFlearning.Core.Services;
-
-namespace KFlearning.Services.Templates
+namespace KFlearning.TemplateProvider
 {
-    public class CppConsoleProvider : TemplateProviderBase, ITemplateProvider
+    public class CppFreeglutProvider : TemplateProviderBase, ITemplateProvider
     {
         private readonly IPathManager _path;
 
-        public CppConsoleProvider(IPathManager path)
+        public CppFreeglutProvider(IPathManager path)
         {
             _path = path;
         }
 
-        public string Title => "C++ (Konsol)";
+        public string Title => "C++ (Freeglut)";
 
-        public void Provide(string projectRoot)
+        public void Scaffold(string projectRoot)
         {
             ProjectRoot = projectRoot;
 
@@ -46,7 +36,7 @@ namespace KFlearning.Services.Templates
             WriteFile(".vscode/settings.json", TR.CPP_settings);
 
             // tasks.json
-            WriteFile(".vscode/tasks.json", TR.CPP_Console_tasks);
+            WriteFile(".vscode/tasks.json", TR.CPP_GUI_tasks);
         }
     }
 }
