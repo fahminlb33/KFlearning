@@ -48,11 +48,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmdFlutterInstall = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdNewProject
@@ -89,7 +93,7 @@
             this.cmdOpenProject.FlatAppearance.BorderSize = 0;
             this.cmdOpenProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdOpenProject.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.cmdOpenProject.Location = new System.Drawing.Point(417, 133);
+            this.cmdOpenProject.Location = new System.Drawing.Point(417, 123);
             this.cmdOpenProject.Name = "cmdOpenProject";
             this.cmdOpenProject.Size = new System.Drawing.Size(159, 37);
             this.cmdOpenProject.TabIndex = 3;
@@ -227,7 +231,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Wingdings", 20.25F);
-            this.label4.Location = new System.Drawing.Point(9, 3);
+            this.label4.Location = new System.Drawing.Point(9, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 30);
             this.label4.TabIndex = 16;
@@ -238,7 +242,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(417, 134);
+            this.panel3.Location = new System.Drawing.Point(417, 124);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(54, 35);
             this.panel3.TabIndex = 26;
@@ -279,12 +283,53 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "i";
             // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Location = new System.Drawing.Point(417, 167);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(54, 35);
+            this.panel4.TabIndex = 29;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Wingdings", 20.25F);
+            this.label2.Location = new System.Drawing.Point(10, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 30);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Þ";
+            // 
+            // cmdFlutterInstall
+            // 
+            this.cmdFlutterInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdFlutterInstall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.cmdFlutterInstall.FlatAppearance.BorderSize = 0;
+            this.cmdFlutterInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdFlutterInstall.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cmdFlutterInstall.Location = new System.Drawing.Point(417, 166);
+            this.cmdFlutterInstall.Name = "cmdFlutterInstall";
+            this.cmdFlutterInstall.Size = new System.Drawing.Size(159, 37);
+            this.cmdFlutterInstall.TabIndex = 28;
+            this.cmdFlutterInstall.Text = "Install Flutter";
+            this.cmdFlutterInstall.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.cmdFlutterInstall.UseVisualStyleBackColor = false;
+            this.cmdFlutterInstall.Click += new System.EventHandler(this.cmdFlutterInstall_Click);
+            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(70)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(592, 296);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.cmdFlutterInstall);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -316,6 +361,8 @@
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,6 +389,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button cmdFlutterInstall;
     }
 }
 

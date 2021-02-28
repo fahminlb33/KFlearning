@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 using KFlearning.Models;
 using Newtonsoft.Json;
@@ -74,7 +75,7 @@ namespace KFlearning.Services
         public string GetPathForProject(string title, string basePath = null)
         {
             return Path.Combine(basePath ?? _path.GetPath(PathKind.DefaultProjectRoot),
-                _path.StripInvalidPathName(title));
+                PathHelpers.StripInvalidPathName(title));
         }
 
         private void Save(Project project)

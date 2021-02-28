@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using KFlearning.Control;
 using KFlearning.Core.Extensions;
+using KFlearning.Core.Services;
 using KFlearning.Models;
 using KFlearning.Properties;
 using KFlearning.Services;
@@ -11,6 +12,7 @@ namespace KFlearning.Views
 {
     public partial class StartupForm : Form
     {
+        private readonly IPathManager _pathManager = Program.Container.Resolve<IPathManager>();
         private readonly IProjectService _project = Program.Container.Resolve<IProjectService>();
         private readonly IHistoryService _history = Program.Container.Resolve<IHistoryService>();
 
@@ -77,6 +79,18 @@ namespace KFlearning.Views
         private void cmdAbout_Click(object sender, System.EventArgs e)
         {
             using (var frm = Program.Container.Resolve<AboutForm>())
+                frm.ShowDialog(this);
+        }
+
+        private void cmdFlutterInstall_Click(object sender, EventArgs e)
+        {
+            if (_pathManager.IsFlutterInstalled)
+            {
+                MessageBox.Show("Flutter terdeteksi pada sistem. Anda tidak perlu install Flutter lagi.", Resources.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (var frm = Program.Container.Resolve<FlutterInstallView>())
                 frm.ShowDialog(this);
         }
 

@@ -3,6 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using KFlearning.TemplateProvider;
 using KFlearning.Views;
+using System.Net;
 
 namespace KFlearning.Services
 {
@@ -11,6 +12,8 @@ namespace KFlearning.Services
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
+                Component.For<WebClient>().ImplementedBy<WebClient>().LifestyleTransient(),
+
                 // views
                 Classes.FromThisAssembly()
                     .InSameNamespaceAs<StartupForm>()

@@ -65,10 +65,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\FlutterInstallService.cs" />
     <Compile Include="Services\KFlearningApplicationContext.cs" />
     <Compile Include="Services\TelemetryService.cs" />
     <Compile Include="TemplateProvider\TR.Designer.cs">
@@ -101,6 +104,12 @@
     <Compile Include="Views\CreateProjectForm.Designer.cs">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FlutterInstallView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FlutterInstallView.Designer.cs">
+      <DependentUpon>FlutterInstallView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +139,9 @@
     <EmbeddedResource Include="Views\CreateProjectForm.resx">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FlutterInstallView.resx">
+      <DependentUpon>FlutterInstallView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\StartupForm.resx">
       <DependentUpon>StartupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,10 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core">
-      <Version>4.4.0</Version>
+      <Version>4.4.1</Version>
     </PackageReference>
     <PackageReference Include="Castle.Windsor">
-      <Version>5.0.1</Version>
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="DotNetZip">
+      <Version>1.15.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
