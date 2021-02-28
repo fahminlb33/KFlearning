@@ -1,4 +1,5 @@
-﻿using KFlearning.Core.API;
+﻿using Castle.Core.Logging;
+using KFlearning.Core.API;
 using KFlearning.Core.Services;
 using System;
 using System.Threading.Tasks;
@@ -13,9 +14,11 @@ namespace KFlearning.Services
     {
         private readonly ISystemInfoService _infoService;
         private readonly ITelemetryClient _telemetry;
+        private readonly ILogger _logger;
 
-        public TelemetryService(ITelemetryClient telemetry, ISystemInfoService infoService)
+        public TelemetryService(ILogger logger, ITelemetryClient telemetry, ISystemInfoService infoService)
         {
+            _logger = logger;
             _telemetry = telemetry;
             _infoService = infoService;
         }
@@ -42,9 +45,9 @@ namespace KFlearning.Services
                        })
                    );
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignore
+                _logger.Error("Cannot post telemetry data", ex);
             }
         }
 

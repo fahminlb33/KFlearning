@@ -11,13 +11,12 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using Castle.Core.Logging;
 using Castle.Windsor;
-using KFlearning.Core;
 using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 using KFlearning.Properties;
 using KFlearning.Services;
-using KFlearning.Views;
 
 namespace KFlearning
 {
@@ -43,6 +42,7 @@ namespace KFlearning
                 }
 
                 // install services
+                NLog.GlobalDiagnosticsContext.Set("logDirectory", PathHelpers.GetLogPath());
                 Container.Install(new KFlearningModulesInstaller());
 
                 // find vscode
@@ -84,9 +84,13 @@ namespace KFlearning
                     usesPersistance.Save();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // ignore
+                Container.Resolve<ILogger>().Error("Cannot save persistance", ex);
+            }
+            finally
+            {
+                NLog.LogManager.Shutdown();
             }
 
             Container.Dispose();

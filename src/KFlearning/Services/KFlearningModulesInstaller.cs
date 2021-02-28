@@ -4,6 +4,8 @@ using Castle.Windsor;
 using KFlearning.TemplateProvider;
 using KFlearning.Views;
 using System.Net;
+using Castle.Facilities.Logging;
+using Castle.Services.Logging.NLogIntegration;
 
 namespace KFlearning.Services
 {
@@ -11,6 +13,7 @@ namespace KFlearning.Services
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            container.AddFacility<LoggingFacility>(logger => logger.LogUsing<NLogFactory>());
             container.Register(
                 Component.For<WebClient>().ImplementedBy<WebClient>().LifestyleTransient(),
 
