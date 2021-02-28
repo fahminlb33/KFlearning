@@ -1,6 +1,5 @@
 ﻿using KFlearning.Core.API;
 using KFlearning.Core.Services;
-using KFmaintenance.Properties;
 using System;
 using System.Threading.Tasks;
 
@@ -26,9 +25,21 @@ namespace KFmaintenance.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppStart(Resources.AppName, _infoService.DeviceId),
-                    _telemetry.SendIdentification(_infoService.DeviceId, _infoService.CPU, _infoService.RAM,
-                        _infoService.OS, _infoService.Architecture));
+                Task.WaitAll(
+                    _telemetry.SendTelemetry(new UserEngagementModel
+                    {
+                        DeviceId = _infoService.DeviceId,
+                        AppName = "kfmaintenance",
+                        Event = "app_start" }),
+                    _telemetry.SendIdentification(new DeviceIdentificationModel
+                    {
+                        DeviceId = _infoService.DeviceId,
+                        CPU = _infoService.CPU,
+                        RAM = _infoService.RAM,
+                        OS = _infoService.OS,
+                        Architecture = _infoService.Architecture
+                    })
+                );
             }
             catch (Exception)
             {
@@ -41,7 +52,12 @@ namespace KFmaintenance.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppExit(Resources.AppName, _infoService.DeviceId));
+                Task.WaitAll(_telemetry.SendTelemetry(new UserEngagementModel
+                {
+                    DeviceId = _infoService.DeviceId,
+                    AppName = "kfmaintenance",
+                    Event = "app_stop"
+                }));
             }
             catch (Exception)
             {

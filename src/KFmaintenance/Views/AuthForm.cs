@@ -1,14 +1,4 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFmaintenance
-// FILENAME : AuthForm.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using KFlearning.Core;
+﻿using KFlearning.Core.Extensions;
 using KFmaintenance.Properties;
 using System.Windows.Forms;
 
@@ -23,7 +13,7 @@ namespace KFmaintenance.Views
 
         private void cmdSave_Click(object sender, System.EventArgs e)
         {
-            DialogResult = Helpers.CompareHash(txtCode.Text, Settings.Default.Password) 
+            DialogResult = HashHelpers.CompareHash(txtCode.Text, Settings.Default.Password) 
                 ? DialogResult.OK 
                 : DialogResult.Abort;
             Close();

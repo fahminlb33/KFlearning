@@ -1,4 +1,4 @@
-﻿using KFlearning.Core.Services;
+﻿using KFlearning.Core.Remoting;
 using KFmaintenance.Properties;
 using System;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ namespace KFmaintenance.Views
 {
     public partial class FileServerForm : Form
     {
-        private readonly IKFserverService _server = Program.Container.Resolve<IKFserverService>();
+        private readonly IKFServer _server = Program.Container.Resolve<IKFServer>();
 
         public FileServerForm()
         {
