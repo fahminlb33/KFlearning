@@ -16,7 +16,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Run Cake Build
-      run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target Build-Incremental --configuration Release
+      run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target="Build-Incremental" --configuration="Release"
 
     - name: Upload KFlearning Setup artifact
       uses: actions/upload-artifact@v2
