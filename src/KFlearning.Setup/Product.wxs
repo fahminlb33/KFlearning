@@ -29,14 +29,6 @@
     <!-- UI -->
     <UI>
       <UIRef Id="WixUI_InstallDir" />
-
-      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
-        WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed
-      </Publish>
     </UI>
-
-    <!-- Custom Actions -->
-    <Property Id="WixShellExecTarget" Value="[#KFlearning.exe]" />
-    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
   </Product>
 </Wix>

@@ -31,10 +31,6 @@
     <!-- UI -->
     <UI>
       <UIRef Id="WixUI_InstallDir" />
-
-      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
-        WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 AND NOT Installed
-      </Publish>
     </UI>
 
     <!-- Install Sequence -->
@@ -44,10 +40,7 @@
     </InstallExecuteSequence>
   </Product>
 
-  <Fragment>
-    <!-- Launch App -->
-    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
-    
+  <Fragment>    
     <!-- Firewall Rules -->
     <SetProperty Id="CreateFirewallExclusion" Sequence="execute" Before="CreateFirewallExclusion"
                  Value="&quot;[SystemFolder]netsh.exe&quot; advfirewall firewall add rule name=KFmaintenance protocol=TCP dir=in localport=21002 action=allow" />
