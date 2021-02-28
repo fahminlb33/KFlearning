@@ -1,13 +1,14 @@
-﻿using System;
+﻿using KFlearning.Core.Services;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-namespace KFlearning.Core.Services
+namespace KFlearning.Core.Remoting
 {
-    public interface IKFserverService : IDisposable
+    public interface IKFServer : IDisposable
     {
         bool IsRunning { get; }
 
@@ -16,7 +17,7 @@ namespace KFlearning.Core.Services
         void Stop();
     }
 
-    public class KFserverService : IKFserverService
+    public class KFServer : IKFServer
     {
         private const int ServerPort = 21002;
         private const string KFserverProcessName = "kfserver";
@@ -26,7 +27,7 @@ namespace KFlearning.Core.Services
         public bool IsRunning => Process.GetProcessesByName(KFserverProcessName).Length > 0;
 
 
-        public KFserverService(IPathManager pathManager)
+        public KFServer(IPathManager pathManager)
         {
             _pathManager = pathManager;
         }
@@ -50,6 +51,7 @@ namespace KFlearning.Core.Services
                 foreach (var process in Process.GetProcessesByName(KFserverProcessName))
                 {
                     process.Kill();
+                    process?.Dispose();
                 }
             }
             catch (Exception)
@@ -82,28 +84,14 @@ namespace KFlearning.Core.Services
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
+            if (_disposedValue) return;
 
-                Stop();
-                _disposedValue = true;
-            }
+            Stop();
+            _disposedValue = true;
         }
-
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~KFserverService()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }

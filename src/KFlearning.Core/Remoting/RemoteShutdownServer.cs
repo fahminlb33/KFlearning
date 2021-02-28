@@ -1,20 +1,10 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning.Core
-// FILENAME : RemoteServer.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace KFlearning.Core.Services
+namespace KFlearning.Core.Remoting
 {
     public interface IRemoteShutdownServer : IDisposable
     {

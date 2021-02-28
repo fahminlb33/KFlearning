@@ -1,4 +1,4 @@
-﻿namespace KFlearning.Core.Services
+﻿namespace KFlearning.Core.Remoting
 {
     public class ServerInfo
     {
