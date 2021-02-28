@@ -89,8 +89,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\AppModulesInstaller.cs" />
-    <Compile Include="Services\CustomApplicationContext.cs" />
+    <Compile Include="Services\KFmaintenanceModulesInstaller.cs" />
+    <Compile Include="Services\KFmaintenanceApplicationContext.cs" />
     <Compile Include="Services\FormService.cs" />
     <Compile Include="Services\TelemetryService.cs" />
     <Compile Include="Services\WindowsHelpers.cs" />
@@ -105,12 +105,6 @@
     </Compile>
     <Compile Include="Views\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ClisForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ClisForm.Designer.cs">
-      <DependentUpon>ClisForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FileServerForm.cs">
       <SubType>Form</SubType>
@@ -142,9 +136,6 @@
     <EmbeddedResource Include="Views\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ClisForm.resx">
-      <DependentUpon>ClisForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\FileServerForm.resx">
       <DependentUpon>FileServerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +158,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KFlearning.Control\KFlearning.Control.csproj">
+      <Project>{947fa6a1-2f1d-4090-8fa1-f8998257f489}</Project>
+      <Name>KFlearning.Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KFlearning.Core\KFlearning.Core.csproj">
       <Project>{443a1ce9-0c67-41ed-b392-5e41f7325a82}</Project>
       <Name>KFlearning.Core</Name>
