@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Variables.wxi ?>
 
-  <Product Id="*" Name="KFmaintenance" Language="1033" Version="1.0.1" Manufacturer="Kodesiana"
+  <Product Id="*" Name="KFmaintenance" Language="1033" Version="2.0.0" Manufacturer="Kodesiana"
            UpgradeCode="c9495b6e-ef17-417d-b7a2-a789c92f346b">
     <!-- Package -->
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />

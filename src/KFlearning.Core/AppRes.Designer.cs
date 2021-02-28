@@ -79,7 +79,7 @@ namespace KFlearning.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Doge.
+        ///   Looks up a localized string similar to OFORHDNST.
         /// </summary>
         internal static string Codename {
             get {
