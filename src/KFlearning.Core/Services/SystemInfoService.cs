@@ -1,14 +1,4 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning.Core
-// FILENAME : SystemInfoService.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
@@ -31,6 +21,13 @@ namespace KFlearning.Core.Services
     public class SystemInfoService : ISystemInfoService
     {
         private bool _isLoaded;
+
+        public string DeviceId { get; private set; } = "";
+        public string OS { get; private set; } = "-";
+        public string OSVersion { get; private set; } = "-";
+        public string Architecture { get; private set; } = "-";
+        public double RAM { get; private set; } = 0;
+        public string CPU { get; private set; } = "-";
 
         public void Query()
         {
@@ -81,12 +78,5 @@ namespace KFlearning.Core.Services
         {
             return new ManagementObjectSearcher(scope, query).Get().Cast<ManagementBaseObject>().First();
         }
-
-        public string DeviceId { get; private set; } = "";
-        public string OS { get; private set; } = "-";
-        public string OSVersion { get; private set; } = "-";
-        public string Architecture { get; private set; } = "-";
-        public double RAM { get; private set; } = 0;
-        public string CPU { get; private set; } = "-";
     }
 }
