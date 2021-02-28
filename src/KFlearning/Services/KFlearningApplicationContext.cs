@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace KFlearning.Services
 {
-    public class CustomApplicationContext : ApplicationContext
+    public class KFlearningApplicationContext : ApplicationContext
     {
         private readonly ITelemetryService _telemetry;
         private Form _mainForm;
 
-        public CustomApplicationContext(ITelemetryService telemetryService, StartupForm form)
+        public KFlearningApplicationContext(ITelemetryService telemetryService, StartupForm form)
         {
             _telemetry = telemetryService;
             _mainForm = form;
