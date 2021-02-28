@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace KFlearning.Core.API
@@ -18,32 +19,41 @@ namespace KFlearning.Core.API
 
     public class FlutterGitClient : IFlutterGitClient
     {
-        private static HttpClient Client;
+        private static readonly HttpClient Client;
 
         static FlutterGitClient()
         {
             var version = Assembly.GetCallingAssembly().GetName().Version;
 
             Client = new HttpClient();
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
-            Client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("KFlearning", $"{version.Major}.{version.Minor}.{version.Build}"));
+            Client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+            Client.DefaultRequestHeaders.Add("User-Agent", $"{version.Major}.{version.Minor}.{version.Build}");
         }
 
         public async Task<string> GetLatestFlutterVersion()
         {
-            var response = await Client.GetAsync("https://api.github.com/repos/flutter/flutter/git/refs/tags");
-            var serializer = new JsonSerializer();
-            using (var bodyReader = new StreamReader(await response.Content.ReadAsStreamAsync()))
-            using (var jsonReader = new JsonTextReader(bodyReader))
+            try
             {
-                var tags = serializer.Deserialize<List<FlutterGitTag>>(jsonReader);
-                var latest = tags.Where(x => !x.Ref.Contains("pre")).LastOrDefault();
-                if (latest == null)
-                {
-                    throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
-                }
+                var response = await Client.GetAsync("https://api.github.com/repos/flutter/flutter/git/refs/tags");
+                response.EnsureSuccessStatusCode();
 
-                return GetVersionFromTag(latest.Ref);
+                var serializer = new JsonSerializer();
+                using (var bodyReader = new StreamReader(await response.Content.ReadAsStreamAsync(), Encoding.UTF8))
+                using (var jsonReader = new JsonTextReader(bodyReader))
+                {
+                    var tags = serializer.Deserialize<List<FlutterGitTag>>(jsonReader);
+                    var latest = tags?.LastOrDefault(x => !x.Ref.Contains("pre"));
+                    if (latest == null)
+                    {
+                        throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
+                    }
+
+                    return GetVersionFromTag(latest.Ref);
+                }
+            }
+            catch (Exception)
+            {
+                return "1.22.6";
             }
         }
 
