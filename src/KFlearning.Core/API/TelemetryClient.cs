@@ -1,14 +1,4 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning.Core
-// FILENAME : TelemetryClient.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,61 +7,33 @@ namespace KFlearning.Core.API
 {
     public interface ITelemetryClient
     {
-        Task SendAppStart(string appName, string deviceId);
-        Task SendAppExit(string appName, string deviceId);
-        Task SendIdentification(string deviceId, string cpu, double ram, string os, string bitness);
+        Task SendTelemetry(UserEngagementModel model);
+        Task SendIdentification(DeviceIdentificationModel model);
     }
 
     public class TelemetryClient : ITelemetryClient
     {
-        private const string BaseUri = "https://kflearning.kodesiana.com";
         private static HttpClient Client = new HttpClient();
 
         static TelemetryClient()
         {
-            Client.DefaultRequestHeaders.Add("X-API-Key", ApplicationConstants.ApiKey);
+            Client.DefaultRequestHeaders.Add("X-API-Key", AppRes.ApiKey);
         }
 
-        public async Task SendAppStart(string appName, string deviceId)
+        public async Task SendIdentification(DeviceIdentificationModel model)
         {
-            await SendTelemetry(appName, "started", deviceId);
-        }
-
-        public async Task SendAppExit(string appName, string deviceId)
-        {
-            await SendTelemetry(appName, "exit", deviceId);
-        }
-
-        public async Task SendIdentification(string deviceId, string cpu, double ram, string os, string bitness)
-        {
-            var body = new
+            using (var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"))
             {
-                deviceId,
-                cpu,
-                os,
-                ram,
-                bitness
-            };
-
-            using (var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json"))
-            {
-                var result = await Client.PostAsync(BaseUri + "/telemetry/device", content);
+                var result = await Client.PostAsync(AppRes.ApiBaseUri + "/telemetry/device", content);
                 result.EnsureSuccessStatusCode();
             }
         }
 
-        private async Task SendTelemetry(string appName, string appEvent, string deviceId)
+        public async Task SendTelemetry(UserEngagementModel model)
         {
-            var body = new
+            using (var content = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"))
             {
-                deviceId,
-                appName,
-                intent = appEvent
-            };
-
-            using (var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json"))
-            {
-                var result = await Client.PostAsync(BaseUri + "/telemetry/intent", content);
+                var result = await Client.PostAsync(AppRes.ApiBaseUri + "/telemetry/intent", content);
                 result.EnsureSuccessStatusCode();
             }
         }
