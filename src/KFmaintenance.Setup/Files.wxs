@@ -17,6 +17,9 @@
       <Component Id="KFlearning.Core.dll" Guid="*">
         <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
       </Component>
+      <Component Id="KFlearning.Control.dll" Guid="*">
+        <File Id="KFlearning.Control.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Control.dll" />
+      </Component>
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
       </Component>
