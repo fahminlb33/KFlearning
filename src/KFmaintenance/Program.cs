@@ -1,22 +1,11 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFmaintenance
-// FILENAME : Program.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
 using Castle.Windsor;
-using KFlearning.Core;
+using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 using KFmaintenance.Properties;
 using KFmaintenance.Services;
-using KFmaintenance.Views;
 
 namespace KFmaintenance
 {
@@ -42,10 +31,10 @@ namespace KFmaintenance
                 }
 
                 // install services
-                Container.Install(new AppModulesInstaller());
+                Container.Install(new KFmaintenanceModulesInstaller());
 
                 // enable TLS;
-                Helpers.EnableTls();
+                ApiHelpers.EnableTls();
 
                 // app exit handler
                 Application.ApplicationExit += Application_ApplicationExit;
@@ -53,7 +42,7 @@ namespace KFmaintenance
                 // bootstrap
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(Container.Resolve<CustomApplicationContext>());
+                Application.Run(Container.Resolve<KFmaintenanceApplicationContext>());
             }
         }
 
