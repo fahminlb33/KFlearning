@@ -7,15 +7,13 @@ namespace KFlearning.Services
 {
     public class KFlearningApplicationContext : ApplicationContext
     {
-        private readonly ITelemetryService _telemetry;
-        private Form _mainForm;
+        private readonly Form _mainForm;
 
         public KFlearningApplicationContext(ITelemetryService telemetryService, StartupForm form)
         {
-            _telemetry = telemetryService;
             _mainForm = form;
 
-            Task.Run(() => _telemetry.Load());
+            Task.Run(() => telemetryService.Load());
 
             _mainForm.HandleDestroyed += OnFormDestroy;
             _mainForm.Show();
@@ -23,11 +21,9 @@ namespace KFlearning.Services
 
         private void OnFormDestroy(object sender, EventArgs e)
         {
-            if (sender is Form form && !form.RecreatingHandle)
-            {
-                form.HandleDestroyed -= OnFormDestroy;
-                OnMainFormClosed(sender, e);
-            }
+            if (!(sender is Form form) || form.RecreatingHandle) return;
+            form.HandleDestroyed -= OnFormDestroy;
+            OnMainFormClosed(sender, e);
         }
 
         protected override void Dispose(bool disposing)
