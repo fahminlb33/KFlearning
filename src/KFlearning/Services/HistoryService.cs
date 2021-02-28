@@ -1,16 +1,7 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : HistoryService.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using KFlearning.Core.Services;
+using KFlearning.Models;
 
 namespace KFlearning.Services
 {
@@ -25,7 +16,7 @@ namespace KFlearning.Services
 
     public class HistoryService : IHistoryService
     {
-        private const int HistorySize = 10;
+        private const int HistorySize = 20;
         private const string HistorySettingsName = "History.Settings";
 
         private readonly List<Project> _projects = new List<Project>();
@@ -42,6 +33,7 @@ namespace KFlearning.Services
         public void Add(Project project)
         {
             if (!RecordHistory) return;
+
             _projects.RemoveAll(x => x.Path == project.Path);
             _projects.Add(project);
             EnsureSize();

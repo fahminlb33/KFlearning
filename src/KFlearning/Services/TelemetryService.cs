@@ -1,16 +1,5 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : TelemetryService.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using KFlearning.Core.API;
+﻿using KFlearning.Core.API;
 using KFlearning.Core.Services;
-using KFlearning.Properties;
 using System;
 using System.Threading.Tasks;
 
@@ -36,9 +25,22 @@ namespace KFlearning.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppStart(Resources.AppName, _infoService.DeviceId),
-                    _telemetry.SendIdentification(_infoService.DeviceId, _infoService.CPU, _infoService.RAM,
-                        _infoService.OS, _infoService.Architecture));
+                Task.WaitAll(
+                       _telemetry.SendTelemetry(new UserEngagementModel
+                       {
+                           DeviceId = _infoService.DeviceId,
+                           AppName = "kflearning",
+                           Event = "app_start"
+                       }),
+                       _telemetry.SendIdentification(new DeviceIdentificationModel
+                       {
+                           DeviceId = _infoService.DeviceId,
+                           CPU = _infoService.CPU,
+                           RAM = _infoService.RAM,
+                           OS = _infoService.OS,
+                           Architecture = _infoService.Architecture
+                       })
+                   );
             }
             catch (Exception)
             {
@@ -51,7 +53,12 @@ namespace KFlearning.Services
             try
             {
                 _infoService.Query();
-                Task.WaitAll(_telemetry.SendAppExit(Resources.AppName, _infoService.DeviceId));
+                Task.WaitAll(_telemetry.SendTelemetry(new UserEngagementModel
+                {
+                    DeviceId = _infoService.DeviceId,
+                    AppName = "kflearning",
+                    Event = "app_stop"
+                }));
             }
             catch (Exception)
             {

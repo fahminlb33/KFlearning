@@ -1,16 +1,5 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : TemplateService.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System.Collections.Generic;
-using Castle.Windsor;
-using KFlearning.Core.Services;
+﻿using System.Collections.Generic;
+using KFlearning.TemplateProvider;
 
 namespace KFlearning.Services
 {
@@ -36,7 +25,7 @@ namespace KFlearning.Services
 
         public void Extract(ITemplateProvider template, string outputPath)
         {
-            template.Provide(outputPath);
+            template.Scaffold(outputPath);
         }
     }
 }

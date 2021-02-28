@@ -1,20 +1,8 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : ProjectService.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-#region
-
+﻿using System;
 using System.IO;
 using KFlearning.Core.Services;
+using KFlearning.Models;
 using Newtonsoft.Json;
-
-#endregion
 
 namespace KFlearning.Services
 {
@@ -49,8 +37,8 @@ namespace KFlearning.Services
             var content = File.ReadAllText(Path.Combine(path, MetadataFileName));
             var metadata = JsonConvert.DeserializeObject<Project>(content);
 
-            // synchronize saved path
             metadata.Path = path;
+            metadata.LastOpenAt = DateTime.Now;
             Save(metadata);
 
             return metadata;
