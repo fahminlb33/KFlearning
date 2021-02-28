@@ -32,13 +32,20 @@ namespace KFlearning.Core.Extensions
 
         public static string GetFullPathToEnv(string fileName)
         {
-            if (File.Exists(fileName))
+            try
             {
-                return Path.GetFullPath(fileName);
-            }
+                if (File.Exists(fileName))
+                {
+                    return Path.GetFullPath(fileName);
+                }
 
-            var values = Environment.GetEnvironmentVariable("PATH");
-            return values?.Split(Path.PathSeparator).Select(path => Path.Combine(path, fileName)).FirstOrDefault(File.Exists);
+                var values = Environment.GetEnvironmentVariable("PATH");
+                return values?.Split(Path.PathSeparator).Select(path => Path.Combine(path, fileName)).FirstOrDefault(File.Exists);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
