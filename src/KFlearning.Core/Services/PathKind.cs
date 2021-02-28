@@ -10,6 +10,7 @@
         MingwInclude2Directory,
         MingwGXXExecutable,
         MingwGDBExecutable,
-        KFserverExecutable
+        KFserverExecutable,
+        FlutterInstallDirectory
     }
 }

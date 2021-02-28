@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KFlearning.Core.Extensions;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -7,20 +9,50 @@ namespace KFlearning.Core.Services
 {
     public interface IPathManager
     {
+        bool IsVscodeInstalled { get; }
+        bool IsKfMingwInstalled { get; }
+        bool IsFlutterInstalled { get; }
+
         string GetPath(PathKind kind, bool forwardSlash = false);
-        string StripInvalidPathName(string path);
-        bool IsVscodeInstalled();
-        bool IsKfMingwInstalled();
     }
 
     public class PathManager : IPathManager
     {
-        private static readonly string SystemRoot = Path.GetPathRoot(Environment.SystemDirectory);
-        private static readonly string DocumentRoot = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        private static readonly string AppRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        private static readonly char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
-        private string _cachedVscodePath;
-        private string _cachedKfMingwPath;
+        private Dictionary<PathName, string> _cachedPaths = null;
+
+        private enum PathName
+        {
+            SystemRoot,
+            DocumentRoot,
+            AppRoot,
+            Vscode,
+            KFmingw,
+            Flutter
+        }
+
+        #region Properies
+        
+        public bool IsVscodeInstalled => _cachedPaths.ContainsKey(PathName.Vscode);
+
+        public bool IsKfMingwInstalled => _cachedPaths.ContainsKey(PathName.KFmingw);
+
+        public bool IsFlutterInstalled => _cachedPaths.ContainsKey(PathName.Flutter);
+
+        #endregion
+
+        public PathManager()
+        {
+            _cachedPaths = new Dictionary<PathName, string>
+            {
+                {PathName.SystemRoot, Path.GetPathRoot(Environment.SystemDirectory)},
+                {PathName.DocumentRoot, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)},
+                {PathName.AppRoot, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}
+            };
+
+            FindKfMingw();
+            FindVscode();
+            FindFlutter();
+        }
 
         public string GetPath(PathKind kind, bool forwardSlash = false)
         {
@@ -28,31 +60,34 @@ namespace KFlearning.Core.Services
             switch (kind)
             {
                 case PathKind.DefaultProjectRoot:
-                    path = Path.Combine(DocumentRoot, "KFlearning");
+                    path = Path.Combine(_cachedPaths[PathName.DocumentRoot], "KFlearning");
                     break;
                 case PathKind.PersistanceDirectory:
-                    path = Path.Combine(DocumentRoot, @"KFlearning\settings");
+                    path = Path.Combine(_cachedPaths[PathName.DocumentRoot], @"KFlearning\settings");
                     break;
                 case PathKind.WallpaperPath:
-                    path = Path.Combine(SystemRoot, "wallpaper.jpg");
+                    path = Path.Combine(_cachedPaths[PathName.SystemRoot], "wallpaper.jpg");
                     break;
                 case PathKind.VisualStudioCodeExecutable:
-                    path = FindVscode();
+                    path = _cachedPaths[PathName.Vscode];
                     break;
                 case PathKind.MingwInclude1Directory:
-                    path = Path.Combine(FindKfMingw(), @"include");
+                    path = Path.Combine(_cachedPaths[PathName.KFmingw], @"include");
                     break;
                 case PathKind.MingwInclude2Directory:
-                    path = Path.Combine(FindKfMingw(), @"i686-w64-mingw32\include");
+                    path = Path.Combine(_cachedPaths[PathName.KFmingw], @"i686-w64-mingw32\include");
                     break;
                 case PathKind.MingwGXXExecutable:
-                    path = Path.Combine(FindKfMingw(), @"bin\g++.exe");
+                    path = Path.Combine(_cachedPaths[PathName.KFmingw], @"bin\g++.exe");
                     break;
                 case PathKind.MingwGDBExecutable:
-                    path = Path.Combine(FindKfMingw(), @"bin\gdb.exe");
+                    path = Path.Combine(_cachedPaths[PathName.KFmingw], @"bin\gdb.exe");
                     break;
                 case PathKind.KFserverExecutable:
-                    path = Path.Combine(AppRoot, @"kfserver.exe");
+                    path = Path.Combine(_cachedPaths[PathName.AppRoot], @"kfserver.exe");
+                    break;
+                case PathKind.FlutterInstallDirectory:
+                    path = Path.Combine(_cachedPaths[PathName.SystemRoot], @"src\flutter");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind), kind, null);
@@ -61,70 +96,64 @@ namespace KFlearning.Core.Services
             return forwardSlash ? path.Replace('\\', '/') : path;
         }
 
-        public string StripInvalidPathName(string path)
-        {
-            return InvalidFileNameChars.Aggregate(path, (current, x) => current.Replace(x, '_'));
-        }
+        #region Private Methods
 
-        public bool IsVscodeInstalled()
+        private void FindKfMingw()
         {
-            return FindVscode() != null;
-        }
-
-        public bool IsKfMingwInstalled()
-        {
-            return FindKfMingw() != null;
-        }
-
-        private string FindKfMingw()
-        {
-            if (_cachedKfMingwPath != null) return _cachedKfMingwPath;
-
             // find installation on default path
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "KF-MinGW");
-            if (!Directory.Exists(path)) return null;
+            if (Directory.Exists(path))
+            {
+                _cachedPaths.Add(PathName.KFmingw, path);
+                return;
+            }
 
             // find in env path
-            if (GetFullPathToEnv("g++.exe") == null) return null;
-
-            _cachedKfMingwPath = path;
-            return _cachedKfMingwPath;
+            path = PathHelpers.GetFullPathToEnv("g++.exe");
+            if (path != null)
+            {
+                _cachedPaths.Add(PathName.KFmingw, path);
+            }
         }
 
-        private string FindVscode()
+        private void FindVscode()
         {
-            if (_cachedVscodePath != null) return _cachedVscodePath;
-
             // find in user dir
             var userDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            var userInstall = Path.Combine(userDir, @"Programs\Microsoft VS Code\code.exe");
-            if (File.Exists(userInstall))
+            var path = Path.Combine(userDir, @"Programs\Microsoft VS Code\code.exe");
+            if (File.Exists(path))
             {
-                _cachedVscodePath = userInstall;
-                return userInstall;
+                _cachedPaths.Add(PathName.Vscode, path);
+                return;
             }
 
             // find in env path
-            var userEnv = GetFullPathToEnv("code.cmd");
-            if (userEnv != null)
+            path = PathHelpers.GetFullPathToEnv("code.cmd");
+            if (path != null)
             {
-                _cachedVscodePath = Path.Combine(Path.GetDirectoryName(userEnv).Remove(userEnv.Length - 12, 3), "code.exe");
-                return _cachedVscodePath;
+                 path = Path.Combine(Path.GetDirectoryName(path).Remove(path.Length - 12, 3), "code.exe");
+                _cachedPaths.Add(PathName.Vscode, path);
             }
-
-            // not found
-            return null;
         }
 
-        private static string GetFullPathToEnv(string fileName)
+        private void FindFlutter()
         {
-            if (File.Exists(fileName))
+            // find installation on default path
+            var path = Path.Combine(_cachedPaths[PathName.SystemRoot], @"src\bin", "flutter.exe");
+            if (File.Exists(path))
             {
-                return Path.GetFullPath(fileName);
+                _cachedPaths.Add(PathName.Flutter, path);
+                return;
             }
 
-            var values = Environment.GetEnvironmentVariable("PATH");
-            return values?.Split(Path.PathSeparator).Select(path => Path.Combine(path, fileName)).FirstOrDefault(File.Exists);
+            // find in env path
+            path = PathHelpers.GetFullPathToEnv("flutter.exe");
+            if (path != null)
+            {
+                _cachedPaths.Add(PathName.Flutter, path);
+            }
         }
+
+        #endregion
     }
 }
