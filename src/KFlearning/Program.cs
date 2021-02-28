@@ -13,6 +13,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Castle.Windsor;
 using KFlearning.Core;
+using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 using KFlearning.Properties;
 using KFlearning.Services;
@@ -42,7 +43,7 @@ namespace KFlearning
                 }
 
                 // install services
-                Container.Install(new AppModulesInstaller());
+                Container.Install(new KFlearningModulesInstaller());
 
                 // find vscode
                 var path = Container.Resolve<IPathManager>();
@@ -62,7 +63,7 @@ namespace KFlearning
                 }
 
                 // enable TLS
-                Helpers.EnableTls();
+                ApiHelpers.EnableTls();
 
                 // app exit handler
                 Application.ApplicationExit += Application_ApplicationExit;
@@ -70,7 +71,7 @@ namespace KFlearning
                 // bootstrapper
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(Container.Resolve<CustomApplicationContext>());
+                Application.Run(Container.Resolve<KFlearningApplicationContext>());
             }
         }
 

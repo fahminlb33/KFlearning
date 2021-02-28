@@ -1,16 +1,6 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : AboutForm.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows.Forms;
-using KFlearning.Core;
+using KFlearning.Core.Extensions;
 
 namespace KFlearning.Views
 {
@@ -19,7 +9,7 @@ namespace KFlearning.Views
         public AboutForm()
         {
             InitializeComponent();
-            lblVersion.Text = Helpers.GetVersionString();
+            lblVersion.Text = PathHelpers.GetVersionString();
         }
 
         private void cmdInstagram_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

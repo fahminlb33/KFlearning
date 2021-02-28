@@ -1,18 +1,10 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : CreateProjectForm.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using KFlearning.Models;
 using KFlearning.Properties;
 using KFlearning.Services;
+using KFlearning.TemplateProvider;
 
 namespace KFlearning.Views
 {
@@ -53,7 +45,8 @@ namespace KFlearning.Views
             {
                 Name = txtProjectName.Text,
                 Path = _projectService.GetPathForProject(txtProjectName.Text, _basePath),
-                Template = (ITemplateProvider) cboTemplate.SelectedItem
+                Template = (ITemplateProvider) cboTemplate.SelectedItem,
+                CreatedAt = DateTime.Now
             };
 
             DialogResult = DialogResult.OK;

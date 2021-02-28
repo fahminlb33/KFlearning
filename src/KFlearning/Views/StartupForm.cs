@@ -1,24 +1,11 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : StartupForm.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using KFlearning.Core;
-using KFlearning.Core.API;
-using KFlearning.Core.Forms;
+using KFlearning.Control;
+using KFlearning.Core.Extensions;
+using KFlearning.Models;
 using KFlearning.Properties;
 using KFlearning.Services;
-using Helpers = KFlearning.Core.Helpers;
 
 namespace KFlearning.Views
 {
@@ -34,7 +21,7 @@ namespace KFlearning.Views
 
         protected override void OnLoad(EventArgs e)
         {
-            lblVersion.Text = Helpers.GetVersionString();
+            lblVersion.Text = PathHelpers.GetVersionString();
             ReloadHistory();
 
         }
