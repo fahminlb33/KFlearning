@@ -30,6 +30,11 @@ namespace KFlearning.Core.Extensions
             return InvalidFileNameChars.Aggregate(path, (current, x) => current.Replace(x, '_'));
         }
 
+        public static string GetLogPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
+
         public static string GetFullPathToEnv(string fileName)
         {
             try
