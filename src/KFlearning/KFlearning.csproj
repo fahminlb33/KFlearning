@@ -72,25 +72,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\CustomApplicationContext.cs" />
+    <Compile Include="Services\KFlearningApplicationContext.cs" />
     <Compile Include="Services\TelemetryService.cs" />
-    <Compile Include="Services\Templates\TR.Designer.cs">
+    <Compile Include="TemplateProvider\TR.Designer.cs">
       <DependentUpon>TR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Services\AppModulesInstaller.cs" />
+    <Compile Include="Services\KFlearningModulesInstaller.cs" />
     <Compile Include="Services\HistoryService.cs" />
     <Compile Include="Services\HistorySettings.cs" />
-    <Compile Include="Services\Project.cs" />
+    <Compile Include="Models\Project.cs" />
     <Compile Include="Services\ProjectService.cs" />
-    <Compile Include="Services\ITemplateProvider.cs" />
-    <Compile Include="Services\TemplateProviderBase.cs" />
+    <Compile Include="TemplateProvider\ITemplateProvider.cs" />
+    <Compile Include="TemplateProvider\TemplateProviderBase.cs" />
     <Compile Include="Services\TemplateService.cs" />
-    <Compile Include="Services\Templates\CppConsoleProvider.cs" />
-    <Compile Include="Services\Templates\CppFreeglutProvider.cs" />
-    <Compile Include="Services\Templates\PhpProvider.cs" />
-    <Compile Include="Services\Templates\PythonProvider.cs" />
+    <Compile Include="TemplateProvider\CppConsoleProvider.cs" />
+    <Compile Include="TemplateProvider\CppFreeglutProvider.cs" />
+    <Compile Include="TemplateProvider\WebProvider.cs" />
+    <Compile Include="TemplateProvider\PythonProvider.cs" />
     <Compile Include="Services\VisualStudioCodeService.cs" />
     <Compile Include="Views\AboutForm.cs">
       <SubType>Form</SubType>
@@ -123,7 +123,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Services\Templates\TR.resx">
+    <EmbeddedResource Include="TemplateProvider\TR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -160,6 +160,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\KFlearning.Control\KFlearning.Control.csproj">
+      <Project>{947fa6a1-2f1d-4090-8fa1-f8998257f489}</Project>
+      <Name>KFlearning.Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KFlearning.Core\KFlearning.Core.csproj">
       <Project>{443a1ce9-0c67-41ed-b392-5e41f7325a82}</Project>
       <Name>KFlearning.Core</Name>
