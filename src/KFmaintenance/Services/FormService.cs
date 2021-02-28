@@ -7,24 +7,17 @@ namespace KFmaintenance.Services
 {
     public interface IFormService : IDisposable
     {
-        void ShowClis();
         void ShowFileServer();
     }
 
     public class FormService : IFormService
     {
         private const int FileFormId = 0;
-        private const int ClisFormId = 1;
         private Dictionary<int, Form> _forms = new Dictionary<int, Form>();
 
         public void ShowFileServer()
         {
             InternalShowForm(FileFormId, () => new FileServerForm());
-        }
-
-        public void ShowClis()
-        {
-            InternalShowForm(ClisFormId, () => new ClisForm());
         }
 
         private void InternalShowForm(int id, Func<Form> createFunc)

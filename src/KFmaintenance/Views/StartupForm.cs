@@ -1,17 +1,8 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFmaintenance
-// FILENAME : StartupForm.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using KFlearning.Core;
+using KFlearning.Core.Extensions;
+using KFlearning.Core.Remoting;
 using KFlearning.Core.Services;
 using KFmaintenance.Properties;
 using KFmaintenance.Services;
@@ -41,7 +32,7 @@ namespace KFmaintenance.Views
         protected override void OnLoad(EventArgs e)
         {
             // app version
-            lblVersion.Text = Helpers.GetVersionString();
+            lblVersion.Text = PathHelpers.GetVersionString();
 
             // listen remote shutdowns
             _remoteService.ShutdownRequested += RemoteService_ShutdownRequested;
@@ -137,7 +128,7 @@ namespace KFmaintenance.Views
             settings.Cluster = txtCluster.Text;
             if (txtPassword.TextLength > 0)
             {
-                settings.Password = Helpers.HashPassword(txtPassword.Text);
+                settings.Password = HashHelpers.HashPassword(txtPassword.Text);
             }
 
             settings.Save();
@@ -241,23 +232,6 @@ namespace KFmaintenance.Views
 
             _lastShutdownRequest = DateTime.Now;
             _remoteService.SendShutdown(Settings.Default.Cluster);
-        }
-
-        private void cmdCLIS_Click(object sender, EventArgs e)
-        {
-            using (var frm = Program.Container.Resolve<AuthForm>())
-            {
-                var result = frm.ShowDialog();
-                if (result == DialogResult.Abort)
-                {
-                    MessageBox.Show(Resources.PasswordInvalidMessage, Resources.AppName, MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-                }
-
-                if (result != DialogResult.OK) return;
-            }
-
-            _formService.ShowClis();
         }
 
         private void cmdAbout_Click(object sender, EventArgs e)
