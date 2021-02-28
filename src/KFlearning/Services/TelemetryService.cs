@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KFlearning.Services
 {
-    public interface ITelemetryService : IUsesPersistance
+    public interface ITelemetryService : IUsesPersistence
     {
     }
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KFmaintenance.Services
 {
-    public interface ITelemetryService : IUsesPersistance
+    public interface ITelemetryService : IUsesPersistence
     {
     }
 

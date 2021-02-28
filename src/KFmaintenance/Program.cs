@@ -50,9 +50,9 @@ namespace KFmaintenance
         {
             try
             {
-                foreach (var usesPersistance in Container.ResolveAll<IUsesPersistance>())
+                foreach (var usesPersistence in Container.ResolveAll<IUsesPersistence>())
                 {
-                    usesPersistance.Save();
+                    usesPersistence.Save();
                 }
             }
             catch

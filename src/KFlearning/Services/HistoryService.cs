@@ -5,7 +5,7 @@ using KFlearning.Models;
 
 namespace KFlearning.Services
 {
-    public interface IHistoryService : IUsesPersistance
+    public interface IHistoryService : IUsesPersistence
     {
         bool RecordHistory { get; set; }
 
@@ -63,7 +63,7 @@ namespace KFlearning.Services
             return new HistorySettings {Recording = true, Projects = new List<Project>()};
         }
 
-        #region IUsesPersistance Implementation
+        #region IUsesPersistence Implementation
 
         public void Load()
         {

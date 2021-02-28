@@ -79,14 +79,14 @@ namespace KFlearning
         {
             try
             {
-                foreach (var usesPersistance in Container.ResolveAll<IUsesPersistance>())
+                foreach (var usesPersistence in Container.ResolveAll<IUsesPersistence>())
                 {
-                    usesPersistance.Save();
+                    usesPersistence.Save();
                 }
             }
             catch (Exception ex)
             {
-                Container.Resolve<ILogger>().Error("Cannot save persistance", ex);
+                Container.Resolve<ILogger>().Error("Cannot save persistence", ex);
             }
             finally
             {

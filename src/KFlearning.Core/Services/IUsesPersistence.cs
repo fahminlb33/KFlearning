@@ -1,6 +1,6 @@
 ﻿namespace KFlearning.Core.Services
 {
-    public interface IUsesPersistance
+    public interface IUsesPersistence
     {
         void Load();
         void Save();
