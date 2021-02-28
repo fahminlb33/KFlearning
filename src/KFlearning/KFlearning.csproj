@@ -65,11 +65,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Services\KFlearningApplicationContext.cs" />
@@ -160,7 +157,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\KFlearning.Control\KFlearning.Control.csproj">
+    <ProjectReference Include="..\KFlearning.Control\KFlearning.Control.csproj">
       <Project>{947fa6a1-2f1d-4090-8fa1-f8998257f489}</Project>
       <Name>KFlearning.Control</Name>
     </ProjectReference>
