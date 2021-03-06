@@ -8,19 +8,34 @@
       <Component Id="Castle.Core.dll" Guid="*">
         <File Id="Castle.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Core.dll" />
       </Component>
+      <Component Id="Castle.Facilities.Logging.dll" Guid="*">
+        <File Id="Castle.Facilities.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Facilities.Logging.dll" />
+      </Component>
+      <Component Id="Castle.Services.Logging.NLogIntegration.dll" Guid="*">
+        <File Id="Castle.Services.Logging.NLogIntegration.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Services.Logging.NLogIntegration.dll" />
+      </Component>
       <Component Id="Castle.Windsor.dll" Guid="*">
         <File Id="Castle.Windsor.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Windsor.dll" />
       </Component>
-      <Component Id="KFlearning.Core.dll" Guid="*">
-        <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
-      </Component>
-      <Component Id="KFlearning.Control.dll" Guid="*">
-        <File Id="KFlearning.Control.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Control.dll" />
+      <Component Id="DotNetZip.dll" Guid="*">
+        <File Id="DotNetZip.dll" KeyPath="yes" Source="$(var.SourceDir)\DotNetZip.dll" />
       </Component>
       <Component Id="Newtonsoft.Json.dll" Guid="*">
         <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
       </Component>
-            
+      <Component Id="NLog.dll" Guid="*">
+        <File Id="NLog.dll" KeyPath="yes" Source="$(var.SourceDir)\NLog.dll" />
+      </Component>
+      <Component Id="NLog.config" Guid="*">
+        <File Id="NLog.config" KeyPath="yes" Source="$(var.SourceDir)\NLog.config" />
+      </Component>
+
+      <Component Id="KFlearning.Control.dll" Guid="*">
+        <File Id="KFlearning.Control.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Control.dll" />
+      </Component>
+      <Component Id="KFlearning.Core.dll" Guid="*">
+        <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
+      </Component>
       <Component Id="KFlearning.exe" Guid="*">
         <File Id="KFlearning.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.exe" />
       </Component>
