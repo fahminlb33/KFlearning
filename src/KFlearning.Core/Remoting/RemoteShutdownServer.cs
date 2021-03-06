@@ -71,7 +71,10 @@ namespace KFlearning.Core.Remoting
 
         private void ProcessMessage(string message, IPAddress server)
         {
-            if (!message.StartsWith(MessageShutdown)) return;
+            if (!message.StartsWith(MessageShutdown))
+            {
+                return;
+            }
 
             var cluster = message.Split('|')[1];
             ShutdownRequested?.Invoke(this, new ShutdownRequestedEventArgs { Address = server, Clusster = cluster });

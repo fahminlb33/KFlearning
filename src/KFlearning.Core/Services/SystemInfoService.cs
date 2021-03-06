@@ -31,7 +31,10 @@ namespace KFlearning.Core.Services
 
         public void Query()
         {
-            if (_isLoaded) return;
+            if (_isLoaded)
+            {
+                return;
+            }
 
             // build device ID
             string deviceId = "";
@@ -60,7 +63,11 @@ namespace KFlearning.Core.Services
                 var hashed = hasher.ComputeHash(bytes);
                 var hex = new StringBuilder(hashed.Length * 2);
 
-                foreach (byte b in hashed) hex.AppendFormat("{0:x2}", b);
+                foreach (byte b in hashed)
+                {
+                    hex.AppendFormat("{0:x2}", b);
+                }
+
                 DeviceId = hex.ToString();
             }
 

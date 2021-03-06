@@ -9,7 +9,11 @@ namespace KFlearning.Control
     {
         public static void DrawItemHandler(object sender, DrawItemEventArgs e)
         {
-            if (e.Index < 0) return;
+            if (e.Index < 0)
+            {
+                return;
+            }
+
             e.DrawBackground();
             e.DrawFocusRectangle();
 

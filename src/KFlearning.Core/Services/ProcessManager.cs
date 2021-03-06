@@ -59,7 +59,9 @@ namespace KFlearning.Core.Services
                 finally
                 {
                     if (elevationTypePtr != IntPtr.Zero)
+                    {
                         Marshal.FreeHGlobal(elevationTypePtr);
+                    }
                 }
             }
         }

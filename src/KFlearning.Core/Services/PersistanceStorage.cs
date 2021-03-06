@@ -39,7 +39,10 @@ namespace KFlearning.Core.Services
             try
             {
                 var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + ".kfl");
-                if (!File.Exists(path)) return default;
+                if (!File.Exists(path))
+                {
+                    return default;
+                }
 
                 using (var reader = new StreamReader(path))
                 using (var jsonReader = new JsonTextReader(reader))

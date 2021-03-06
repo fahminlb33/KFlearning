@@ -88,7 +88,10 @@ namespace KFmaintenance.Views
 
         private void RemoteService_ShutdownRequested(object sender, ShutdownRequestedEventArgs e)
         {
-            if ((DateTime.Now - _lastShutdownRequest).TotalSeconds < 30) return;
+            if ((DateTime.Now - _lastShutdownRequest).TotalSeconds < 30)
+            {
+                return;
+            }
 
             _exit = true;
             WindowsHelpers.Shutdown();
@@ -106,7 +109,11 @@ namespace KFmaintenance.Views
 
         private void cmdBrowseWallpaper_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (ofd.ShowDialog() != DialogResult.OK) return;
+            if (ofd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
             lblFileName.Text = ofd.FileName;
         }
 
@@ -121,7 +128,10 @@ namespace KFmaintenance.Views
                         MessageBoxIcon.Exclamation);
                 }
 
-                if (result != DialogResult.OK) return;
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
             }
 
             var settings = Settings.Default;
@@ -154,7 +164,10 @@ namespace KFmaintenance.Views
                         MessageBoxIcon.Exclamation);
                 }
 
-                if (result != DialogResult.OK) return;
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
             }
 
             try
@@ -178,8 +191,15 @@ namespace KFmaintenance.Views
                     var storeWallpaperPath = _pathManager.GetPath(PathKind.WallpaperPath);
                     var newWallpaperPath = lblFileName.Text;
 
-                    if (storeWallpaperPath == newWallpaperPath) return;
-                    if (File.Exists(storeWallpaperPath)) File.Delete(storeWallpaperPath);
+                    if (storeWallpaperPath == newWallpaperPath)
+                    {
+                        return;
+                    }
+
+                    if (File.Exists(storeWallpaperPath))
+                    {
+                        File.Delete(storeWallpaperPath);
+                    }
 
                     File.Copy(newWallpaperPath, storeWallpaperPath);
                     _systemTweaker.WallpaperPath = storeWallpaperPath;
@@ -206,7 +226,10 @@ namespace KFmaintenance.Views
                         MessageBoxIcon.Exclamation);
                 }
 
-                if (result != DialogResult.OK) return;
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
             }
 
             _formService.ShowFileServer();
@@ -223,12 +246,18 @@ namespace KFmaintenance.Views
                         MessageBoxIcon.Exclamation);
                 }
 
-                if (result != DialogResult.OK) return;
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
             }
 
             var result2 = MessageBox.Show(Resources.RemoteShutdownConfirmMessage, Resources.AppName,
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (result2 != DialogResult.OK) return;
+            if (result2 != DialogResult.OK)
+            {
+                return;
+            }
 
             _lastShutdownRequest = DateTime.Now;
             _remoteService.SendShutdown(Settings.Default.Cluster);

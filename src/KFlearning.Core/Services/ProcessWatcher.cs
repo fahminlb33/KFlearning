@@ -33,7 +33,10 @@ namespace KFlearning.Core.Services
 
         public void Start()
         {
-            if (_timer.Enabled) return;
+            if (_timer.Enabled)
+            {
+                return;
+            }
 
             TotalSeconds = 0;
             _lastCheck = DateTime.Now;
@@ -42,7 +45,10 @@ namespace KFlearning.Core.Services
 
         public void Stop()
         {
-            if (!_timer.Enabled) return;
+            if (!_timer.Enabled)
+            {
+                return;
+            }
 
             _timer_Elapsed(null, null);
             _timer.Stop();
@@ -53,7 +59,11 @@ namespace KFlearning.Core.Services
             try
             {
                 var processes = Process.GetProcessesByName(ProcessName);
-                if (!processes.Any()) return;
+                if (!processes.Any())
+                {
+                    return;
+                }
+
                 var now = DateTime.Now;
 
                 lock (_lock)

@@ -1,9 +1,9 @@
-﻿using KFlearning.Core.Remoting;
-using KFmaintenance.Properties;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using KFlearning.Core.Remoting;
+using KFmaintenance.Properties;
 
 namespace KFmaintenance.Views
 {
@@ -18,13 +18,21 @@ namespace KFmaintenance.Views
 
         private void cmdOpenAddress_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (!cmdOpenAddress.Text.StartsWith("http")) return;
+            if (!cmdOpenAddress.Text.StartsWith("http"))
+            {
+                return;
+            }
+
             Process.Start(cmdOpenAddress.Text);
         }
 
         private void cmdOpenFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (fbd.ShowDialog() != DialogResult.OK) return;
+            if (fbd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
             txtSource.Text = fbd.SelectedPath;
         }
 

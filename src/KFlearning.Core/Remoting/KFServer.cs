@@ -1,10 +1,10 @@
-﻿using KFlearning.Core.Services;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using KFlearning.Core.Services;
 
 namespace KFlearning.Core.Remoting
 {
@@ -88,7 +88,10 @@ namespace KFlearning.Core.Remoting
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposedValue) return;
+            if (_disposedValue)
+            {
+                return;
+            }
 
             Stop();
             _disposedValue = true;

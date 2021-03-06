@@ -1,7 +1,8 @@
-﻿using KFmaintenance.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using KFmaintenance.Views;
 
 namespace KFmaintenance.Services
 {
@@ -13,7 +14,7 @@ namespace KFmaintenance.Services
     public class FormService : IFormService
     {
         private const int FileFormId = 0;
-        private Dictionary<int, Form> _forms = new Dictionary<int, Form>();
+        private readonly Dictionary<int, Form> _forms = new Dictionary<int, Form>();
 
         public void ShowFileServer()
         {
@@ -22,7 +23,7 @@ namespace KFmaintenance.Services
 
         private void InternalShowForm(int id, Func<Form> createFunc)
         {
-            var formExists = _forms.TryGetValue(id, out Form form);
+            var formExists = _forms.TryGetValue(id, out var form);
             if (!formExists || form == null || form.IsDisposed)
             {
                 form = createFunc();
@@ -38,32 +39,24 @@ namespace KFmaintenance.Services
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposedValue)
+            if (_disposedValue)
             {
-                if (disposing)
-                {
-                    foreach (var form in _forms.Values)
-                    {
-                        if (form != null && !form.IsDisposed) form.Close();
-                    }
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
-                _disposedValue = true;
+                return;
             }
-        }
 
-        // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        // ~FormService()
-        // {
-        //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        //     Dispose(disposing: false);
-        // }
+            if (disposing)
+            {
+                foreach (var form in _forms.Values.Where(form => form != null && !form.IsDisposed))
+                {
+                    form.Close();
+                }
+            }
+            
+            _disposedValue = true;
+        }
 
         public void Dispose()
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }

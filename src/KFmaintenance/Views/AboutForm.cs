@@ -1,6 +1,6 @@
-﻿using KFlearning.Core.Extensions;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows.Forms;
+using KFlearning.Core.Extensions;
 
 namespace KFmaintenance.Views
 {
