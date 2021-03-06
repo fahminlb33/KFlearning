@@ -58,7 +58,7 @@ namespace KFlearning.Services
             }
 
             Directory.CreateDirectory(project.Path);
-            _template.Extract(project.Template, project.Path);
+            _template.Scaffold(project.Template, project.Path);
             Save(project);
         }
 

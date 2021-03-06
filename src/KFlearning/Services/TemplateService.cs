@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Castle.Core.Logging;
 using KFlearning.TemplateProvider;
 
 namespace KFlearning.Services
@@ -6,15 +7,17 @@ namespace KFlearning.Services
     public interface ITemplateService
     {
         IEnumerable<ITemplateProvider> GetTemplates();
-        void Extract(ITemplateProvider template, string outputPath);
+        void Scaffold(ITemplateProvider template, string outputPath);
     }
 
     public class TemplateService : ITemplateService
     {
+        private readonly ILogger _logger;
         private readonly List<ITemplateProvider> _templates;
 
-        public TemplateService()
+        public TemplateService(ILogger logger)
         {
+            _logger = logger;
             _templates = new List<ITemplateProvider>(Program.Container.ResolveAll<ITemplateProvider>());
         }
 
@@ -23,8 +26,9 @@ namespace KFlearning.Services
             return _templates;
         }
 
-        public void Extract(ITemplateProvider template, string outputPath)
+        public void Scaffold(ITemplateProvider template, string outputPath)
         {
+            _logger.DebugFormat("Scaffolding {0} to {1}", template.Title, outputPath);
             template.Scaffold(outputPath);
         }
     }
