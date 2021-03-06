@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +18,8 @@ namespace KFlearning.Core.API
 
     public class FlutterGitClient : IFlutterGitClient
     {
+        public const string DefaultFlutterVersion = "1.22.6";
+
         private static readonly HttpClient Client;
 
         static FlutterGitClient()
@@ -32,28 +33,21 @@ namespace KFlearning.Core.API
 
         public async Task<string> GetLatestFlutterVersion()
         {
-            try
-            {
-                var response = await Client.GetAsync("https://api.github.com/repos/flutter/flutter/git/refs/tags");
-                response.EnsureSuccessStatusCode();
+            var response = await Client.GetAsync("https://api.github.com/repos/flutter/flutter/git/refs/tags");
+            response.EnsureSuccessStatusCode();
 
-                var serializer = new JsonSerializer();
-                using (var bodyReader = new StreamReader(await response.Content.ReadAsStreamAsync(), Encoding.UTF8))
-                using (var jsonReader = new JsonTextReader(bodyReader))
+            var serializer = new JsonSerializer();
+            using (var bodyReader = new StreamReader(await response.Content.ReadAsStreamAsync(), Encoding.UTF8))
+            using (var jsonReader = new JsonTextReader(bodyReader))
+            {
+                var tags = serializer.Deserialize<List<FlutterGitTag>>(jsonReader);
+                var latest = tags?.LastOrDefault(x => !x.Ref.Contains("pre"));
+                if (latest == null)
                 {
-                    var tags = serializer.Deserialize<List<FlutterGitTag>>(jsonReader);
-                    var latest = tags?.LastOrDefault(x => !x.Ref.Contains("pre"));
-                    if (latest == null)
-                    {
-                        throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
-                    }
-
-                    return GetVersionFromTag(latest.Ref);
+                    throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
                 }
-            }
-            catch (Exception)
-            {
-                return "1.22.6";
+
+                return GetVersionFromTag(latest.Ref);
             }
         }
 
@@ -67,7 +61,7 @@ namespace KFlearning.Core.API
             return tag.Split('/').Last();
         }
 
-        public partial class FlutterGitTag
+        public class FlutterGitTag
         {
             [JsonProperty("ref")]
             public string Ref { get; set; }

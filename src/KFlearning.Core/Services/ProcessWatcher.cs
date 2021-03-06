@@ -17,6 +17,7 @@ namespace KFlearning.Core.Services
     public class ProcessWatcher : IProcessWatcher
     {
         private const double PollingInterval = 5 * 60 * 1000;
+
         private readonly object _lock = new object();
         private readonly Timer _timer;
         private DateTime _lastCheck;
@@ -33,6 +34,7 @@ namespace KFlearning.Core.Services
         public void Start()
         {
             if (_timer.Enabled) return;
+
             TotalSeconds = 0;
             _lastCheck = DateTime.Now;
             _timer.Start();
@@ -41,6 +43,7 @@ namespace KFlearning.Core.Services
         public void Stop()
         {
             if (!_timer.Enabled) return;
+
             _timer_Elapsed(null, null);
             _timer.Stop();
         }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 
 namespace KFlearning.Core.Services
@@ -33,9 +32,7 @@ namespace KFlearning.Core.Services
         #region Properies
         
         public bool IsVscodeInstalled => _cachedPaths.ContainsKey(PathName.Vscode);
-
         public bool IsKfMingwInstalled => _cachedPaths.ContainsKey(PathName.KFmingw);
-
         public bool IsFlutterInstalled => _cachedPaths.ContainsKey(PathName.Flutter);
 
         #endregion

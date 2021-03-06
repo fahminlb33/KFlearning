@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Castle.Core.Logging;
 using Ionic.Zip;
 using KFlearning.Core.API;
-using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 
 namespace KFlearning.Services
@@ -30,6 +28,7 @@ namespace KFlearning.Services
     {
         private readonly WebClient _webClient;
         private readonly IFlutterGitClient _flutterService;
+        private readonly ILogger _logger;
 
         private CancellationTokenSource _cancellationSource;
         private string _downloadPath = "";
@@ -41,12 +40,13 @@ namespace KFlearning.Services
         public string FlutterVersion { get; private set; }
         public string InstallPath { get; set; }
 
-        public FlutterInstallService(IFlutterGitClient flutterService, WebClient webClient, IPathManager pathManager)
+        public FlutterInstallService(IFlutterGitClient flutterService, WebClient webClient, IPathManager pathManager, ILogger logger)
         {
             InstallPath = pathManager.GetPath(PathKind.FlutterInstallDirectory);
 
             _flutterService = flutterService;
             _webClient = webClient;
+            _logger = logger;
             _webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
         }
 
@@ -71,6 +71,7 @@ namespace KFlearning.Services
                 try
                 {
                     FlutterVersion = await _flutterService.GetLatestFlutterVersion();
+                    _logger.DebugFormat("Flutter version is {0}", FlutterVersion);
                     OnInstallReady(this, new FlutterInstallReadyEventArgs
                     {
                         Ready = true
@@ -78,6 +79,7 @@ namespace KFlearning.Services
                 }
                 catch (Exception ex)
                 {
+                    _logger.Error("Can't check for Flutter version.", ex);
                     OnInstallReady(this, new FlutterInstallReadyEventArgs
                     {
                         Ready = false,

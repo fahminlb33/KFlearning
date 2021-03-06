@@ -22,33 +22,33 @@ namespace KFlearning.Core.Services
         {
             if (!IsUacEnabled())
             {
-                WindowsIdentity identity = WindowsIdentity.GetCurrent();
-                WindowsPrincipal principal = new WindowsPrincipal(identity);
-                bool result = principal.IsInRole(WindowsBuiltInRole.Administrator)
-                              || principal.IsInRole(0x200); //Domain Administrator
+                var identity = WindowsIdentity.GetCurrent();
+                var principal = new WindowsPrincipal(identity);
+                var result = principal.IsInRole(WindowsBuiltInRole.Administrator)
+                             || principal.IsInRole(0x200); //Domain Administrator
                 return result;
             }
 
             if (!NativeMethods.OpenProcessToken(Process.GetCurrentProcess().Handle, NativeConstants.TOKEN_READ,
-                out TokenSafeHandle tokenHandle))
+                out var tokenHandle))
             {
                 throw new Win32Exception();
             }
 
             using (tokenHandle)
             {
-                int elevationResultSize = Marshal.SizeOf(Enum.GetUnderlyingType(typeof(TOKEN_ELEVATION_TYPE)));
-                IntPtr elevationTypePtr = Marshal.AllocHGlobal(elevationResultSize);
+                var elevationResultSize = Marshal.SizeOf(Enum.GetUnderlyingType(typeof(TOKEN_ELEVATION_TYPE)));
+                var elevationTypePtr = Marshal.AllocHGlobal(elevationResultSize);
 
                 try
                 {
-                    bool success = NativeMethods.GetTokenInformation(tokenHandle,
+                    var success = NativeMethods.GetTokenInformation(tokenHandle,
                         TOKEN_INFORMATION_CLASS.TokenElevationType, elevationTypePtr, (uint) elevationResultSize,
-                        out uint _);
+                        out _);
                     if (success)
                     {
                         var elevationResult = (TOKEN_ELEVATION_TYPE) Marshal.ReadInt32(elevationTypePtr);
-                        bool isProcessAdmin = elevationResult == TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
+                        var isProcessAdmin = elevationResult == TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
                         return isProcessAdmin;
                     }
                     else
@@ -66,7 +66,7 @@ namespace KFlearning.Core.Services
 
         public bool IsUacEnabled()
         {
-            using (RegistryKey uacKey = Registry.LocalMachine.OpenSubKey(NativeConstants.UacRegistryKey, false))
+            using (var uacKey = Registry.LocalMachine.OpenSubKey(NativeConstants.UacRegistryKey, false))
             {
                 return uacKey != null && uacKey.GetValue(NativeConstants.UacRegistryValue).Equals(1);
             }

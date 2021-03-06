@@ -23,9 +23,8 @@ namespace KFlearning.Core.Remoting
         private const string KFserverProcessName = "kfserver";
 
         private readonly IPathManager _pathManager;
-
+        
         public bool IsRunning => Process.GetProcessesByName(KFserverProcessName).Length > 0;
-
 
         public KFServer(IPathManager pathManager)
         {
@@ -41,6 +40,7 @@ namespace KFlearning.Core.Remoting
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
             };
+
             Process.Start(startInfo);
         }
 
@@ -51,7 +51,7 @@ namespace KFlearning.Core.Remoting
                 foreach (var process in Process.GetProcessesByName(KFserverProcessName))
                 {
                     process.Kill();
-                    process?.Dispose();
+                    process.Dispose();
                 }
             }
             catch (Exception)
@@ -63,12 +63,16 @@ namespace KFlearning.Core.Remoting
         public ServerInfo GetInfo()
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
+            {
                 throw new KFlearningException("Komputer ini tidak terhubung ke jaringan.");
+            }
 
             var hosts = Dns.GetHostEntry(Dns.GetHostName());
             var address = hosts.AddressList.FirstOrDefault(x => x.AddressFamily == AddressFamily.InterNetwork);
             if (address == null)
+            {
                 throw new KFlearningException("Tidak dapat menemukan IP komputer.");
+            }
 
             return new ServerInfo
             {
@@ -92,7 +96,7 @@ namespace KFlearning.Core.Remoting
 
         public void Dispose()
         {
-            Dispose(disposing: true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 

@@ -31,47 +31,40 @@ namespace KFlearning.Core.Services
 
         public void Query()
         {
-            try
+            if (_isLoaded) return;
+
+            // build device ID
+            string deviceId = "";
+
+            // OS info
+            var queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_OperatingSystem");
+            OS = queryObj["Caption"].ToString();
+            OSVersion = queryObj["Version"].ToString();
+            Architecture = queryObj["OSArchitecture"].ToString();
+            RAM = Convert.ToDouble(queryObj["TotalVisibleMemorySize"].ToString());
+            deviceId = queryObj["TotalVisibleMemorySize"].ToString();
+
+            // CPU info
+            queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_Processor");
+            CPU = queryObj["Name"].ToString();
+            deviceId += queryObj["ProcessorId"].ToString();
+
+            // Logical disk
+            queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_LogicalDisk");
+            deviceId += queryObj["VolumeSerialNumber"].ToString();
+
+            // hash the info
+            using (var hasher = new SHA256CryptoServiceProvider())
             {
-                if (_isLoaded) return;
+                var bytes = Encoding.UTF8.GetBytes(deviceId);
+                var hashed = hasher.ComputeHash(bytes);
+                var hex = new StringBuilder(hashed.Length * 2);
 
-                // build device ID
-                string deviceId = "";
-
-                // OS info
-                var queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_OperatingSystem");
-                OS = queryObj["Caption"].ToString();
-                OSVersion = queryObj["Version"].ToString();
-                Architecture = queryObj["OSArchitecture"].ToString();
-                RAM = Convert.ToDouble(queryObj["TotalVisibleMemorySize"].ToString());
-                deviceId = queryObj["TotalVisibleMemorySize"].ToString();
-
-                // CPU info
-                queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_Processor");
-                CPU = queryObj["Name"].ToString();
-                deviceId += queryObj["ProcessorId"].ToString();
-
-                // Logical disk
-                queryObj = SearchWmi("root\\CIMV2", "SELECT * FROM Win32_LogicalDisk");
-                deviceId += queryObj["VolumeSerialNumber"].ToString();
-
-                // hash the info
-                using (var hasher = new SHA256CryptoServiceProvider())
-                {
-                    var bytes = Encoding.UTF8.GetBytes(deviceId);
-                    var hashed = hasher.ComputeHash(bytes);
-                    var hex = new StringBuilder(hashed.Length * 2);
-
-                    foreach (byte b in hashed) hex.AppendFormat("{0:x2}", b);
-                    DeviceId = hex.ToString();
-                }
-
-                _isLoaded = true;
+                foreach (byte b in hashed) hex.AppendFormat("{0:x2}", b);
+                DeviceId = hex.ToString();
             }
-            catch (Exception)
-            {
-                // ignore
-            }
+
+            _isLoaded = true;
         }
 
         private ManagementBaseObject SearchWmi(string scope, string query)
