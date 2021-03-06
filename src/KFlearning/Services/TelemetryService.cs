@@ -28,6 +28,9 @@ namespace KFlearning.Services
             try
             {
                 _infoService.Query();
+                LogDevice();
+
+                _logger.Debug("Sending telemetry");
                 Task.WaitAll(
                     _telemetry.SendTelemetry(new UserEngagementModel
                     {
@@ -56,6 +59,8 @@ namespace KFlearning.Services
             try
             {
                 _infoService.Query();
+
+                _logger.Debug("Sending telemetry");
                 Task.WaitAll(_telemetry.SendTelemetry(new UserEngagementModel
                 {
                     DeviceId = _infoService.DeviceId,
@@ -67,6 +72,16 @@ namespace KFlearning.Services
             {
                 _logger.Error("Cannot post telemetry data", ex);
             }
+        }
+
+        private void LogDevice()
+        {
+            _logger.DebugFormat("CPU: {0}", _infoService.CPU);
+            _logger.DebugFormat("RAM: {0}", _infoService.RAM);
+            _logger.DebugFormat("OS: {0}", _infoService.OS);
+            _logger.DebugFormat("OS version: {0}", _infoService.OSVersion);
+            _logger.DebugFormat("Architecture: {0}", _infoService.Architecture);
+            _logger.DebugFormat("Device ID: {0}", _infoService.DeviceId);
         }
     }
 }
