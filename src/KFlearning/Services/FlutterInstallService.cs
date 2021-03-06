@@ -40,7 +40,8 @@ namespace KFlearning.Services
         public string FlutterVersion { get; private set; }
         public string InstallPath { get; set; }
 
-        public FlutterInstallService(IFlutterGitClient flutterService, WebClient webClient, IPathManager pathManager, ILogger logger)
+        public FlutterInstallService(IFlutterGitClient flutterService, WebClient webClient, IPathManager pathManager,
+            ILogger logger)
         {
             InstallPath = pathManager.GetPath(PathKind.FlutterInstallDirectory);
 
@@ -79,11 +80,12 @@ namespace KFlearning.Services
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error("Can't check for Flutter version.", ex);
+                    _logger.Error("Can't check for Flutter version, fallback to default", ex);
+                    FlutterVersion = FlutterGitClient.DefaultFlutterVersion;
                     OnInstallReady(this, new FlutterInstallReadyEventArgs
                     {
-                        Ready = false,
-                        ErrorMessage = ex.Message
+                        Ready = true,
+                        ErrorMessage = "Menggunakan versi Flutter default."
                     });
                 }
             });
@@ -108,7 +110,11 @@ namespace KFlearning.Services
 
                     _downloadPath = Path.GetTempFileName();
                     var uri = _flutterService.GetFlutterDownloadUri(FlutterVersion);
+                    _logger.DebugFormat("Flutter download path {0}", _downloadPath);
+                    _logger.DebugFormat("Flutter URI path {0}", uri);
 
+                    _logger.Info("Start Flutter download");
+                    _cancellationSource.Token.Register(() => _webClient.CancelAsync());
                     await _webClient.DownloadFileTaskAsync(new Uri(uri), _downloadPath);
 
                     // step 2 --- extract to installfolder
@@ -118,14 +124,15 @@ namespace KFlearning.Services
                         Status = "Memulai ekstraksi..."
                     });
 
-                    if (IsProcessCancelled()) return;
+                    _logger.Info("Start Flutter extraction");
+                    _cancellationSource.Token.ThrowIfCancellationRequested();
                     using (var zip = new ZipFile(_downloadPath))
                     {
                         var totalEntries = zip.Entries.Count;
                         var processedEntry = 0;
                         foreach (var entry in zip) // non-parallelism, the lib doesn't support parallel
                         {
-                            if (IsProcessCancelled()) return;
+                            _cancellationSource.Token.ThrowIfCancellationRequested();
 
                             var path = Path.GetFullPath(Path.Combine(InstallPath, "../" + entry.FileName));
                             if (entry.IsDirectory)
@@ -143,7 +150,7 @@ namespace KFlearning.Services
                             Interlocked.Increment(ref processedEntry);
                             OnProgressChanged(this, new FlutterInstallProgressEventArgs
                             {
-                                ProgressPercentage = (int)((double)processedEntry / totalEntries * 100),
+                                ProgressPercentage = (int) ((double) processedEntry / totalEntries * 100),
                                 Status = "Memindahkan direktori..."
                             });
                         }
@@ -156,42 +163,42 @@ namespace KFlearning.Services
                         Status = "Mengatur environment variable..."
                     });
 
-                    if (IsProcessCancelled()) return;
+                    _logger.Info("Start Flutter environment configuration");
+                    _cancellationSource.Token.ThrowIfCancellationRequested();
                     var pathEnv = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
                     if (pathEnv?.Contains(@"flutter\bin") == false)
                     {
-                        pathEnv +=  ";" + Path.Combine(InstallPath, @"bin");
+                        pathEnv += ";" + Path.Combine(InstallPath, @"bin");
                         Environment.SetEnvironmentVariable("PATH", pathEnv, EnvironmentVariableTarget.User);
                     }
 
                     // --- all done!
+                    _logger.Info("Flutter install sequence finished");
                     OnInstallFinished(this, new FlutterInstallFinishedEventArgs
                     {
                         ErrorMessage = "Instalasi selesai.",
                         Success = true
                     });
                 }
-                catch (Exception e)
+                catch (TaskCanceledException cancelledEx)
                 {
+                    _logger.Info("Flutter install sequence cancelled.", cancelledEx);
                     OnInstallFinished(this, new FlutterInstallFinishedEventArgs
                     {
-                        ErrorMessage = e.Message,
+                        ErrorMessage = "Instalasi dibatalkan.",
+                        Success = false
+                    });
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("Flutter install sequence failed", ex);
+                    OnInstallFinished(this, new FlutterInstallFinishedEventArgs
+                    {
+                        ErrorMessage = ex.Message,
                         Success = false
                     });
                 }
             });
-        }
-
-        private bool IsProcessCancelled()
-        {
-            if (!_cancellationSource.IsCancellationRequested) return false;
-            OnInstallFinished(this, new FlutterInstallFinishedEventArgs
-            {
-                ErrorMessage = "Instalasi dibatalkan.",
-                Success = false
-            });
-
-            return true;
         }
 
         #endregion

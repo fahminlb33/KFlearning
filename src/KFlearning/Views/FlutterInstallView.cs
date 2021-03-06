@@ -1,6 +1,6 @@
-﻿using KFlearning.Services;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using KFlearning.Services;
 
 namespace KFlearning.Views
 {
@@ -15,7 +15,7 @@ namespace KFlearning.Views
             _installService.ProgressChanged += InstallService_ProgressChanged;
             _installService.InstallFinished += InstallService_InstallFinished;
         }
-    
+
         #region FlutterInstallService Event Handlers
 
         private void InstallService_InstallReady(object sender, FlutterInstallReadyEventArgs e)
@@ -63,8 +63,8 @@ namespace KFlearning.Views
                 lblStatus.Text = e.ErrorMessage;
                 prgProgress.Value = 0;
                 lblPercent.Text = "0%";
-            }   
-        } 
+            }
+        }
 
         #endregion
 
@@ -75,7 +75,11 @@ namespace KFlearning.Views
 
         private void cmdBrowse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (fbd.ShowDialog() != DialogResult.OK) return;
+            if (fbd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
             txtInstallPath.Text = fbd.SelectedPath;
         }
 

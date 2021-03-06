@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Castle.Core.Logging;
 using KFlearning.Core.Extensions;
 using KFlearning.Core.Services;
 using KFlearning.Models;
@@ -24,13 +25,15 @@ namespace KFlearning.Services
         private readonly IVisualStudioCodeService _visualStudioCodeService;
         private readonly ITemplateService _template;
         private readonly IPathManager _path;
+        private readonly ILogger _logger;
 
         public ProjectService(IVisualStudioCodeService visualStudioCodeService, IPathManager path,
-            ITemplateService template)
+            ITemplateService template, ILogger logger)
         {
             _visualStudioCodeService = visualStudioCodeService;
             _path = path;
             _template = template;
+            _logger = logger;
         }
 
         public Project Load(string path)
@@ -40,6 +43,8 @@ namespace KFlearning.Services
 
             metadata.Path = path;
             metadata.LastOpenAt = DateTime.Now;
+
+            _logger.DebugFormat("Loading project from {0}", path);
             Save(metadata);
 
             return metadata;

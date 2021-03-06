@@ -1,14 +1,4 @@
-﻿// SOLUTION : KFlearning
-// PROJECT  : KFlearning
-// FILENAME : Program.cs
-// AUTHOR   : Fahmi Noor Fiqri, Kodesiana.com
-// WEBSITE  : https://kodesiana.com
-// REPO     : https://github.com/Kodesiana or https://github.com/fahminlb33
-// 
-// This file is part of KFlearning, see LICENSE.
-// See this code in repository URL above!
-
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
 using Castle.Core.Logging;
@@ -24,7 +14,9 @@ namespace KFlearning
     {
         private const int MutexTimeout = 1000;
         private const string MutexName = "KFlearning.SingleInstanceGuard";
+
         public static WindsorContainer Container = new WindsorContainer();
+        private static ILogger _logger;
 
         /// <summary>
         ///     The main entry point for the application.
@@ -44,11 +36,13 @@ namespace KFlearning
                 // install services
                 NLog.GlobalDiagnosticsContext.Set("logDirectory", PathHelpers.GetLogPath());
                 Container.Install(new KFlearningModulesInstaller());
+                _logger = Container.Resolve<ILogger>();
 
                 // find vscode
                 var path = Container.Resolve<IPathManager>();
                 if (!path.IsVscodeInstalled)
                 {
+                    _logger.Debug("Visual Studio Code not found");
                     MessageBox.Show(Resources.VscodeNotInstalled, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                     return;
@@ -57,18 +51,21 @@ namespace KFlearning
                 // find mingw
                 if (!path.IsKfMingwInstalled)
                 {
+                    _logger.Debug("KF-MinGW not found");
                     MessageBox.Show(Resources.KfmingwNotInstalled, Resources.AppName, MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation);
                     return;
                 }
 
                 // enable TLS
+                _logger.Debug("Enabling TLS support");
                 ApiHelpers.EnableTls();
 
                 // app exit handler
                 Application.ApplicationExit += Application_ApplicationExit;
 
                 // bootstrapper
+                _logger.Debug("Bootstrapping application");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(Container.Resolve<KFlearningApplicationContext>());
@@ -86,7 +83,7 @@ namespace KFlearning
             }
             catch (Exception ex)
             {
-                Container.Resolve<ILogger>().Error("Cannot save persistence", ex);
+                _logger.Error("Cannot save persistence", ex);
             }
             finally
             {

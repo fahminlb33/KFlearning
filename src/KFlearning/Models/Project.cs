@@ -1,7 +1,7 @@
-﻿using KFlearning.Core.Extensions;
+﻿using System;
+using KFlearning.Core.Extensions;
 using KFlearning.TemplateProvider;
 using Newtonsoft.Json;
-using System;
 
 namespace KFlearning.Models
 {
@@ -15,8 +15,7 @@ namespace KFlearning.Models
 
         public DateTime LastOpenAt { get; set; }
 
-        [JsonIgnore]
-        public ITemplateProvider Template { get; set; }
+        [JsonIgnore] public ITemplateProvider Template { get; set; }
 
         public override string ToString()
         {

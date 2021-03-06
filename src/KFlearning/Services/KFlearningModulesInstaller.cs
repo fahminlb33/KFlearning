@@ -1,11 +1,11 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System.Net;
+using Castle.Facilities.Logging;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Services.Logging.NLogIntegration;
 using Castle.Windsor;
 using KFlearning.TemplateProvider;
 using KFlearning.Views;
-using System.Net;
-using Castle.Facilities.Logging;
-using Castle.Services.Logging.NLogIntegration;
 
 namespace KFlearning.Services
 {

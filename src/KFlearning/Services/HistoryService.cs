@@ -32,7 +32,10 @@ namespace KFlearning.Services
 
         public void Add(Project project)
         {
-            if (!RecordHistory) return;
+            if (!RecordHistory)
+            {
+                return;
+            }
 
             _projects.RemoveAll(x => x.Path == project.Path);
             _projects.Add(project);
@@ -41,7 +44,11 @@ namespace KFlearning.Services
 
         public void Clear()
         {
-            if (!RecordHistory) return;
+            if (!RecordHistory)
+            {
+                return;
+            }
+
             _projects.Clear();
         }
 
@@ -52,8 +59,15 @@ namespace KFlearning.Services
 
         private void EnsureSize()
         {
-            if (!RecordHistory) return;
-            if (_projects.Count <= HistorySize) return;
+            if (!RecordHistory)
+            {
+                return;
+            }
+
+            if (_projects.Count <= HistorySize)
+            {
+                return;
+            }
 
             _projects.RemoveRange(HistorySize - 1, _projects.Count - HistorySize);
         }
@@ -68,7 +82,10 @@ namespace KFlearning.Services
         public void Load()
         {
             var settings = _storage.Retrieve<HistorySettings>(HistorySettingsName) ?? CreateDefaultSettings();
-            if (!settings.Recording) return;
+            if (!settings.Recording)
+            {
+                return;
+            }
 
             _projects.Clear();
             _projects.AddRange(settings.Projects);

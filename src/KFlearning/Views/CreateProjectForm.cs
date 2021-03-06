@@ -55,7 +55,11 @@ namespace KFlearning.Views
 
         private void cmdBrowse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (fbd.ShowDialog() != DialogResult.OK) return;
+            if (fbd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
             _basePath = fbd.SelectedPath;
             txtProjectName_TextChanged(null, null);
         }
