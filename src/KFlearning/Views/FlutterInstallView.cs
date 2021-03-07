@@ -59,6 +59,7 @@ namespace KFlearning.Views
             {
                 cmdBrowse.Enabled = true;
                 cmdInstall.Enabled = true;
+                cmdInstall.Text = "Tutup";
 
                 lblStatus.Text = e.ErrorMessage;
                 prgProgress.Value = 0;
@@ -85,19 +86,23 @@ namespace KFlearning.Views
 
         private void cmdInstall_Click(object sender, EventArgs e)
         {
-            if (cmdInstall.Text == "Install Flutter")
+            switch (cmdInstall.Text)
             {
-                cmdBrowse.Enabled = false;
-                cmdInstall.Text = "Batal";
+                case "Install Flutter":
+                    cmdBrowse.Enabled = false;
+                    cmdInstall.Text = "Batal";
 
-                _installService.InstallPath = txtInstallPath.Text;
-                _installService.Install();
-            }
-            else
-            {
-                cmdInstall.Enabled = false;
-                cmdInstall.Text = "Install Flutter";
-                _installService.Cancel();
+                    _installService.InstallPath = txtInstallPath.Text;
+                    _installService.Install();
+                    break;
+                case "Tutup":
+                    Close();
+                    break;
+                default:
+                    cmdInstall.Enabled = false;
+                    cmdInstall.Text = "Install Flutter";
+                    _installService.Cancel();
+                    break;
             }
         }
     }
