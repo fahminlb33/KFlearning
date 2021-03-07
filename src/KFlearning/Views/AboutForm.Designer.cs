@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblCopyright = new System.Windows.Forms.Label();
             this.cmdKodesiana = new System.Windows.Forms.LinkLabel();
             this.cmdInstagram = new System.Windows.Forms.LinkLabel();
             this.cmdGitHub = new System.Windows.Forms.LinkLabel();
@@ -80,14 +80,14 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "E-learning terpadu by LABKOM.";
             // 
-            // label3
+            // lblCopyright
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(106, 219);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 30);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Hak Cipta (C) Fahmi Noor Fiqri 2020.\r\nDilisensikan di bawah lisensi MIT.";
+            this.lblCopyright.AutoSize = true;
+            this.lblCopyright.Location = new System.Drawing.Point(106, 219);
+            this.lblCopyright.Name = "lblCopyright";
+            this.lblCopyright.Size = new System.Drawing.Size(16, 15);
+            this.lblCopyright.TabIndex = 4;
+            this.lblCopyright.Text = "...";
             // 
             // cmdKodesiana
             // 
@@ -144,7 +144,7 @@
             this.Controls.Add(this.cmdGitHub);
             this.Controls.Add(this.cmdInstagram);
             this.Controls.Add(this.cmdKodesiana);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblCopyright);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -170,7 +170,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblCopyright;
         private System.Windows.Forms.LinkLabel cmdKodesiana;
         private System.Windows.Forms.LinkLabel cmdInstagram;
         private System.Windows.Forms.LinkLabel cmdGitHub;
