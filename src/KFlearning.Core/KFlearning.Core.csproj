@@ -11,7 +11,7 @@
     <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020</Copyright>
     <PackageLicenseExpression>https://github.com/fahminlb33/KFlearning/license.md</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/fahminlb33/KFlearning</PackageProjectUrl>
-    <Platforms>x64;x86</Platforms>
+    <Platforms>x86</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
