@@ -8,7 +8,7 @@
         <Shortcut Id="StartMenuShortcut"
                   Name="KFlearning"
                   Description="Buka KFlearning"
-                  Target="[#KFlearning.exe]"
+                  Target="[#KFlearning.App.exe]"
                   WorkingDirectory="INSTALLFOLDER" />
 
         <!-- Uninstall -->
@@ -20,13 +20,13 @@
 
         <!-- Webpage -->
         <util:InternetShortcut Id="KodesianaShortcut" Name="Kodesiana.com" Target="https://kodesiana.com/"
-                               IconFile="[#kodesiana_icon.ico]" />
+                              IconFile="[#kodesiana_icon.ico]" />
 
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\KFlearning" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
       <Component Id="DesktopShortcut" Guid="{A6AF1D7F-B0A1-48D7-A801-16F226CBD45E}" Directory="DesktopFolder">
-        <Shortcut Id="ApplicationDesktopShortcut" Name="KFlearning" Target="[#KFlearning.exe]" WorkingDirectory="INSTALLFOLDER" />
+        <Shortcut Id="ApplicationDesktopShortcut" Name="KFlearning" Target="[#KFlearning.App.exe]" WorkingDirectory="INSTALLFOLDER" />
         <RemoveFolder Id="DesktopFolder" On="uninstall"/>
         <RegistryValue Root="HKCU" Key="Software\KFlearning" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>

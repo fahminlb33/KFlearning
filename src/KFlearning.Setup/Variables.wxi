@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <Include>
-  <?define SourceDir = "..\..\build\kflearning" ?>
+  <?define SourceDir = "..\..\build" ?>
   <?define AssetsDir = "..\..\assets" ?>
   <?define IconFile = "..\..\assets\kflearning-logo.ico" ?>
 </Include>

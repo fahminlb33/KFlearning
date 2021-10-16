@@ -2,53 +2,99 @@
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Variables.wxi ?>
-
   <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="Castle.Core.dll" Guid="*">
-        <File Id="Castle.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Core.dll" />
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="KFlearning.App.deps.json" Guid="*">
+        <File Id="KFlearning.App.deps.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.deps.json" />
       </Component>
-      <Component Id="Castle.Facilities.Logging.dll" Guid="*">
-        <File Id="Castle.Facilities.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Facilities.Logging.dll" />
+      <Component Id="KFlearning.App.dll" Guid="*">
+        <File Id="KFlearning.App.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.dll" />
       </Component>
-      <Component Id="Castle.Services.Logging.NLogIntegration.dll" Guid="*">
-        <File Id="Castle.Services.Logging.NLogIntegration.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Services.Logging.NLogIntegration.dll" />
+      <Component Id="KFlearning.App.exe" Guid="*">
+        <File Id="KFlearning.App.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.exe" />
       </Component>
-      <Component Id="Castle.Windsor.dll" Guid="*">
-        <File Id="Castle.Windsor.dll" KeyPath="yes" Source="$(var.SourceDir)\Castle.Windsor.dll" />
+      <Component Id="KFlearning.App.pdb" Guid="*">
+        <File Id="KFlearning.App.pdb" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.pdb" />
       </Component>
-      <Component Id="DotNetZip.dll" Guid="*">
-        <File Id="DotNetZip.dll" KeyPath="yes" Source="$(var.SourceDir)\DotNetZip.dll" />
-      </Component>
-      <Component Id="Newtonsoft.Json.dll" Guid="*">
-        <File Id="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.SourceDir)\Newtonsoft.Json.dll" />
-      </Component>
-      <Component Id="NLog.dll" Guid="*">
-        <File Id="NLog.dll" KeyPath="yes" Source="$(var.SourceDir)\NLog.dll" />
-      </Component>
-      <Component Id="NLog.config" Guid="*">
-        <File Id="NLog.config" KeyPath="yes" Source="$(var.SourceDir)\NLog.config" />
-      </Component>
-
-      <Component Id="KFlearning.Control.dll" Guid="*">
-        <File Id="KFlearning.Control.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Control.dll" />
+      <Component Id="KFlearning.App.runtimeconfig.json" Guid="*">
+        <File Id="KFlearning.App.runtimeconfig.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.runtimeconfig.json" />
       </Component>
       <Component Id="KFlearning.Core.dll" Guid="*">
         <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
       </Component>
-      <Component Id="KFlearning.exe" Guid="*">
-        <File Id="KFlearning.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.exe" />
+      <Component Id="KFlearning.Core.pdb" Guid="*">
+        <File Id="KFlearning.Core.pdb" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.pdb" />
       </Component>
-      <Component Id="KFlearning.exe.config" Guid="*">
-        <File Id="KFlearning.exe.config" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.exe.config" />
+      <Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Guid="*">
+        <File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
       </Component>
+      <Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="*">
+        <File Id="Microsoft.Extensions.DependencyInjection.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="*">
+        <File Id="Microsoft.Extensions.Logging.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Logging.dll" Guid="*">
+        <File Id="Microsoft.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Options.dll" Guid="*">
+        <File Id="Microsoft.Extensions.Options.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Options.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Primitives.dll" Guid="*">
+        <File Id="Microsoft.Extensions.Primitives.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Primitives.dll" />
+      </Component>
+      <Component Id="Serilog.dll" Guid="*">
+        <File Id="Serilog.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.dll" />
+      </Component>
+      <Component Id="Serilog.Extensions.Logging.dll" Guid="*">
+        <File Id="Serilog.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Extensions.Logging.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.File.dll" Guid="*">
+        <File Id="Serilog.Sinks.File.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Sinks.File.dll" />
+      </Component>
+      <Component Id="System.Management.dll" Guid="*">
+        <File Id="System.Management.dll" KeyPath="yes" Source="$(var.SourceDir)\System.Management.dll" />
+      </Component>
+      <Directory Id="ref" Name="ref">
+        <Component Id="KFlearning.App.dll_1" Guid="*">
+          <File Id="KFlearning.App.dll_1" KeyPath="yes" Source="$(var.SourceDir)\ref\KFlearning.App.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="runtimes" Name="runtimes">
+        <Directory Id="win" Name="win">
+          <Directory Id="lib" Name="lib">
+            <Directory Id="netcoreapp2.0" Name="netcoreapp2.0">
+              <Component Id="System.Management.dll_1" Guid="*">
+                <File Id="System.Management.dll_1" KeyPath="yes" Source="$(var.SourceDir)\runtimes\win\lib\netcoreapp2.0\System.Management.dll" />
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
 
-      <Component Id="kodesiana_icon.ico" Guid="*">
-        <File Id="kodesiana_icon.ico" KeyPath="yes" Source="$(var.AssetsDir)\kodesiana_icon.ico" />
-      </Component>
-      <Component Id="license.rtf" Guid="*">
-        <File Id="license.rtf" KeyPath="yes" Source="$(var.AssetsDir)\license.rtf" />
-      </Component>
+  <Fragment>
+    <ComponentGroup Id="ProductComponents">
+      <ComponentRef Id="KFlearning.App.deps.json" />
+      <ComponentRef Id="KFlearning.App.dll" />
+      <ComponentRef Id="KFlearning.App.exe" />
+      <ComponentRef Id="KFlearning.App.pdb" />
+      <ComponentRef Id="KFlearning.App.runtimeconfig.json" />
+      <ComponentRef Id="KFlearning.Core.dll" />
+      <ComponentRef Id="KFlearning.Core.pdb" />
+      <ComponentRef Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      <ComponentRef Id="Microsoft.Extensions.DependencyInjection.dll" />
+      <ComponentRef Id="Microsoft.Extensions.Logging.Abstractions.dll" />
+      <ComponentRef Id="Microsoft.Extensions.Logging.dll" />
+      <ComponentRef Id="Microsoft.Extensions.Options.dll" />
+      <ComponentRef Id="Microsoft.Extensions.Primitives.dll" />
+      <ComponentRef Id="Serilog.dll" />
+      <ComponentRef Id="Serilog.Extensions.Logging.dll" />
+      <ComponentRef Id="Serilog.Sinks.File.dll" />
+      <ComponentRef Id="System.Management.dll" />
+      <ComponentRef Id="KFlearning.App.dll_1" />
+      <ComponentRef Id="System.Management.dll_1" />
     </ComponentGroup>
   </Fragment>
 </Wix>
