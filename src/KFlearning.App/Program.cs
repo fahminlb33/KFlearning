@@ -25,8 +25,8 @@ namespace KFlearning.App
         [STAThread]
         static void Main()
         {
-            //try
-            //{
+            try
+            {
                 using var mutex = new Mutex(true, MutexName);
                 if (!mutex.WaitOne(MutexTimeout))
                 {
@@ -73,21 +73,25 @@ namespace KFlearning.App
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(Container.GetRequiredService<KFlearningApplicationContext>());
-            //}
-            //catch (Exception e)
-            //{
-            //    Log.Fatal("Application shutdown unexpectedly", e);
-            //    Log.CloseAndFlush();
+            }
+            catch (Exception e)
+            {
+                Log.Fatal("Application shutdown unexpectedly", e);
+                Log.CloseAndFlush();
 
-            //    MessageBox.Show(MessagesText.FatalShutdown, MessagesText.AppName,
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                MessageBox.Show(MessagesText.FatalShutdown, MessagesText.AppName,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static void RegisterLogger()
         {
             Log.Logger = new LoggerConfiguration()
+#if DEBUG
                 .MinimumLevel.Debug()
+#else
+                .MinimumLevel.Information()
+#endif
                 .WriteTo.File("logs/kflearning-.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
