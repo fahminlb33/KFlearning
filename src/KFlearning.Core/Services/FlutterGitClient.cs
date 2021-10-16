@@ -47,7 +47,7 @@ namespace KFlearning.Core.API
 
         public string GetFlutterDownloadUri(string version)
         {
-            return $"https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_{version}-stable.zip";
+            return $"https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_{version}-stable.zip";
         }
 
         private static string GetVersionFromTag(string tag)
