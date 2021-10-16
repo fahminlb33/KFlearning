@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace KFlearning.Core.API
 {
@@ -35,20 +32,17 @@ namespace KFlearning.Core.API
         {
             var response = await Client.GetAsync("https://api.github.com/repos/flutter/flutter/git/refs/tags");
             response.EnsureSuccessStatusCode();
+            
+            using var bodyReader = await response.Content.ReadAsStreamAsync();
+            var tags = await JsonSerializer.DeserializeAsync<List<FlutterGitTag>>(bodyReader);
 
-            var serializer = new JsonSerializer();
-            using (var bodyReader = new StreamReader(await response.Content.ReadAsStreamAsync(), Encoding.UTF8))
-            using (var jsonReader = new JsonTextReader(bodyReader))
+            var latest = tags?.LastOrDefault(x => !x.Ref.Contains("pre"));
+            if (latest == null)
             {
-                var tags = serializer.Deserialize<List<FlutterGitTag>>(jsonReader);
-                var latest = tags?.LastOrDefault(x => !x.Ref.Contains("pre"));
-                if (latest == null)
-                {
-                    throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
-                }
-
-                return GetVersionFromTag(latest.Ref);
+                throw new KFlearningException("Tidak dapat menemukan versi Flutter! Silakan download manual.");
             }
+
+            return GetVersionFromTag(latest.Ref);
         }
 
         public string GetFlutterDownloadUri(string version)
@@ -56,21 +50,9 @@ namespace KFlearning.Core.API
             return $"https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_{version}-stable.zip";
         }
 
-        private string GetVersionFromTag(string tag)
+        private static string GetVersionFromTag(string tag)
         {
             return tag.Split('/').Last();
-        }
-
-        public class FlutterGitTag
-        {
-            [JsonProperty("ref")]
-            public string Ref { get; set; }
-
-            [JsonProperty("node_id")]
-            public string NodeId { get; set; }
-
-            [JsonProperty("url")]
-            public Uri Url { get; set; }
         }
     }
 }

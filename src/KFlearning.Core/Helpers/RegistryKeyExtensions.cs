@@ -22,7 +22,7 @@ namespace KFlearning.Core.Extensions
                 return defaultValue;
             }
 
-            return key == null ? defaultValue : key.GetValue(name, defaultValue).ToString();
+            return key == null ? defaultValue : key.GetValue(name, defaultValue)?.ToString();
         }
     }
 }

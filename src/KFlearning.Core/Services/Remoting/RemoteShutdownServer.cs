@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -22,10 +21,8 @@ namespace KFlearning.Core.Remoting
         private static readonly IPEndPoint ServiceEndpoint = new IPEndPoint(IPAddress.Any, ServicePort);
 
         private readonly UdpClient _socket = new UdpClient();
-        private MemoryStream _uploadStream;
 
         public event EventHandler<ShutdownRequestedEventArgs> ShutdownRequested;
-        public event EventHandler<ShutdownRequestedEventArgs> FileBroadcast;
 
         public RemoteShutdownServer()
         {
@@ -77,7 +74,7 @@ namespace KFlearning.Core.Remoting
             }
 
             var cluster = message.Split('|')[1];
-            ShutdownRequested?.Invoke(this, new ShutdownRequestedEventArgs { Address = server, Clusster = cluster });
+            ShutdownRequested?.Invoke(this, new ShutdownRequestedEventArgs { Address = server, Cluster = cluster });
         }
 
         #endregion
@@ -87,7 +84,6 @@ namespace KFlearning.Core.Remoting
         public void Dispose()
         {
             ((IDisposable)_socket)?.Dispose();
-            ((IDisposable)_uploadStream)?.Dispose();
         } 
 
         #endregion

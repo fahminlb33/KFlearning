@@ -57,7 +57,7 @@ namespace KFlearning.Core.Services
             deviceId += queryObj["VolumeSerialNumber"].ToString();
 
             // hash the info
-            using (var hasher = new SHA256CryptoServiceProvider())
+            using (var hasher = SHA256.Create())
             {
                 var bytes = Encoding.UTF8.GetBytes(deviceId);
                 var hashed = hasher.ComputeHash(bytes);

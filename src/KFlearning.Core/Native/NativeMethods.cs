@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -10,16 +9,13 @@ namespace KFlearning.Core.Native
     {
         [DllImport("advapi32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool OpenProcessToken(IntPtr ProcessHandle, uint DesiredAccess,
-            out TokenSafeHandle TokenHandle);
+        public static extern bool OpenProcessToken(IntPtr processHandle, uint desiredAccess, out TokenSafeHandle tokenHandle);
 
         [DllImport("advapi32.dll", SetLastError = true)]
-        public static extern bool GetTokenInformation(TokenSafeHandle TokenHandle,
-            TOKEN_INFORMATION_CLASS TokenInformationClass,
-            IntPtr TokenInformation, uint TokenInformationLength, out uint ReturnLength);
+        public static extern bool GetTokenInformation(TokenSafeHandle tokenHandle, TOKEN_INFORMATION_CLASS tokenInformationClass,
+            IntPtr tokenInformation, uint tokenInformationLength, out uint returnLength);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool CloseHandle(IntPtr hObject);
     }

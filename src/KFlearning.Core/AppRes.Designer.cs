@@ -19,10 +19,10 @@ namespace KFlearning.Core {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppRes {
+    public class AppRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace KFlearning.Core {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KFlearning.Core.AppRes", typeof(AppRes).Assembly);
@@ -51,7 +51,7 @@ namespace KFlearning.Core {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,18 +61,18 @@ namespace KFlearning.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://kflearning.kodesiana.com.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string ApiBaseUri {
+        public static string ApiBaseUri {
             get {
                 return ResourceManager.GetString("ApiBaseUri", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6c3dcaf1a0b1bba771dd9fb3f3981cf1262d75cb313245d7fa173fe93f4221b4.
+        ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string ApiKey {
+        public static string ApiKey {
             get {
                 return ResourceManager.GetString("ApiKey", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace KFlearning.Core {
         /// <summary>
         ///   Looks up a localized string similar to X.A.N.A..
         /// </summary>
-        internal static string Codename {
+        public static string Codename {
             get {
                 return ResourceManager.GetString("Codename", resourceCulture);
             }

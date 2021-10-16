@@ -2,15 +2,24 @@
 {
     public enum PathKind
     {
+        // application path
         DefaultProjectRoot,
         PersistanceDirectory,
+        KFserverExecutable,
+
+        // system paths
         WallpaperPath,
+
+        // vscode
         VisualStudioCodeExecutable,
+        
+        // mingw
         MingwInclude1Directory,
         MingwInclude2Directory,
         MingwGXXExecutable,
         MingwGDBExecutable,
-        KFserverExecutable,
-        FlutterInstallDirectory
+
+        // flutter
+        FlutterInstallDirectory,
     }
 }

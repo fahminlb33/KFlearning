@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Company>Kodesiana</Company>
     <Product>KFlearning</Product>
     <Authors>Fahmi Noor Fiqri, Kodesiana</Authors>
@@ -11,20 +11,12 @@
     <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020</Copyright>
     <PackageLicenseExpression>https://github.com/fahminlb33/KFlearning/license.md</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/fahminlb33/KFlearning</PackageProjectUrl>
-    <Platforms>x86</Platforms>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="C:\Users\fahmi\.nuget\packages\nlog.config\4.7.8\contentFiles\any\any\NLog.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Management" />
-    <Reference Include="System.Net.Http" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppRes.Designer.cs">
@@ -32,16 +24,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppRes.resx</DependentUpon>
     </Compile>
+    <Compile Update="Services\Templating\TemplateResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TemplateResource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Update="Services\Templating\TemplateResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

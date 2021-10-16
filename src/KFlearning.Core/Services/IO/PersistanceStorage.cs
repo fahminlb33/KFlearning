@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using Newtonsoft.Json;
+using System.Text.Json;
+using KFlearning.Core.Extensions;
 
 namespace KFlearning.Core.Services
 {
@@ -13,42 +14,34 @@ namespace KFlearning.Core.Services
     {
         private readonly IPathManager _path;
 
-        private readonly JsonSerializer _serializer = new JsonSerializer
-        {
-            Formatting = Formatting.Indented
-        };
-
         public PersistanceStorage(IPathManager path)
         {
             _path = path;
+
             var dirPath = _path.GetPath(PathKind.PersistanceDirectory);
             Directory.CreateDirectory(dirPath);
         }
 
         public void Store(string name, object value)
         {
-            var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + ".kfl");
-            using (var writer = new StreamWriter(path))
-            {
-                _serializer.Serialize(writer, value);
-            }
+            var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + PathHelpers.JsonExtension);
+            using var writer = File.OpenWrite(path);
+
+            JsonSerializer.Serialize(writer, value, new JsonSerializerOptions { WriteIndented = true });
         }
 
         public T Retrieve<T>(string name)
         {
             try
             {
-                var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + ".kfl");
+                var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + PathHelpers.JsonExtension);
                 if (!File.Exists(path))
                 {
                     return default;
                 }
 
-                using (var reader = new StreamReader(path))
-                using (var jsonReader = new JsonTextReader(reader))
-                {
-                    return _serializer.Deserialize<T>(jsonReader);
-                }
+                using var reader = File.OpenRead(path);
+                return JsonSerializer.Deserialize<T>(reader);
             }
             catch
             {

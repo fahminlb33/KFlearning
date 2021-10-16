@@ -117,13 +117,138 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiBaseUri" xml:space="preserve">
-    <value />
+  <data name="CPP_Console_tasks" xml:space="preserve">
+    <value>{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "Build",
+        "type": "process",
+        "command": "g++",
+        "args": [
+          "-g", "${relativeFile}", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    }]
+}</value>
   </data>
-  <data name="ApiKey" xml:space="preserve">
-    <value />
+  <data name="CPP_c_cpp_properties" xml:space="preserve">
+    <value>{
+    "configurations": [{
+        "name": "MinGW",
+        "intelliSenseMode": "gcc-x86",
+        "compilerPath": "{GXX}",
+        "includePath": [
+            "${workspaceFolder}/**",
+            "{ENV1}/**",
+            "{ENV2}/**"
+        ],
+        "defines": [
+            "_DEBUG",
+            "UNICODE"
+        ],
+        "cStandard": "gnu99",
+        "cppStandard": "gnu++98"
+    }],
+    "version": 4
+}</value>
   </data>
-  <data name="Codename" xml:space="preserve">
-    <value>X.A.N.A.</value>
+  <data name="CPP_GUI_tasks" xml:space="preserve">
+    <value>{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "Build",
+        "type": "process",
+        "command": "g++",
+        "args": [
+          "-g", "${relativeFile}", "-mwindows", "-lopengl32", "-lglew32", "-lfreeglut", "-lglu32", "-o", "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    }]
+}</value>
+  </data>
+  <data name="CPP_launch" xml:space="preserve">
+    <value>{
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "Launch without Debugging",
+        "type": "cppvsdbg",
+        "request": "launch",
+        "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "console": "externalTerminal",
+        "preLaunchTask": "Build"
+    },
+    {
+        "name": "Launch using GDB",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "{GDB}",
+        "setupCommands": [{
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+        }],
+        "preLaunchTask": "Build"
+    }]
+}</value>
+  </data>
+  <data name="CPP_program" xml:space="preserve">
+    <value>// Hello World</value>
+  </data>
+  <data name="CPP_settings" xml:space="preserve">
+    <value>{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "exception": "cpp",
+        "fstream": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "cmath": "cpp",
+        "numeric": "cpp"
+    }
+}</value>
+  </data>
+  <data name="PY_program" xml:space="preserve">
+    <value>print("Hello World")</value>
+  </data>
+  <data name="WEB_index" xml:space="preserve">
+    <value>&lt;p&gt;Hello World. Hari ini &lt;?php echo date("d/m/Y");?&gt;&lt;/p&gt;</value>
   </data>
 </root>
