@@ -16,19 +16,18 @@ jobs:
         submodules: 'recursive'
 
     - name: Run Cake Build
-      run: PowerShell.exe -ExecutionPolicy Bypass -File ./build.ps1 --target="Build-Incremental" --configuration="Release"
+      uses: cake-build/cake-action@v1
+      with:
+        script-path: build.cake
+        target: Build-All
+        arguments: |
+            configuration: Release
 
     - name: Upload KFlearning Setup artifact
       uses: actions/upload-artifact@v2
       with:
         name: KFlearning Installer
         path: build/KFlearning.Setup.msi
-
-    - name: Upload KFmaintenance Setup artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: KFmaintenance Installer
-        path: build/KFmaintenance.Setup.msi
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
