@@ -31,7 +31,7 @@ Task("Build-Apps")
 .Does(() =>
 {
 	Information("Restoring Nuget dependecies...");
-	NuGetRestore("./KFlearning.sln");
+	DotNetCoreRestore("./KFlearning.sln");
 
 	Information("Builidng solution...");
 	DotNetCoreBuild("./KFlearning.sln", buildSettingsNetCore);
