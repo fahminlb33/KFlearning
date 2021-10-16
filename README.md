@@ -7,7 +7,6 @@ jurusan ilmu komputer.
 |-------------------------|:-----------------------------------------------------------------:|
 | KFlearning stable       | [KFlearning Home](https://kflearning.kodesiana.com)               |
 | KFlearning old/CI build | [Releases](https://github.com/fahminlb33/KFlearning/releases)     |
-| E-modul praktikum       | [KFlearning E-Modul](https://kflearning.kodesiana.com/modul.html) |
 
 Repositori ini berisi source code untuk aplikasi KFlearning dan KFmaintenance yang merupakan standar
 aplikasi untuk menunjang kegiatan praktikum di laboratorium komputer Universitas Pakuan.
