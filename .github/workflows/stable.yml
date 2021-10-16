@@ -15,6 +15,12 @@ jobs:
       with: 
         submodules: 'recursive'
 
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
+
     - name: Run Cake Build
       uses: cake-build/cake-action@v1
       with:
