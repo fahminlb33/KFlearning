@@ -3,8 +3,8 @@
     public enum PathKind
     {
         // application path
-        DefaultProjectRoot,
-        PersistanceDirectory,
+        ProjectRoot,
+        SettingsRoot,
         KFserverExecutable,
 
         // system paths
@@ -20,6 +20,6 @@
         MingwGDBExecutable,
 
         // flutter
-        FlutterInstallDirectory,
+        FlutterInstallRoot,
     }
 }

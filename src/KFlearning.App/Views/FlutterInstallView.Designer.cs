@@ -60,7 +60,7 @@ namespace KFlearning.App.Views
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Wingdings", 18F);
+            this.label3.Font = new System.Drawing.Font("Wingdings", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(17, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 26);
@@ -70,7 +70,7 @@ namespace KFlearning.App.Views
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(59, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 28);
@@ -190,13 +190,13 @@ namespace KFlearning.App.Views
             this.Controls.Add(this.txtInstallPath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FlutterInstallView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Install Flutter SDK";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

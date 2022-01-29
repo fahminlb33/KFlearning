@@ -1,11 +1,13 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using KFlearning.App.Resources;
 using KFlearning.App.Services;
 using KFlearning.App.Views;
-using KFlearning.Core.Extensions;
+using KFlearning.Core.API;
+using KFlearning.Core.Helpers;
 using KFlearning.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -27,6 +29,7 @@ namespace KFlearning.App
         {
             try
             {
+                // mutex to prevent multiple instance of application running
                 using var mutex = new Mutex(true, MutexName);
                 if (!mutex.WaitOne(MutexTimeout))
                 {
@@ -55,7 +58,7 @@ namespace KFlearning.App
                     Log.Debug("KF-MinGW not found");
                     MessageBox.Show(MessagesText.KFmingwNotInstalled, MessagesText.AppName,
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    //return;
                 }
 
                 // enable TLS
@@ -67,7 +70,6 @@ namespace KFlearning.App
 
                 // bootstrapper
                 Log.Debug("Bootstrapping application");
-
                 ApplicationConfiguration.Initialize();
 
                 Application.EnableVisualStyles();
@@ -86,13 +88,11 @@ namespace KFlearning.App
 
         private static void RegisterLogger()
         {
+            var logPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            logPath = Path.Combine(logPath, "KFlearning", "logs", "kflearning-.txt");
             Log.Logger = new LoggerConfiguration()
-#if DEBUG
                 .MinimumLevel.Debug()
-#else
-                .MinimumLevel.Information()
-#endif
-                .WriteTo.File("logs/kflearning-.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File(logPath, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
 
@@ -119,6 +119,7 @@ namespace KFlearning.App
             services.AddSingleton<ITemplateService, TemplateService>();
             services.AddSingleton<IPersistanceStorage, PersistanceStorage>();
             services.AddSingleton<IFlutterInstallService, FlutterInstallService>();
+            services.AddSingleton<IFlutterGitClient, FlutterGitClient>();
             services.AddSingleton<IVisualStudioCodeService, VisualStudioCodeService>();
 
             // register clients

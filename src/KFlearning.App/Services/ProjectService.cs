@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using KFlearning.Core.Extensions;
+using KFlearning.Core.Helpers;
 using KFlearning.Core.Services;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
@@ -78,7 +78,7 @@ namespace KFlearning.App.Services
 
         public string GetPathForProject(string title, string? basePath = null)
         {
-            return Path.Combine(basePath ?? _path.GetPath(PathKind.DefaultProjectRoot),
+            return Path.Combine(basePath ?? _path.GetPath(PathKind.ProjectRoot),
                 PathHelpers.StripInvalidPathName(title));
         }
 

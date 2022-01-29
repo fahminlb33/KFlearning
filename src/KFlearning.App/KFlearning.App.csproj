@@ -2,13 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
-    <FileVersion>2.3.0</FileVersion>
-    <AssemblyVersion>2.3.0</AssemblyVersion>
+    <FileVersion></FileVersion>
+    <AssemblyVersion></AssemblyVersion>
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <Version>3.0.0</Version>
+    <Authors>Fahmi Noor Fiqri, Kodesiana</Authors>
+    <Company>Kodesiana</Company>
+    <Product>KFlearning</Product>
+    <Description>Main application for Kodesiana KFlearning</Description>
+    <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020-2022</Copyright>
+    <PackageProjectUrl>https://www.kodesiana.com/kflearning/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fahminlb33/KFlearning</RepositoryUrl>
+    <PackageLicenseFile>D:\Kodesiana\KFlearning\LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Images.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\MessagesText.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -55,6 +70,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\MessagesText.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MessagesText.Designer.cs</LastGenOutput>

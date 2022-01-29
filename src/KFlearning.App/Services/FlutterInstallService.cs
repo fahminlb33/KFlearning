@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -43,7 +44,7 @@ namespace KFlearning.App.Services
 
         public FlutterInstallService(IFlutterGitClient flutterGitClient, WebClient webClient, IPathManager pathManager, ILogger<FlutterInstallService> logger)
         {
-            InstallPath = pathManager.GetPath(PathKind.FlutterInstallDirectory);
+            InstallPath = pathManager.GetPath(PathKind.FlutterInstallRoot);
 
             _flutterGitClient = flutterGitClient;
             _webClient = webClient;
@@ -144,8 +145,9 @@ namespace KFlearning.App.Services
                     var pathEnv = Environment.GetEnvironmentVariable("PATH", EnvironmentVariableTarget.User);
                     if (pathEnv?.Contains(@"flutter\bin") == false)
                     {
-                        pathEnv += ";" + Path.Combine(InstallPath, @"bin");
-                        Environment.SetEnvironmentVariable("PATH", pathEnv, EnvironmentVariableTarget.User);
+                        pathEnv += ";" + Path.Combine(InstallPath, @"flutter\bin");
+                        Debug.Print(pathEnv);
+                        //Environment.SetEnvironmentVariable("PATH", pathEnv, EnvironmentVariableTarget.User);
                     }
 
                     // --- all done!

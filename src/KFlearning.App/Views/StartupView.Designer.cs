@@ -65,7 +65,7 @@
             this.cmdNewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.cmdNewProject.FlatAppearance.BorderSize = 0;
             this.cmdNewProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdNewProject.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cmdNewProject.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmdNewProject.Location = new System.Drawing.Point(417, 80);
             this.cmdNewProject.Name = "cmdNewProject";
             this.cmdNewProject.Size = new System.Drawing.Size(159, 37);
@@ -79,7 +79,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(10, 229);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 21);
@@ -92,7 +92,7 @@
             this.cmdOpenProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.cmdOpenProject.FlatAppearance.BorderSize = 0;
             this.cmdOpenProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdOpenProject.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cmdOpenProject.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmdOpenProject.Location = new System.Drawing.Point(417, 123);
             this.cmdOpenProject.Name = "cmdOpenProject";
             this.cmdOpenProject.Size = new System.Drawing.Size(159, 37);
@@ -105,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(144, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(211, 37);
@@ -126,6 +126,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::KFlearning.App.Resources.Images.KFlearning_48;
             this.pictureBox1.Location = new System.Drawing.Point(45, 23);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
@@ -148,7 +149,7 @@
             this.cmdAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.cmdAbout.FlatAppearance.BorderSize = 0;
             this.cmdAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdAbout.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cmdAbout.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmdAbout.Location = new System.Drawing.Point(417, 241);
             this.cmdAbout.Name = "cmdAbout";
             this.cmdAbout.Size = new System.Drawing.Size(159, 37);
@@ -203,7 +204,7 @@
             // 
             this.cmdClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClear.AutoSize = true;
-            this.cmdClear.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cmdClear.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmdClear.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(160)))), ((int)(((byte)(230)))));
             this.cmdClear.Location = new System.Drawing.Point(329, 54);
             this.cmdClear.Name = "cmdClear";
@@ -229,7 +230,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Font = new System.Drawing.Font("Wingdings", 20.25F);
+            this.label4.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(9, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 30);
@@ -252,7 +253,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label5.Font = new System.Drawing.Font("Wingdings", 20.25F);
+            this.label5.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.Location = new System.Drawing.Point(5, 2);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 30);
@@ -275,7 +276,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Font = new System.Drawing.Font("Webdings", 20F);
+            this.label7.Font = new System.Drawing.Font("Webdings", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.Location = new System.Drawing.Point(8, 2);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 30);
@@ -298,7 +299,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Wingdings", 20.25F);
+            this.label2.Font = new System.Drawing.Font("Wingdings", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(10, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 30);
@@ -311,7 +312,7 @@
             this.cmdFlutterInstall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.cmdFlutterInstall.FlatAppearance.BorderSize = 0;
             this.cmdFlutterInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdFlutterInstall.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cmdFlutterInstall.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cmdFlutterInstall.Location = new System.Drawing.Point(417, 166);
             this.cmdFlutterInstall.Name = "cmdFlutterInstall";
             this.cmdFlutterInstall.Size = new System.Drawing.Size(159, 37);
@@ -321,7 +322,7 @@
             this.cmdFlutterInstall.UseVisualStyleBackColor = false;
             this.cmdFlutterInstall.Click += new System.EventHandler(this.cmdFlutterInstall_Click);
             // 
-            // StartupForm
+            // StartupView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -342,13 +343,13 @@
             this.Controls.Add(this.cmdOpenProject);
             this.Controls.Add(this.cmdNewProject);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 335);
-            this.Name = "StartupForm";
+            this.Name = "StartupView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KFlearning Launcher";
             this.panel1.ResumeLayout(false);

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using KFlearning.App.Resources;
-using KFlearning.Core.Extensions;
+using KFlearning.Core.Helpers;
 
 namespace KFlearning.App.Views
 {
@@ -12,23 +12,23 @@ namespace KFlearning.App.Views
         {
             InitializeComponent();
 
-            lblVersion.Text = PathHelpers.GetVersionString();
+            lblVersion.Text = VersionHelpers.GetVersionString();
             lblCopyright.Text = string.Format(MessagesText.CopyrightText, DateTime.Now.Year);
         }
 
         private void cmdInstagram_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(MessagesText.LinksLinkedin);
+            NetworkHelpers.LaunchUrl(MessagesText.LinksLinkedin);
         }
 
         private void cmdKodesiana_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(MessagesText.LinksHomepage);
+            NetworkHelpers.LaunchUrl(MessagesText.LinksHomepage);
         }
 
         private void cmdGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(MessagesText.LinksGithub);
+            NetworkHelpers.LaunchUrl(MessagesText.LinksGithub);
         }
     }
 }

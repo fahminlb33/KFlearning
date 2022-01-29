@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using KFlearning.Core.Extensions;
+using KFlearning.Core.Helpers;
 
 namespace KFlearning.Core.Services
 {
@@ -56,10 +56,10 @@ namespace KFlearning.Core.Services
             string path;
             switch (kind)
             {
-                case PathKind.DefaultProjectRoot:
+                case PathKind.ProjectRoot:
                     path = Path.Combine(_cachedPaths[PathName.DocumentRoot], "KFlearning");
                     break;
-                case PathKind.PersistanceDirectory:
+                case PathKind.SettingsRoot:
                     path = Path.Combine(_cachedPaths[PathName.DocumentRoot], @"KFlearning\settings");
                     break;
                 case PathKind.WallpaperPath:
@@ -83,8 +83,8 @@ namespace KFlearning.Core.Services
                 case PathKind.KFserverExecutable:
                     path = Path.Combine(_cachedPaths[PathName.AppRoot], @"kfserver.exe");
                     break;
-                case PathKind.FlutterInstallDirectory:
-                    path = Path.Combine(_cachedPaths[PathName.SystemRoot], @"src\flutter");
+                case PathKind.FlutterInstallRoot:
+                    path = Path.Combine(_cachedPaths[PathName.SystemRoot], @"src");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(kind), kind, null);

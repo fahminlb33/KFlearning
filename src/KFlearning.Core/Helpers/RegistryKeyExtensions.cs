@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Win32;
 
-namespace KFlearning.Core.Extensions
+namespace KFlearning.Core.Helpers
 {
     public static class RegistryKeyExtensions
     {

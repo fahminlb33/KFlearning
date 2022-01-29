@@ -5,25 +5,28 @@
     <Company>Kodesiana</Company>
     <Product>KFlearning</Product>
     <Authors>Fahmi Noor Fiqri, Kodesiana</Authors>
-    <Version>2.0.1</Version>
+    <Version>3.0.0</Version>
     <RepositoryUrl>https://github.com/fahminlb33/KFlearning</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020</Copyright>
-    <PackageLicenseExpression>https://github.com/fahminlb33/KFlearning/license.md</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/fahminlb33/KFlearning</PackageProjectUrl>
+    <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020-2022</Copyright>
+    <PackageProjectUrl>https://www.kodesiana.com/kflearning/</PackageProjectUrl>
     <Platforms>AnyCPU</Platforms>
+    <Description>Application logic for Kodesiana KFlearning</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>D:\Kodesiana\KFlearning\LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
     <PackageReference Include="System.Management" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AppRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AppRes.resx</DependentUpon>
-    </Compile>
     <Compile Update="Services\Templating\TemplateResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -31,10 +34,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="AppRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Services\Templating\TemplateResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateResource.Designer.cs</LastGenOutput>

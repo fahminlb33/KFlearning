@@ -3,19 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace KFlearning.Core.Extensions
+namespace KFlearning.Core.Helpers
 {
     public static class PathHelpers
     {
         private static readonly char[] InvalidFileNameChars = Path.GetInvalidFileNameChars();
 
         public static string JsonExtension = ".json";
-
-        public static string GetVersionString()
-        {
-            var version = Assembly.GetCallingAssembly().GetName().Version;
-            return $"v{version.Major}.{version.Minor}.{version.Build} build \"{AppRes.Codename}\"";
-        }
 
         public static string StripInvalidPathName(string path)
         {

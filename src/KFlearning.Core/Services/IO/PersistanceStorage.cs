@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Text.Json;
-using KFlearning.Core.Extensions;
+using KFlearning.Core.Helpers;
 
 namespace KFlearning.Core.Services
 {
@@ -18,13 +18,13 @@ namespace KFlearning.Core.Services
         {
             _path = path;
 
-            var dirPath = _path.GetPath(PathKind.PersistanceDirectory);
+            var dirPath = _path.GetPath(PathKind.SettingsRoot);
             Directory.CreateDirectory(dirPath);
         }
 
         public void Store(string name, object value)
         {
-            var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + PathHelpers.JsonExtension);
+            var path = Path.Combine(_path.GetPath(PathKind.SettingsRoot), name + PathHelpers.JsonExtension);
             using var writer = File.OpenWrite(path);
 
             JsonSerializer.Serialize(writer, value, new JsonSerializerOptions { WriteIndented = true });
@@ -34,7 +34,7 @@ namespace KFlearning.Core.Services
         {
             try
             {
-                var path = Path.Combine(_path.GetPath(PathKind.PersistanceDirectory), name + PathHelpers.JsonExtension);
+                var path = Path.Combine(_path.GetPath(PathKind.SettingsRoot), name + PathHelpers.JsonExtension);
                 if (!File.Exists(path))
                 {
                     return default;

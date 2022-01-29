@@ -25,7 +25,7 @@ namespace KFlearning.App.Views
             // data binding
             cmdInstall.DataBindings.Add(nameof(cmdInstall.Text), _presenter, nameof(_presenter.CmdInstallText));
             cmdInstall.DataBindings.Add(nameof(cmdInstall.Enabled), _presenter, nameof(_presenter.CmdInstallEnabled));
-            cmdBrowse.DataBindings.Add(nameof(cmdBrowse.Text), _presenter, nameof(_presenter.CmdBrowseEnabled));
+            cmdBrowse.DataBindings.Add(nameof(cmdBrowse.Enabled), _presenter, nameof(_presenter.CmdBrowseEnabled));
 
             txtInstallPath.DataBindings.Add(nameof(txtInstallPath.Text), _presenter,
                 nameof(_presenter.TxtInstallPathText));
