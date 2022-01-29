@@ -16,7 +16,7 @@ namespace KFlearning.App.Services
     public class HistoryService : IHistoryService
     {
         private const int HistorySize = 20;
-        private const string HistorySettingsName = "History.Settings";
+        private const string HistorySettingsName = "history";
 
         private readonly List<Project> _projects = new List<Project>();
         private readonly IPersistanceStorage _storage;

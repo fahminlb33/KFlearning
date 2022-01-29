@@ -23,9 +23,6 @@ namespace KFlearning.App.Views
             cboTemplate.DataSource = _presenter.CboTemplateDataSource;
             cboTemplate.DisplayMember = _presenter.CboTemplateDisplayMember;
 
-            txtProjectName.DataBindings.Add(nameof(txtProjectName.Text), _presenter,
-                nameof(_presenter.TxtProjectNameText));
-
             txtLocation.DataBindings.Add(nameof(txtLocation.Text), _presenter, 
                 nameof(_presenter.TxtLocationText));
         }
@@ -38,7 +35,7 @@ namespace KFlearning.App.Views
 
         private void cmdCreate_Click(object sender, EventArgs e)
         {
-            if (!_presenter.CmdCreateClickHandler(cboTemplate.SelectedItem))
+            if (!_presenter.CmdCreateClickHandler(txtProjectName.Text, cboTemplate.SelectedItem))
             {
                 return;
             }
@@ -55,12 +52,12 @@ namespace KFlearning.App.Views
             }
 
             _presenter.BasePath = fbd.SelectedPath;
-            _presenter.UpdateProjectPath();
+            _presenter.UpdateProjectPath(txtProjectName.Text);
         }
 
         private void txtProjectName_TextChanged(object sender, EventArgs e)
         {
-            _presenter.UpdateProjectPath();
+            _presenter.UpdateProjectPath(txtProjectName.Text);
         }
     }
 }

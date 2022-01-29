@@ -66,9 +66,6 @@ namespace KFlearning.App
                 Log.Debug("Enabling TLS support");
                 NetworkHelpers.EnableTls();
 
-                // app exit handler
-                Application.ApplicationExit += Application_ApplicationExit;
-
                 // bootstrapper
                 Log.Debug("Bootstrapping application");
                 ApplicationConfiguration.Initialize();
@@ -84,6 +81,10 @@ namespace KFlearning.App
 
                 MessageBox.Show(MessagesText.FatalShutdown, MessagesText.AppName,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                AppExitHandler();
             }
         }
 
@@ -128,6 +129,8 @@ namespace KFlearning.App
             services.AddTransient<ITemplateProvider, PythonProvider>();
             services.AddTransient<ITemplateProvider, WebProvider>();
 
+            services.AddTransient<IUsesPersistence, HistoryService>();
+
             // register clients
             services.AddTransient<WebClient>();
 
@@ -140,7 +143,7 @@ namespace KFlearning.App
             Container = services.BuildServiceProvider();
         }
 
-        private static void Application_ApplicationExit(object? sender, EventArgs e)
+        private static void AppExitHandler()
         {
             try
             {

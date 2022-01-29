@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using KFlearning.Annotations;
 using KFlearning.App.Resources;
 using KFlearning.App.Services;
+using KFlearning.Core.Services;
 using KFlearning.TemplateProvider;
 using Microsoft.Extensions.Logging;
 
@@ -16,19 +17,20 @@ namespace KFlearning.App.Views
         private readonly ILogger<CreateProjectViewPresenter> _logger;
         private readonly IProjectService _projectService;
         private readonly ITemplateService _templateService;
+        private readonly IPathManager _pathManager;
 
         private string _basePath = string.Empty;
         private Project? _project;
         private object? _cboTemplateDataSource;
         private string? _cboTemplateDisplayMember;
         private string? _txtLocationText;
-        private string? _txtProjectNameText;
 
-        public CreateProjectViewPresenter(ILogger<CreateProjectViewPresenter> logger, IProjectService projectService, ITemplateService templateService)
+        public CreateProjectViewPresenter(ILogger<CreateProjectViewPresenter> logger, IProjectService projectService, ITemplateService templateService, IPathManager pathManager)
         {
             _logger = logger;
             _projectService = projectService;
             _templateService = templateService;
+            _pathManager = pathManager;
         }
 
         #region Properties
@@ -77,17 +79,6 @@ namespace KFlearning.App.Views
             }
         }
 
-        public string? TxtProjectNameText
-        {
-            get => _txtProjectNameText;
-            set
-            {
-                if (value == _txtProjectNameText) return;
-                _txtProjectNameText = value;
-                OnPropertyChanged();
-            }
-        }
-
         public string? TxtLocationText
         {
             get => _txtLocationText;
@@ -103,13 +94,14 @@ namespace KFlearning.App.Views
 
         public void OnLoadHandler()
         {
+            BasePath = _pathManager.GetPath(PathKind.ProjectRoot);
             CboTemplateDataSource = _templateService.GetTemplates();
             CboTemplateDisplayMember = nameof(ITemplateProvider.Title);
         }
 
-        public bool CmdCreateClickHandler(object selectedItem)
+        public bool CmdCreateClickHandler(string projectName, object selectedItem)
         {
-            if (string.IsNullOrWhiteSpace(TxtProjectNameText))
+            if (string.IsNullOrWhiteSpace(projectName))
             {
                 MessageBox.Show(MessagesText.CreateProjectDuplicateError, MessagesText.AppName,
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -132,8 +124,8 @@ namespace KFlearning.App.Views
 
             Project = new Project
             {
-                Name = TxtProjectNameText,
-                Path = _projectService.GetPathForProject(TxtProjectNameText, BasePath),
+                Name = projectName,
+                Path = _projectService.GetPathForProject(projectName, BasePath),
                 Template = (ITemplateProvider)selectedItem,
                 CreatedAt = DateTime.Now
             };
@@ -141,14 +133,14 @@ namespace KFlearning.App.Views
             return true;
         }
 
-        public void UpdateProjectPath()
+        public void UpdateProjectPath(string projectName)
         {
-            if (string.IsNullOrWhiteSpace(TxtProjectNameText))
+            if (string.IsNullOrWhiteSpace(projectName))
             {
                 return;
             }
 
-            TxtLocationText = _projectService.GetPathForProject(TxtProjectNameText, BasePath);
+            TxtLocationText = _projectService.GetPathForProject(projectName, BasePath);
         }
 
         #region INotifyPropertyChanged Implementation
