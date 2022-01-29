@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build-Incremental
+    name: Build KFlearning
     runs-on: windows-latest
     
     steps:
@@ -25,7 +25,7 @@ jobs:
       uses: cake-build/cake-action@v1
       with:
         script-path: build.cake
-        target: Build-All
+        target: all
         arguments: |
             configuration: Release
 

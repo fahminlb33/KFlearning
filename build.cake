@@ -1,25 +1,11 @@
 // ------- ARGUMENTS
-var target = Argument("target", "Build-All");
+var target = Argument("target", "all");
 var configuration = Argument("configuration", "Release");
-
-// ------ BUILD CONFIGURATION
-var buildSettingsNetCore = new DotNetCoreBuildSettings
-{
-	Verbosity = DotNetCoreVerbosity.Minimal,
-	Configuration = configuration
-};
-
-var buildSettingsMSBuild = new MSBuildSettings 
-{
-	Verbosity = Verbosity.Minimal,
-	Configuration = configuration
-};
 
 // ----- BUILD SEQUENCE
 
 // Clean build
-Task("Clean")
-.Does(() => {
+Task("clean").Does(() => {
 	Information("Cleaning /build folder...");
 	
 	CreateDirectory("./build");
@@ -27,33 +13,42 @@ Task("Clean")
 });
 
 // Build KFlearning
-Task("Build-Apps")
-.Does(() =>
+Task("build_apps").Does(() =>
 {
-	Information("Restoring Nuget dependecies...");
-	DotNetCoreRestore("./KFlearning.sln");
-
-	Information("Builidng solution...");
-	DotNetCoreBuild("./KFlearning.sln", buildSettingsNetCore);
-
-	Information("Copying build output...");
-	CopyDirectory($"./src/KFlearning.App/bin/{configuration}/net6.0-windows", "./build");
+	Information("Publishing KFlearning.App...");
+	DotNetCorePublish("./src/KFlearning.App/KFlearning.App.csproj", new DotNetCorePublishSettings
+	{
+		Verbosity = DotNetCoreVerbosity.Minimal,
+		Configuration = configuration,
+		NoBuild = false,   // implicit build
+		NoRestore = false, // implicit nuget restore
+		PublishReadyToRun = true,
+		SelfContained = false,
+		Runtime = "win-x86",
+		OutputDirectory = "./build/app"
+	});
 });
 
 // Build KFlearning and KFmaintenance MSI installer
-Task("Build-MSI-Apps")
-.Does(()=>
+Task("build_msi").Does(()=>
 {
     Information("Builidng KFlearning installer...");
-	MSBuild("./src/KFlearning.Setup/KFlearning.Setup.wixproj", buildSettingsMSBuild);
+	MSBuild("./src/KFlearning.Setup/KFlearning.Setup.wixproj", new MSBuildSettings 
+	{
+		Verbosity = Verbosity.Minimal,
+		Configuration = configuration,
+		PlatformTarget = PlatformTarget.x86
+	});
+
+	Information("Moving build artifact...");
 	MoveFile($"./src/KFlearning.Setup/bin/{configuration}/KFlearning.Setup.msi", "./build/KFlearning.Setup.msi");
 });
 
 // Build all
-Task("Build-All")
-.IsDependentOn("Clean")
-.IsDependentOn("Build-Apps")
-.IsDependentOn("Build-MSI-Apps");
+Task("all")
+	.IsDependentOn("clean")
+	.IsDependentOn("build_apps")
+	.IsDependentOn("build_msi");
 
 // Run target from command line
 RunTarget(target);

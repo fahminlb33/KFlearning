@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
-    name: Build-Incremental
+    name: Build KFlearning (canary)
     runs-on: windows-latest
     
     steps:
@@ -26,9 +26,9 @@ jobs:
       uses: cake-build/cake-action@v1
       with:
         script-path: build.cake
-        target: Build-All
+        target: all
         arguments: |
-            configuration: Release
+            configuration: Debug
 
     - name: Upload KFlearning Setup artifact
       uses: actions/upload-artifact@v2

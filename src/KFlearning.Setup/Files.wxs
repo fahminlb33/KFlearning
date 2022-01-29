@@ -4,97 +4,79 @@
   <?include Variables.wxi ?>
   <Fragment>
     <DirectoryRef Id="INSTALLFOLDER">
-      <Component Id="KFlearning.App.deps.json" Guid="*">
-        <File Id="KFlearning.App.deps.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.deps.json" />
-      </Component>
-      <Component Id="KFlearning.App.dll" Guid="*">
-        <File Id="KFlearning.App.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.dll" />
-      </Component>
-      <Component Id="KFlearning.App.exe" Guid="*">
-        <File Id="KFlearning.App.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.exe" />
-      </Component>
-      <Component Id="KFlearning.App.pdb" Guid="*">
-        <File Id="KFlearning.App.pdb" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.pdb" />
-      </Component>
-      <Component Id="KFlearning.App.runtimeconfig.json" Guid="*">
-        <File Id="KFlearning.App.runtimeconfig.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.runtimeconfig.json" />
-      </Component>
-      <Component Id="KFlearning.Core.dll" Guid="*">
-        <File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
-      </Component>
-      <Component Id="KFlearning.Core.pdb" Guid="*">
-        <File Id="KFlearning.Core.pdb" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.pdb" />
-      </Component>
-      <Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Guid="*">
-        <File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-      </Component>
-      <Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="*">
-        <File Id="Microsoft.Extensions.DependencyInjection.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.dll" />
-      </Component>
-      <Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="*">
-        <File Id="Microsoft.Extensions.Logging.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.Abstractions.dll" />
-      </Component>
-      <Component Id="Microsoft.Extensions.Logging.dll" Guid="*">
-        <File Id="Microsoft.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.dll" />
-      </Component>
-      <Component Id="Microsoft.Extensions.Options.dll" Guid="*">
-        <File Id="Microsoft.Extensions.Options.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Options.dll" />
-      </Component>
-      <Component Id="Microsoft.Extensions.Primitives.dll" Guid="*">
-        <File Id="Microsoft.Extensions.Primitives.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Primitives.dll" />
-      </Component>
-      <Component Id="Serilog.dll" Guid="*">
-        <File Id="Serilog.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.dll" />
-      </Component>
-      <Component Id="Serilog.Extensions.Logging.dll" Guid="*">
-        <File Id="Serilog.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Extensions.Logging.dll" />
-      </Component>
-      <Component Id="Serilog.Sinks.File.dll" Guid="*">
-        <File Id="Serilog.Sinks.File.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Sinks.File.dll" />
-      </Component>
-      <Component Id="System.Management.dll" Guid="*">
-        <File Id="System.Management.dll" KeyPath="yes" Source="$(var.SourceDir)\System.Management.dll" />
-      </Component>
-      <Directory Id="ref" Name="ref">
-        <Component Id="KFlearning.App.dll_1" Guid="*">
-          <File Id="KFlearning.App.dll_1" KeyPath="yes" Source="$(var.SourceDir)\ref\KFlearning.App.dll" />
-        </Component>
-      </Directory>
-      <Directory Id="runtimes" Name="runtimes">
-        <Directory Id="win" Name="win">
-          <Directory Id="lib" Name="lib">
-            <Directory Id="netcoreapp2.0" Name="netcoreapp2.0">
-              <Component Id="System.Management.dll_1" Guid="*">
-                <File Id="System.Management.dll_1" KeyPath="yes" Source="$(var.SourceDir)\runtimes\win\lib\netcoreapp2.0\System.Management.dll" />
-              </Component>
-            </Directory>
-          </Directory>
-        </Directory>
-      </Directory>
+		<Component Id="KFlearning.App.deps.json" Guid="{AFE737AD-FAAA-4B7D-B0AA-698E02FE2E2C}">
+			<File Id="KFlearning.App.deps.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.deps.json" />
+		</Component>
+		<Component Id="KFlearning.App.dll" Guid="{863B2555-EC7D-4B3E-8694-9F1997531572}">
+			<File Id="KFlearning.App.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.dll" />
+		</Component>
+		<Component Id="KFlearning.App.exe" Guid="{44132141-6EDC-420F-8846-099D07114420}">
+			<File Id="KFlearning.App.exe" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.exe" />
+		</Component>
+		<Component Id="KFlearning.App.runtimeconfig.json" Guid="{0D41838A-E432-4AAB-B499-024E95F9A383}">
+			<File Id="KFlearning.App.runtimeconfig.json" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.App.runtimeconfig.json" />
+		</Component>
+		<Component Id="KFlearning.Core.dll" Guid="{67971EB9-4698-4038-8B8D-E80C0FFBF808}">
+			<File Id="KFlearning.Core.dll" KeyPath="yes" Source="$(var.SourceDir)\KFlearning.Core.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Guid="{1F5F5F03-6102-4A6A-95CE-DBA7A507D27F}">
+			<File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="{BFBDAFE3-2AC6-4713-849C-3A6C1930D404}">
+			<File Id="Microsoft.Extensions.DependencyInjection.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.DependencyInjection.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="{D2FA0C69-582F-40E0-8572-29608043A230}">
+			<File Id="Microsoft.Extensions.Logging.Abstractions.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.Abstractions.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.Logging.dll" Guid="{984D330B-6F10-430E-9012-80C20DBAF231}">
+			<File Id="Microsoft.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Logging.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.Options.dll" Guid="{7AF357B3-EDAA-4823-A8E5-AB189496DD5B}">
+			<File Id="Microsoft.Extensions.Options.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Options.dll" />
+		</Component>
+		<Component Id="Microsoft.Extensions.Primitives.dll" Guid="{8597A189-BAF5-4B1E-BB30-9B73A08CD3D9}">
+			<File Id="Microsoft.Extensions.Primitives.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Extensions.Primitives.dll" />
+		</Component>
+		<Component Id="Microsoft.Windows.SDK.NET.dll" Guid="{50687141-26B8-4E03-A105-126E4EA7CEB1}">
+			<File Id="Microsoft.Windows.SDK.NET.dll" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Windows.SDK.NET.dll" />
+		</Component>
+		<Component Id="Serilog.dll" Guid="{1E585CE0-9E3A-4F50-B72C-BD04D69BF583}">
+			<File Id="Serilog.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.dll" />
+		</Component>
+		<Component Id="Serilog.Extensions.Logging.dll" Guid="{B5B3721E-81F3-41F4-B54A-25F09B409A1E}">
+			<File Id="Serilog.Extensions.Logging.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Extensions.Logging.dll" />
+		</Component>
+		<Component Id="Serilog.Sinks.File.dll" Guid="{4F27491F-84AB-4894-B7ED-D61D9004FE4D}">
+			<File Id="Serilog.Sinks.File.dll" KeyPath="yes" Source="$(var.SourceDir)\Serilog.Sinks.File.dll" />
+		</Component>
+		<Component Id="System.Management.dll" Guid="{FD4CDC93-ADA7-4A96-B216-61089A5AE7B3}">
+			<File Id="System.Management.dll" KeyPath="yes" Source="$(var.SourceDir)\System.Management.dll" />
+		</Component>
+		<Component Id="WinRT.Runtime.dll" Guid="{E5739281-A944-40A4-9719-8F18FC2172CC}">
+			<File Id="WinRT.Runtime.dll" KeyPath="yes" Source="$(var.SourceDir)\WinRT.Runtime.dll" />
+		</Component>
     </DirectoryRef>
   </Fragment>
 
   <Fragment>
     <ComponentGroup Id="ProductComponents">
-      <ComponentRef Id="KFlearning.App.deps.json" />
-      <ComponentRef Id="KFlearning.App.dll" />
-      <ComponentRef Id="KFlearning.App.exe" />
-      <ComponentRef Id="KFlearning.App.pdb" />
-      <ComponentRef Id="KFlearning.App.runtimeconfig.json" />
-      <ComponentRef Id="KFlearning.Core.dll" />
-      <ComponentRef Id="KFlearning.Core.pdb" />
-      <ComponentRef Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-      <ComponentRef Id="Microsoft.Extensions.DependencyInjection.dll" />
-      <ComponentRef Id="Microsoft.Extensions.Logging.Abstractions.dll" />
-      <ComponentRef Id="Microsoft.Extensions.Logging.dll" />
-      <ComponentRef Id="Microsoft.Extensions.Options.dll" />
-      <ComponentRef Id="Microsoft.Extensions.Primitives.dll" />
-      <ComponentRef Id="Serilog.dll" />
-      <ComponentRef Id="Serilog.Extensions.Logging.dll" />
-      <ComponentRef Id="Serilog.Sinks.File.dll" />
-      <ComponentRef Id="System.Management.dll" />
-      <ComponentRef Id="KFlearning.App.dll_1" />
-      <ComponentRef Id="System.Management.dll_1" />
+		<ComponentRef Id="KFlearning.App.deps.json" />
+		<ComponentRef Id="KFlearning.App.dll" />
+		<ComponentRef Id="KFlearning.App.exe" />
+		<ComponentRef Id="KFlearning.App.runtimeconfig.json" />
+		<ComponentRef Id="KFlearning.Core.dll" />
+		<ComponentRef Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+		<ComponentRef Id="Microsoft.Extensions.DependencyInjection.dll" />
+		<ComponentRef Id="Microsoft.Extensions.Logging.Abstractions.dll" />
+		<ComponentRef Id="Microsoft.Extensions.Logging.dll" />
+		<ComponentRef Id="Microsoft.Extensions.Options.dll" />
+		<ComponentRef Id="Microsoft.Extensions.Primitives.dll" />
+		<ComponentRef Id="Microsoft.Windows.SDK.NET.dll" />
+		<ComponentRef Id="Serilog.dll" />
+		<ComponentRef Id="Serilog.Extensions.Logging.dll" />
+		<ComponentRef Id="Serilog.Sinks.File.dll" />
+		<ComponentRef Id="System.Management.dll" />
+		<ComponentRef Id="WinRT.Runtime.dll" />
     </ComponentGroup>
   </Fragment>
 </Wix>
