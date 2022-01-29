@@ -26,19 +26,6 @@ Visual Studio Code.
 - Otomatis membuat konfigurasi `.vscode` untuk menjalankan aplikasi (integrasi dengan Visual Studio Code).
 - Riwayat proyek yang dikerjakan.
 
-## KFmaintenance
-
-KFmaintenance merupakan aplikasi untuk membantu asisten praktikum melakukan *maintenance* dan mengatur
-hak akses mahasiswa pada komputer di laboratorium komputer. Aplikasi ini dapat bekerja dalam jaringan.
-
-- Penguncian wallpaper, Task Manager, dan fitur administratif Windows lainnya.
-- Remote shutdown pada jaringan.
-- Berbagi file menggunakan Torrent pada jaringan (integrasi dengan qBittorrent).
-- CLIS Filler (untuk input data ke CLIS UNPAK).
-
-Untuk menggunakan CLIS Filler, Anda harus mengunduh [Chrome Driver](https://chromedriver.chromium.org/downloads).
-Sesuaikan versi Chrome drier dengan versi Chrome yang Anda gunakan.
-
 ## Kebutuhan Sistem
 
 - Windows 7 SP1
