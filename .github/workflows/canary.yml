@@ -22,20 +22,30 @@ jobs:
         dotnet-version: '6.0.x'
         include-prerelease: true
 
-    - name: Run Cake Build
+    - name: Build 32-bit KFlearning...
       uses: cake-build/cake-action@v1
       with:
         script-path: build.cake
         target: all
         arguments: |
             configuration: Debug
+            platform: x86
 
-    - name: Upload KFlearning Setup artifact
+    - name: Build 64-bit KFlearning...
+      uses: cake-build/cake-action@v1
+      with:
+        script-path: build.cake
+        target: all
+        arguments: |
+            configuration: Debug
+            platform: x64
+
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: KFlearning Installer
-        path: build/KFlearning.Setup.msi
-        
+        path: build/*.msi
+
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
