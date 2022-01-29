@@ -20,34 +20,64 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\stable.yml = .github\workflows\stable.yml
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KFserver", "src\KFserver\KFserver.vcxproj", "{4022544D-9B6A-4024-9185-7D4F83033A03}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KFlearning.App", "src\KFlearning.App\KFlearning.App.csproj", "{7F018BBF-D533-4FAA-904B-B9C1F35632DE}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "KFlearning.Setup", "src\KFlearning.Setup\KFlearning.Setup.wixproj", "{51B934A5-0042-49C0-9560-0E6A4C38D41E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|Any CPU.Build.0 = Debug|x86
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x64.Build.0 = Debug|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Debug|x86.Build.0 = Debug|Any CPU
 		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4022544D-9B6A-4024-9185-7D4F83033A03}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{4022544D-9B6A-4024-9185-7D4F83033A03}.Release|Any CPU.ActiveCfg = Release|Win32
-		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x64.ActiveCfg = Release|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x64.Build.0 = Release|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x86.ActiveCfg = Release|Any CPU
+		{443A1CE9-0C67-41ED-B392-5E41F7325A82}.Release|x86.Build.0 = Release|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|Any CPU.Build.0 = Debug|x86
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|x64.Build.0 = Debug|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Debug|x86.Build.0 = Debug|Any CPU
 		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|x64.ActiveCfg = Release|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|x64.Build.0 = Release|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{7F018BBF-D533-4FAA-904B-B9C1F35632DE}.Release|x86.Build.0 = Release|Any CPU
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|Any CPU.Build.0 = Debug|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|x64.ActiveCfg = Debug|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|x64.Build.0 = Debug|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|x86.ActiveCfg = Debug|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Debug|x86.Build.0 = Debug|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|Any CPU.ActiveCfg = Release|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|Any CPU.Build.0 = Release|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|x64.ActiveCfg = Release|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|x64.Build.0 = Release|x64
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|x86.ActiveCfg = Release|x86
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{443A1CE9-0C67-41ED-B392-5E41F7325A82} = {CFD611E5-7C21-4948-BC50-9E047037E089}
-		{4022544D-9B6A-4024-9185-7D4F83033A03} = {CFD611E5-7C21-4948-BC50-9E047037E089}
 		{7F018BBF-D533-4FAA-904B-B9C1F35632DE} = {CFD611E5-7C21-4948-BC50-9E047037E089}
+		{51B934A5-0042-49C0-9560-0E6A4C38D41E} = {CFD611E5-7C21-4948-BC50-9E047037E089}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01014452-34E3-46C7-99D8-DE8763ABD8E3}
