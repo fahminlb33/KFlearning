@@ -15,18 +15,13 @@ namespace KFlearning.App.Views
             _presenter = presenter;
 
             InitializeComponent();
-            BindData();
         }
 
         public void BindData()
         {
             // data binding
-            cboTemplate.DataBindings.Add(nameof(cboTemplate.DataSource), _presenter,
-                nameof(_presenter.CboTemplateDataSource));
-            cboTemplate.DataBindings.Add(nameof(cboTemplate.DisplayMember), _presenter,
-                nameof(_presenter.CboTemplateDisplayMember));
-            cboTemplate.DataBindings.Add(nameof(cboTemplate.SelectedItem), _presenter,
-                nameof(_presenter.CboTemplateSelectedItem));
+            cboTemplate.DataSource = _presenter.CboTemplateDataSource;
+            cboTemplate.DisplayMember = _presenter.CboTemplateDisplayMember;
 
             txtProjectName.DataBindings.Add(nameof(txtProjectName.Text), _presenter,
                 nameof(_presenter.TxtProjectNameText));
@@ -38,11 +33,12 @@ namespace KFlearning.App.Views
         protected override void OnLoad(EventArgs e)
         {
             _presenter.OnLoadHandler();
+            BindData();
         }
 
         private void cmdCreate_Click(object sender, EventArgs e)
         {
-            if (!_presenter.CmdCreateClickHandler())
+            if (!_presenter.CmdCreateClickHandler(cboTemplate.SelectedItem))
             {
                 return;
             }

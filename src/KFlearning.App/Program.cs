@@ -9,6 +9,7 @@ using KFlearning.App.Views;
 using KFlearning.Core.API;
 using KFlearning.Core.Helpers;
 using KFlearning.Core.Services;
+using KFlearning.TemplateProvider;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
@@ -121,6 +122,11 @@ namespace KFlearning.App
             services.AddSingleton<IFlutterInstallService, FlutterInstallService>();
             services.AddSingleton<IFlutterGitClient, FlutterGitClient>();
             services.AddSingleton<IVisualStudioCodeService, VisualStudioCodeService>();
+
+            services.AddTransient<ITemplateProvider, CppConsoleProvider>();
+            services.AddTransient<ITemplateProvider, CppFreeglutProvider>();
+            services.AddTransient<ITemplateProvider, PythonProvider>();
+            services.AddTransient<ITemplateProvider, WebProvider>();
 
             // register clients
             services.AddTransient<WebClient>();

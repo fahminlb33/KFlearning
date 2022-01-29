@@ -20,10 +20,9 @@ namespace KFlearning.App.Views
         private string _basePath = string.Empty;
         private Project? _project;
         private object? _cboTemplateDataSource;
+        private string? _cboTemplateDisplayMember;
         private string? _txtLocationText;
         private string? _txtProjectNameText;
-        private object? _cboTemplateSelectedItem;
-        private string? _cboTemplateDisplayMember;
 
         public CreateProjectViewPresenter(ILogger<CreateProjectViewPresenter> logger, IProjectService projectService, ITemplateService templateService)
         {
@@ -78,17 +77,6 @@ namespace KFlearning.App.Views
             }
         }
 
-        public object? CboTemplateSelectedItem
-        {
-            get => _cboTemplateSelectedItem;
-            set
-            {
-                if (Equals(value, _cboTemplateSelectedItem)) return;
-                _cboTemplateSelectedItem = value;
-                OnPropertyChanged();
-            }
-        }
-
         public string? TxtProjectNameText
         {
             get => _txtProjectNameText;
@@ -119,7 +107,7 @@ namespace KFlearning.App.Views
             CboTemplateDisplayMember = nameof(ITemplateProvider.Title);
         }
 
-        public bool CmdCreateClickHandler()
+        public bool CmdCreateClickHandler(object selectedItem)
         {
             if (string.IsNullOrWhiteSpace(TxtProjectNameText))
             {
@@ -135,7 +123,7 @@ namespace KFlearning.App.Views
                 return false;
             }
 
-            if (CboTemplateSelectedItem is null)
+            if (selectedItem is null)
             {
                 MessageBox.Show(MessagesText.CreateProjectNullProjectTypeError, MessagesText.AppName,
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -146,7 +134,7 @@ namespace KFlearning.App.Views
             {
                 Name = TxtProjectNameText,
                 Path = _projectService.GetPathForProject(TxtProjectNameText, BasePath),
-                Template = (ITemplateProvider) CboTemplateSelectedItem,
+                Template = (ITemplateProvider)selectedItem,
                 CreatedAt = DateTime.Now
             };
 
