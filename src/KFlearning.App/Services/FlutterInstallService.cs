@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using KFlearning.Core.API;
@@ -27,7 +27,6 @@ namespace KFlearning.App.Services
 
     public class FlutterInstallService : IFlutterInstallService
     {
-        private readonly WebClient _webClient;
         private readonly IFlutterGitClient _flutterGitClient;
         private readonly ILogger<FlutterInstallService> _logger;
 
@@ -42,14 +41,12 @@ namespace KFlearning.App.Services
         public string FlutterVersion { get; private set; } = string.Empty;
         public string InstallPath { get; set; }
 
-        public FlutterInstallService(IFlutterGitClient flutterGitClient, WebClient webClient, IPathManager pathManager, ILogger<FlutterInstallService> logger)
+        public FlutterInstallService(IFlutterGitClient flutterGitClient, IPathManager pathManager, ILogger<FlutterInstallService> logger)
         {
             InstallPath = pathManager.GetPath(PathKind.FlutterInstallRoot);
 
             _flutterGitClient = flutterGitClient;
-            _webClient = webClient;
             _logger = logger;
-            _webClient.DownloadProgressChanged += WebClient_DownloadProgressChanged;
         }
 
         #region Public Methods
@@ -64,7 +61,6 @@ namespace KFlearning.App.Services
 
         public void Cancel()
         {
-            _webClient.CancelAsync();
             _cancellationSource?.Cancel();
         }
 
@@ -113,12 +109,41 @@ namespace KFlearning.App.Services
 
                     _downloadPath = Path.GetTempFileName();
                     var uri = _flutterGitClient.GetFlutterDownloadUri(FlutterVersion);
+                    _logger.LogDebug("Flutter download URI {0}", uri);
                     _logger.LogDebug("Flutter download path {0}", _downloadPath);
-                    _logger.LogDebug("Flutter URI path {0}", uri);
 
                     _logger.LogInformation("Start Flutter download");
-                    _cancellationToken.Register(() => _webClient.CancelAsync());
-                    await _webClient.DownloadFileTaskAsync(new Uri(uri), _downloadPath);
+
+                    using var httpClient = new HttpClient();
+                    using var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, _cancellationToken);
+                    using var downloadStream = await response.Content.ReadAsStreamAsync(_cancellationToken);
+                    using var fileWriterStream = new FileStream(_downloadPath, FileMode.Create);
+
+                    var totalSize = response.Content.Headers.ContentLength ?? 1;
+                    var totalDownloaded = 0D;
+                    var buffer = new byte[8192];
+                    var readed = 0;
+
+                    do
+                    {
+                        readed = await downloadStream.ReadAsync(buffer, _cancellationToken);
+                        if (readed == 0)
+                        {
+                            break;
+                        }
+
+                        await fileWriterStream.WriteAsync(buffer.AsMemory(0, readed), _cancellationToken);
+                        totalDownloaded += readed;
+
+                        var progressPercentage = Convert.ToInt32(totalDownloaded / totalSize * 100.0);
+
+                        _logger.LogDebug("Download progress {0}/{1} ({2}%)", totalDownloaded, totalSize, progressPercentage);
+                        OnProgressChanged(this, new FlutterInstallProgressEventArgs
+                        {
+                            ProgressPercentage = progressPercentage,
+                            Status = "Mengunduh paket instalasi..."
+                        });
+                    } while (readed > 0);
 
                     // step 2 --- extract to installfolder
                     OnProgressChanged(this, new FlutterInstallProgressEventArgs
@@ -129,7 +154,7 @@ namespace KFlearning.App.Services
 
                     _logger.LogInformation("Start Flutter extraction");
                     _cancellationSource?.Token.ThrowIfCancellationRequested();
-                    
+
                     ZipFile.ExtractToDirectory(_downloadPath, InstallPath);
 
                     // step 3 --- set environment variable
@@ -176,19 +201,6 @@ namespace KFlearning.App.Services
                         Success = false
                     });
                 }
-            });
-        }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            OnProgressChanged(this, new FlutterInstallProgressEventArgs
-            {
-                ProgressPercentage = e.ProgressPercentage,
-                Status = "Mengunduh..."
             });
         }
 

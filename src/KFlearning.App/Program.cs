@@ -133,6 +133,7 @@ namespace KFlearning.App
 
             // register clients
             services.AddTransient<WebClient>();
+            services.AddTransient<ManualResetEventSlim>();
 
             // setup logging
             services.AddLogging(configure =>
