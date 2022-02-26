@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using KFlearning.App.Resources;
+using KFlearning.Core;
 using KFlearning.Core.Helpers;
 
 namespace KFlearning.App.Views
@@ -12,7 +13,7 @@ namespace KFlearning.App.Views
         {
             InitializeComponent();
 
-            lblVersion.Text = VersionHelpers.GetVersionString();
+            lblVersion.Text = KFlearningVersion.GetVersionString();
             lblCopyright.Text = string.Format(MessagesText.CopyrightText, DateTime.Now.Year);
         }
 

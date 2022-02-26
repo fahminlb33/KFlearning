@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using KFlearning.Annotations;
 using KFlearning.App.Resources;
 using KFlearning.App.Services;
-using KFlearning.Core.Helpers;
+using KFlearning.Core;
 using KFlearning.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -71,7 +71,7 @@ namespace KFlearning.App.Views
 
         public void OnLoad()
         {
-            LblVersionText = VersionHelpers.GetVersionString();
+            LblVersionText = KFlearningVersion.GetVersionString();
             ReloadHistory();
         }
 
