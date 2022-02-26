@@ -27,6 +27,7 @@ namespace KFlearning.App.Services
 
     public class FlutterInstallService : IFlutterInstallService
     {
+        private readonly HttpClient _httpClient;
         private readonly IFlutterGitClient _flutterGitClient;
         private readonly ILogger<FlutterInstallService> _logger;
 
@@ -41,12 +42,13 @@ namespace KFlearning.App.Services
         public string FlutterVersion { get; private set; } = string.Empty;
         public string InstallPath { get; set; }
 
-        public FlutterInstallService(IFlutterGitClient flutterGitClient, IPathManager pathManager, ILogger<FlutterInstallService> logger)
+        public FlutterInstallService(IFlutterGitClient flutterGitClient, IPathManager pathManager, ILogger<FlutterInstallService> logger, HttpClient httpClient)
         {
             InstallPath = pathManager.GetPath(PathKind.FlutterInstallRoot);
 
             _flutterGitClient = flutterGitClient;
             _logger = logger;
+            _httpClient = httpClient;
         }
 
         #region Public Methods
@@ -114,8 +116,7 @@ namespace KFlearning.App.Services
 
                     _logger.LogInformation("Start Flutter download");
 
-                    using var httpClient = new HttpClient();
-                    using var response = await httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, _cancellationToken);
+                    using var response = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, _cancellationToken);
                     using var downloadStream = await response.Content.ReadAsStreamAsync(_cancellationToken);
                     using var fileWriterStream = new FileStream(_downloadPath, FileMode.Create);
 
@@ -155,6 +156,7 @@ namespace KFlearning.App.Services
                     _logger.LogInformation("Start Flutter extraction");
                     _cancellationSource?.Token.ThrowIfCancellationRequested();
 
+                    await fileWriterStream.DisposeAsync();
                     ZipFile.ExtractToDirectory(_downloadPath, InstallPath);
 
                     // step 3 --- set environment variable
