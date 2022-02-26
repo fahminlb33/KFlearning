@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 using KFlearning.App.Resources;
@@ -112,8 +113,8 @@ namespace KFlearning.App
             services.AddTransient<FlutterInstallViewPresenter>();
 
             // register services
+            services.AddSingleton<HttpClient>();
             services.AddSingleton<KFlearningApplicationContext>();
-            services.AddSingleton<IHistoryService, HistoryService>();
 
             services.AddSingleton<IPathManager, PathManager>();
             services.AddSingleton<IProcessManager, ProcessManager>();
@@ -124,12 +125,17 @@ namespace KFlearning.App
             services.AddSingleton<IFlutterGitClient, FlutterGitClient>();
             services.AddSingleton<IVisualStudioCodeService, VisualStudioCodeService>();
 
+            // -- forwarding pattern using factories
+            // this is because MS DI will register different instance of the implementation
+            // https://andrewlock.net/how-to-register-a-service-with-multiple-interfaces-for-in-asp-net-core-di/
+            services.AddSingleton<HistoryService>();
+            services.AddSingleton<IHistoryService>(x => x.GetRequiredService<HistoryService>());
+            services.AddSingleton<IUsesPersistence>(x => x.GetRequiredService<HistoryService>());
+
             services.AddTransient<ITemplateProvider, CppConsoleProvider>();
             services.AddTransient<ITemplateProvider, CppFreeglutProvider>();
             services.AddTransient<ITemplateProvider, PythonProvider>();
             services.AddTransient<ITemplateProvider, WebProvider>();
-
-            services.AddTransient<IUsesPersistence, HistoryService>();
 
             // register clients
             services.AddTransient<WebClient>();
