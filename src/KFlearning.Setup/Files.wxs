@@ -55,6 +55,10 @@
 		<Component Id="WinRT.Runtime.dll" Guid="{E5739281-A944-40A4-9719-8F18FC2172CC}" Win64="$(var.Win64)">
 			<File Id="WinRT.Runtime.dll" KeyPath="yes" Source="$(var.SourceDir)\WinRT.Runtime.dll" />
 		</Component>
+
+		<Component Id="kodesiana_icon.ico" Guid="{79F4CDF3-E97C-4554-BE2E-F268EBFAD145}" Win64="$(var.Win64)">
+			<File Id="kodesiana_icon.ico" KeyPath="yes" Source="$(var.AssetsDir)\kodesiana_icon.ico" />
+		</Component>
     </DirectoryRef>
   </Fragment>
 
@@ -77,6 +81,8 @@
 		<ComponentRef Id="Serilog.Sinks.File.dll" />
 		<ComponentRef Id="System.Management.dll" />
 		<ComponentRef Id="WinRT.Runtime.dll" />
+
+		<ComponentRef Id="kodesiana_icon.ico" />
     </ComponentGroup>
   </Fragment>
 </Wix>

@@ -19,7 +19,12 @@
     <PackageProjectUrl>https://www.kodesiana.com/kflearning/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/fahminlb33/KFlearning</RepositoryUrl>
     <PackageLicenseFile>D:\Kodesiana\KFlearning\LICENSE.md</PackageLicenseFile>
+    <ApplicationIcon>kflearning-logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="kflearning-logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\README.md">
