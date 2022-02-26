@@ -60,7 +60,7 @@ namespace KFlearning.App
                     Log.Debug("KF-MinGW not found");
                     MessageBox.Show(MessagesText.KFmingwNotInstalled, MessagesText.AppName,
                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //return;
+                    return;
                 }
 
                 // enable TLS
