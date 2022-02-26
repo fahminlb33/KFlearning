@@ -13,7 +13,7 @@
     <Platforms>AnyCPU</Platforms>
     <Description>Application logic for Kodesiana KFlearning</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseFile>D:\Kodesiana\KFlearning\LICENSE.md</PackageLicenseFile>
+    <PackageLicenseFile>..\..\LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\README.md">

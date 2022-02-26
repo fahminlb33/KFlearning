@@ -18,7 +18,7 @@
     <Copyright>Copyright (C) Fahmi Noor Fiqri, Kodesiana 2020-2022</Copyright>
     <PackageProjectUrl>https://www.kodesiana.com/kflearning/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/fahminlb33/KFlearning</RepositoryUrl>
-    <PackageLicenseFile>D:\Kodesiana\KFlearning\LICENSE.md</PackageLicenseFile>
+    <PackageLicenseFile>..\..\LICENSE.md</PackageLicenseFile>
     <ApplicationIcon>kflearning-logo.ico</ApplicationIcon>
   </PropertyGroup>
 
