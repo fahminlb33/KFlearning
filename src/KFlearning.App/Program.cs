@@ -113,7 +113,6 @@ namespace KFlearning.App
             services.AddTransient<FlutterInstallViewPresenter>();
 
             // register services
-            services.AddSingleton<HttpClient>();
             services.AddSingleton<KFlearningApplicationContext>();
 
             services.AddSingleton<IPathManager, PathManager>();
@@ -137,8 +136,8 @@ namespace KFlearning.App
             services.AddTransient<ITemplateProvider, PythonProvider>();
             services.AddTransient<ITemplateProvider, WebProvider>();
 
-            // register clients
-            services.AddTransient<WebClient>();
+            // register .NET services
+            services.AddSingleton<HttpClient>();
             services.AddTransient<ManualResetEventSlim>();
 
             // setup logging
