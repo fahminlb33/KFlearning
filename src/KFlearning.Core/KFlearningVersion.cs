@@ -4,7 +4,7 @@ namespace KFlearning.Core
 {
     public static class KFlearningVersion
     {
-        public const string Codename = "Київ / Kiev";
+        public const string Codename = "Київ / Kyiv";
 
         public static string GetVersionString()
         {
