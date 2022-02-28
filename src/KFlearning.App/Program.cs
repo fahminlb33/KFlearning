@@ -70,22 +70,18 @@ namespace KFlearning.App
                 // bootstrapper
                 Log.Debug("Bootstrapping application");
                 ApplicationConfiguration.Initialize();
-
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(Container.GetRequiredService<KFlearningApplicationContext>());
             }
             catch (Exception e)
             {
                 Log.Fatal("Application shutdown unexpectedly", e);
-                Log.CloseAndFlush();
-
                 MessageBox.Show(MessagesText.FatalShutdown, MessagesText.AppName,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 AppExitHandler();
+                Log.CloseAndFlush();
             }
         }
 
