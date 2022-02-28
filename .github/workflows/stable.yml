@@ -54,5 +54,4 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        title: "Canary Build"
         files: build/*.msi
