@@ -1,4 +1,4 @@
-# KFlearning Suite
+# KFlearning
 
 KFlearning adalah platform e-learning untuk belajar algoritma dan pemrograman khususnya bagi mahasiswa 
 jurusan ilmu komputer.
@@ -25,13 +25,13 @@ Visual Studio Code.
 - Berisi 4 template siap pakai, yaitu: Web PHP, Console (C++), GUI (C++ Freeglut), dan Data Science (Python).
 - Otomatis membuat konfigurasi `.vscode` untuk menjalankan aplikasi (integrasi dengan Visual Studio Code).
 - Riwayat proyek yang dikerjakan.
+- Otomatisasi install Flutter SDK.
 
 ## Kebutuhan Sistem
 
-- Windows 7 SP1
-- .NET Framework 4.5
-- Visual Studio User Installer (KFlearning)
-- qBittorrent (KFmaintenance)
+- Windows 7 SP1 atau lebih baru
+- .NET 6
+- Visual Studio User Installer
 
 ## Bantuan dan Kontribusi
 
